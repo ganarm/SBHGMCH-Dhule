@@ -8,14 +8,14 @@ export const INSTITUTION_MISSION =
   'To provide quality nursing education through academic excellence, competency-based clinical training, evidence-based practice, research, community engagement, and the promotion of professional ethics and lifelong learning.';
 
 export const INSTITUTION_OBJECTIVES = [
-  'Provide quality nursing education based on competency-based curriculum aligned with Indian Nursing Council standards.',
-  'Develop clinical competence through structured hospital and community-based nursing practice under expert supervision.',
-  'Promote safe, ethical, and patient-centred nursing care in all clinical and community settings.',
-  'Encourage research, innovation, and evidence-based practice among faculty and students.',
-  'Develop leadership, communication, and managerial skills required for effective healthcare delivery.',
-  'Promote community health through outreach programmes, health education, and preventive care initiatives.',
-  'Inculcate professional responsibility, integrity, and adherence to the nursing code of ethics.',
-  'Prepare nursing graduates who are eligible for registration and ready for professional employment and higher education.',
+  'To provide quality nursing education in accordance with applicable regulatory standards.',
+  'To develop clinical competence, critical thinking, and decision-making skills.',
+  'To promote safe, ethical, compassionate, and patient-centred nursing care.',
+  'To encourage research, innovation, and evidence-based nursing practice.',
+  'To develop leadership, communication, teamwork, and management skills.',
+  'To promote community health, disease prevention, and public health awareness.',
+  'To inculcate professional responsibility, discipline, and lifelong learning.',
+  'To prepare nursing graduates to meet the evolving health care needs of society.',
 ];
 
 export const INSTITUTION_DEAN_MESSAGE = {
@@ -38,8 +38,13 @@ export const INSTITUTION_PRINCIPAL_MESSAGE = {
   photoUrl:
     'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=900&q=80',
   message: [
-    'It gives me immense pleasure to welcome you to our Government College of Nursing Dhule. Nursing is a noble profession that combines scientific knowledge, clinical competence, and a strong commitment to humanity.',
+    'It gives me immense pleasure to welcome you to our Government College of Nursing Dhule. Nursing is a noble and dynamic profession that combines scientific knowledge, clinical competence, compassion, and a strong commitment to humanity.',
+    'Our college is committed to providing quality nursing education in a supportive, disciplined, and student-centred learning environment. Through classroom teaching, laboratory training, clinical experiences, community-based education, research, and extracurricular activities, we strive to prepare our students to become competent, confident, ethical, and compassionate nursing professionals.',
+    'We believe that education extends beyond textbooks and examinations. Our students are encouraged to develop critical thinking, communication skills, leadership qualities, professional responsibility, teamwork, and respect for the dignity and rights of every individual.',
+    'As future nurses, our students have an important role in promoting health, preventing disease, providing safe and holistic care, and serving individuals, families, and communities. I encourage every student to pursue knowledge with dedication, practise with compassion, uphold professional ethics, and continue learning throughout their career.',
+    'I warmly welcome prospective students, parents, faculty members, and all stakeholders to be part of our institution\'s journey towards excellence in nursing education and health care.',
   ],
+  concludingText: 'Wishing all our students a successful, meaningful, and fulfilling nursing career.',
 };
 
 export const INSTITUTION_HISTORY = {

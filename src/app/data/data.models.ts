@@ -12,6 +12,7 @@ export interface LeadershipMessage {
   designation: string;
   photoUrl?: string;
   message: string[];
+  concludingText?: string;
 }
 
 export interface SocietyHistory {

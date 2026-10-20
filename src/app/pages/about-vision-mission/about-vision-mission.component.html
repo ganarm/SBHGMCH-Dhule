@@ -9,19 +9,31 @@
 </div>
 
 <div class="container page-body">
-  <div class="content-card">
-    <h2>Aim</h2>
-    <p>{{ about.aim }}</p>
+  <div class="content-card mission-grid">
+    <section class="detail-panel">
+      <span class="section-kicker">Institutional Goal</span>
+      <h2>Aim</h2>
+      <p>{{ about.aim }}</p>
+    </section>
 
-    <h2>Vision</h2>
-    <p>{{ about.vision }}</p>
+    <section class="detail-panel">
+      <span class="section-kicker">Future Direction</span>
+      <h2>Vision</h2>
+      <p>{{ about.vision }}</p>
+    </section>
 
-    <h2>Mission</h2>
-    <p>{{ about.mission }}</p>
+    <section class="detail-panel">
+      <span class="section-kicker">Core Commitment</span>
+      <h2>Mission</h2>
+      <p>{{ about.mission }}</p>
+    </section>
 
-    <h2>Objectives</h2>
-    <ol class="objectives-list">
-      <li *ngFor="let objective of about.objectives">{{ objective }}</li>
-    </ol>
+    <section class="objectives-panel">
+      <span class="section-kicker">Objectives</span>
+      <h2>Institutional Objectives</h2>
+      <ol class="objectives-list">
+        <li *ngFor="let objective of about.objectives">{{ objective }}</li>
+      </ol>
+    </section>
   </div>
 </div>

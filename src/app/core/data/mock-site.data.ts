@@ -3,7 +3,7 @@ import { AdmissionProgram, HeroSlide, Notice, SiteSettings } from '../models/sit
 export const SITE_SETTINGS: SiteSettings = {
   societyName: 'ASSOCIATED WITH SHRI. BHAUSAHEB HIRE GOVERNMENT MEDICAL COLLEGE & SARVOPACHAR RUGNALAY',
   instituteName: 'Government College of Nursing, Dhule',
-  logoUrl: '/images/logo-bin-placeholder.svg',
+  logoUrl: './images/logo-bin-placeholder.svg',
   logoAlt: 'Government College of Nursing, Dhule logo',
   shortName: 'GCN Dhule',
   approvalsLine:
@@ -43,42 +43,42 @@ export const SITE_SETTINGS: SiteSettings = {
 
 export const HERO_SLIDES: HeroSlide[] = [
   {
-    imageUrl: '/images/College Image.jpg',
+    imageUrl: './images/College Image.jpg',
     alt: 'Government College of Nursing, Dhule building and campus',
     title: 'Government College of Nursing, Dhule',
     subtitle:
       'Associated with Shri. Bhausaheb Hire Government Medical College & Sarvopachar Rugnalay. Dedicated to excellence in nursing education and community service.',
   },
   {
-    imageUrl: '/images/Hospital.jpg',
+    imageUrl: './images/Hospital.jpg',
     alt: 'Teaching hospital clinical exposure',
     title: 'Extensive Clinical Exposure',
     subtitle:
       'Practical training at our 250-bedded teaching hospital, including OPD, ICU, Casualty, and specialized wards.',
   },
   {
-    imageUrl: '/images/Pre-Clinical Lab.jpg',
+    imageUrl: './images/Pre-Clinical Lab.jpg',
     alt: 'Pre-clinical nursing laboratory',
     title: 'State-of-the-Art Clinical Laboratories',
     subtitle:
       'Hands-on training in Nursing Foundation (F.O.N.), Maternal & Child Health (MCH), Community Health (CHN), and Pre-Clinical Labs.',
   },
   {
-    imageUrl: '/images/Nutrition Lab.jpg',
+    imageUrl: './images/Nutrition Lab.jpg',
     alt: 'Nutrition and dietetics laboratory',
     title: 'Nutrition & Dietetics Lab',
     subtitle:
       'Well-equipped kitchen and lab facilities for practical training in therapeutic diets and community nutrition.',
   },
   {
-    imageUrl: '/images/Computer lab.jpg',
+    imageUrl: './images/Computer lab.jpg',
     alt: 'Computer lab with modern systems',
     title: 'Advanced Computer Lab',
     subtitle:
       'Equipped with modern systems to support nursing informatics, research, and digital literacy.',
   },
   {
-    imageUrl: "/images/Girl's Hostel.jpg",
+    imageUrl: "./images/Girl's Hostel.jpg",
     alt: 'Girls hostel accommodation',
     title: 'Safe & Secure Hostel Facilities',
     subtitle:

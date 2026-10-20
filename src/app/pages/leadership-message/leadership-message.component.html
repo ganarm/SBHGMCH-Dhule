@@ -14,11 +14,26 @@
   </div>
 
   <div class="container page-body">
-    <div class="content-card">
-      @for (para of message()!.message; track para) {
-        <p>{{ para }}</p>
-      }
-      <p class="sign-off">— {{ message()!.name }}, {{ message()!.designation }}</p>
+    <div class="content-card message-layout">
+      <div class="message-portrait">
+        @if (message()!.photoUrl) {
+          <img [src]="message()!.photoUrl" [alt]="message()!.name" />
+        } @else {
+          <div class="message-portrait-placeholder" aria-hidden="true">
+            {{ message()!.name.charAt(0) }}
+          </div>
+        }
+      </div>
+
+      <div class="message-copy">
+        @for (para of message()!.message; track para) {
+          <p>{{ para }}</p>
+        }
+        @if (message()!.concludingText) {
+          <p><strong>{{ message()!.concludingText }}</strong></p>
+        }
+        <p class="sign-off">— {{ message()!.name }}, {{ message()!.designation }}</p>
+      </div>
     </div>
   </div>
 }
