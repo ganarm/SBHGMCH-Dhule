@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { FACULTY_MEMBERS } from '../../data/faculty.data';
+import { FACULTY_DATA } from '../../data/faculty.data';
 
 @Component({
   selector: 'app-faculty',
@@ -10,9 +10,9 @@ import { FACULTY_MEMBERS } from '../../data/faculty.data';
   styleUrl: './faculty.component.scss',
 })
 export class FacultyComponent {
-  readonly faculty = FACULTY_MEMBERS;
+  readonly faculty = FACULTY_DATA;
 
-  trackByMember(index: number, member: (typeof FACULTY_MEMBERS)[number]): string {
+  trackByMember(index: number, member: (typeof FACULTY_DATA)[number]): string {
     return `${member.name}-${index}`;
   }
 }

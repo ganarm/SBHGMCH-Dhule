@@ -4,25 +4,52 @@
       <span>Home</span><span>/</span><span>About Us</span><span>/</span><span>History</span>
     </nav>
     <h1>History</h1>
-    <p>Society registration and service region of the nursing institution.</p>
+    <p>Institutional milestones, legal establishment, and the service region served by the college.</p>
   </div>
 </div>
 
 <div class="container page-body">
-  <div class="content-card">
-    <dl class="facts">
-      <div>
-        <dt>Registered</dt>
-        <dd>{{ history.registeredYear }} under {{ history.registrationAct }}</dd>
+  <div class="history-layout">
+    <section class="content-card history-main">
+      <div class="section-heading">
+        <p class="eyebrow">Institutional timeline</p>
+        <h2>Milestones in the institution’s journey</h2>
       </div>
-      <div>
-        <dt>Service area</dt>
-        <dd>{{ history.serviceAreas.join(', ') }}</dd>
-      </div>
-    </dl>
 
-    @for (para of history.paragraphs; track para) {
-      <p>{{ para }}</p>
-    }
+      <ol class="timeline" aria-label="Institution history timeline">
+        @for (milestone of history.timeline; track milestone.year) {
+          <li class="timeline-item">
+            <div class="timeline-marker" aria-hidden="true"></div>
+            <div class="timeline-content">
+              <span class="timeline-year">{{ milestone.year }}</span>
+              <h3>{{ milestone.title }}</h3>
+              <p>{{ milestone.description }}</p>
+            </div>
+          </li>
+        }
+      </ol>
+    </section>
+
+    <aside class="content-card key-facts-panel">
+      <div class="section-heading">
+        <p class="eyebrow">Key facts</p>
+        <h2>Institution overview</h2>
+      </div>
+
+      <dl class="facts">
+        @for (fact of history.keyFacts; track fact.label) {
+          <div class="fact-item">
+            <dt>{{ fact.label }}</dt>
+            <dd>{{ fact.value }}</dd>
+          </div>
+        }
+      </dl>
+
+      <div class="summary-block">
+        @for (para of history.paragraphs; track para) {
+          <p>{{ para }}</p>
+        }
+      </div>
+    </aside>
   </div>
 </div>

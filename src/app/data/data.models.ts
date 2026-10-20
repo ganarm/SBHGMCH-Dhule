@@ -15,11 +15,32 @@ export interface LeadershipMessage {
   concludingText?: string;
 }
 
+export interface HistoryFact {
+  label: string;
+  value: string;
+}
+
+export interface HistoryTimelineEntry {
+  year: number;
+  title: string;
+  description: string;
+}
+
 export interface SocietyHistory {
   registeredYear: number;
   registrationAct: string;
   serviceAreas: string[];
   paragraphs: string[];
+  keyFacts: HistoryFact[];
+  timeline: HistoryTimelineEntry[];
+}
+
+export interface FacultyMember {
+  name: string;
+  initials: string;
+  designation: string;
+  qualification: string;
+  image?: string;
 }
 
 export interface FacultyEntry {

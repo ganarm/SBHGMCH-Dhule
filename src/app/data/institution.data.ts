@@ -56,6 +56,42 @@ export const INSTITUTION_HISTORY = {
     'Government College of Nursing, Dhule functions in association with Shri. Bhausaheb Hire Government Medical College & Sarvopachar Rugnalay, providing undergraduate nursing programmes with clinical training integrated across the medical college hospital network.',
     'The institution serves students and communities across the Dhule, Nandurbar, Jalgaon, and Nashik regions, contributing to the availability of skilled nursing personnel in government and public health settings.',
   ],
+  keyFacts: [
+    { label: 'Registered', value: '2004' },
+    { label: 'Legal Act', value: 'Societies Registration Act, 1860' },
+    { label: 'Service Area', value: 'Dhule, Nandurbar, Jalgaon, Nashik' },
+  ],
+  timeline: [
+    {
+      year: 1991,
+      title: 'Initial land handover',
+      description:
+        'Initial land handover for the establishment of the nursing institution in the region.',
+    },
+    {
+      year: 1999,
+      title: 'Government Resolution',
+      description:
+        'Government Resolution was issued for the establishment of the college of nursing.',
+    },
+    {
+      year: 2004,
+      title: 'Society registered',
+      description:
+        'The society was registered under the Societies Registration Act, 1860.',
+    },
+    {
+      year: 2009,
+      title: 'GR approved ₹9.10 Crores',
+      description:
+        'Government Resolution approved a project cost of ₹9.10 Crores for the institution.',
+    },
+    {
+      year: 2011,
+      title: 'Commencement of revised GNM programme',
+      description: 'The revised GNM programme commenced at the institution.',
+    },
+  ],
 };
 
 export const INSTITUTION_DETAILS = {

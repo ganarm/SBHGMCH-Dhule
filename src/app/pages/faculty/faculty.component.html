@@ -8,7 +8,13 @@
 <div class="container page-body">
   <div class="faculty-grid">
     <article class="faculty-card" *ngFor="let member of faculty; trackBy: trackByMember">
-      <img [src]="member.photoUrl" [alt]="member.name" loading="lazy" />
+      <div class="faculty-photo" [class.has-image]="member.image">
+        <img *ngIf="member.image; else placeholder" [src]="member.image" [alt]="member.name" loading="lazy" />
+        <ng-template #placeholder>
+          <span class="initials">{{ member.initials }}</span>
+        </ng-template>
+      </div>
+
       <div class="faculty-info">
         <h2>{{ member.name }}</h2>
         <p class="designation">{{ member.designation }}</p>
