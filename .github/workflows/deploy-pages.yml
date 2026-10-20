@@ -29,10 +29,10 @@ jobs:
           cache: npm
 
       - name: Install dependencies
-        run: npm ci
+        run: npm install
 
       - name: Build Angular app
-        run: npm run build
+        run: npx ng build --configuration production
 
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
