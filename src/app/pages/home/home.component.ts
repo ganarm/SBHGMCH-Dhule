@@ -26,10 +26,10 @@ export class HomeComponent {
   readonly criteria = this.data.getAdmissionCriteria();
   readonly facilities = this.data.getFacilities().slice(0, 4);
   readonly stats = [
-    { value: '50+', label: 'Annual intake' },
-    { value: '4+', label: 'Academic programmes' },
-    { value: '250', label: 'Hospital beds' },
-    { value: '15k+', label: 'Sq.m. campus area' },
+    { value: '90', label: 'Total Annual Intake' },
+    { value: '2', label: 'Academic Programs' },
+    { value: '250', label: 'Hospital Beds' },
+    { value: '15k+', label: 'Sq.m. Campus Area' },
   ];
 
   activeSlide = signal(0);

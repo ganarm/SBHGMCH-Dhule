@@ -26,10 +26,7 @@ export const INSTITUTION_DEAN_MESSAGE = {
   photoUrl:
     'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=900&q=80',
   message: [
-    'It is my privilege to welcome you to our Government College of Nursing, Dhule — an institution dedicated to shaping the next generation of nursing professionals who serve with knowledge, skill, and compassion.',
-    'Affiliated with Shri. Bhausaheb Hire Government Medical College & Sarvopachar Rugnalay, we offer rigorous academic programmes, hands-on clinical training, and a supportive learning environment grounded in professional ethics.',
-    'Our faculty and staff are committed to nurturing students who uphold the values of integrity, empathy, and excellence in every aspect of patient care and community service.',
-    'May every student who enters our institution grow into a knowledgeable, skilled, ethical, and compassionate nursing professional who contributes meaningfully to the health and wellbeing of society.',
+    'It is my privilege to welcome you to our Government College of Nursing. We aim to nurture nursing graduates who are technically competent, responsible, empathetic, and committed to patient safety and human dignity.',
   ],
 };
 
@@ -41,10 +38,7 @@ export const INSTITUTION_PRINCIPAL_MESSAGE = {
   photoUrl:
     'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=900&q=80',
   message: [
-    'It gives me immense pleasure to welcome you to our Government College of Nursing, Dhule.',
-    'We strive to provide quality nursing education through a balanced blend of theory, simulation, and supervised clinical practice at our parent medical college hospital and community health settings.',
-    'Students are encouraged to participate in co-curricular activities, research initiatives, and community outreach while maintaining the highest standards of discipline and professional conduct.',
-    'I extend my best wishes to all aspiring nurses who choose this noble profession. Wishing all our students a successful, meaningful, and fulfilling nursing career.',
+    'It gives me immense pleasure to welcome you to our Government College of Nursing Dhule. Nursing is a noble profession that combines scientific knowledge, clinical competence, and a strong commitment to humanity.',
   ],
 };
 

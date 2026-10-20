@@ -136,7 +136,7 @@
             </div>
             <div class="meta-row">
               <span>Deadline</span>
-              <strong>{{ formatDate(program.applicationDeadline ?? '2026-04-30') }}</strong>
+              <strong>{{ program.applicationDeadline ? formatDate(program.applicationDeadline) : 'Not announced' }}</strong>
             </div>
           </div>
 
@@ -158,15 +158,21 @@
     <div class="leadership-grid">
       @for (member of leadership; track member.slug) {
         <article class="leader-card">
-          <img [src]="member.photoUrl || 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=600&q=80'" [alt]="member.name" loading="lazy" />
-          <div class="leader-body">
-            <div class="leader-header">
+          <div class="leader-header">
+            <img [src]="member.photoUrl || 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=600&q=80'" [alt]="member.name" loading="lazy" />
+
+            <div class="leader-meta">
               <h3>{{ member.name }}</h3>
               <span>{{ member.designation }}</span>
             </div>
-            <p>{{ member.message[0] }}</p>
-            <a [routerLink]="['/about', 'message', member.slug]">Read message</a>
           </div>
+
+          <p>{{ member.message[0] }}</p>
+
+          <a class="leader-link" [routerLink]="['/about', 'message', member.slug]">
+            <span>Read Full Message</span>
+            <span aria-hidden="true">→</span>
+          </a>
         </article>
       }
     </div>

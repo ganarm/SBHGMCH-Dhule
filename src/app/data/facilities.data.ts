@@ -3,7 +3,7 @@ import { FacilityDetail } from './data.models';
 const HOSPITAL_IMG = '/images/Hospital.jpg';
 const HOSTEL_IMG = "/images/Girl's Hostel.jpg";
 const LAB_IMG = '/images/Pre-Clinical Lab.jpg';
-const LIBRARY_IMG = '/images/College Image.jpg';
+const LIBRARY_IMG = '/images/library-interior.jpg';
 
 export const FACILITY_DETAILS: FacilityDetail[] = [
   {
