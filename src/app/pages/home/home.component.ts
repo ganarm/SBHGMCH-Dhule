@@ -2,7 +2,6 @@ import { Component, inject, signal } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { SiteDataService } from '../../core/services/site-data.service';
 import { NoticeType } from '../../core/models/site.models';
-import { ACADEMIC_PROGRAMS } from '../../data/academics.data';
 import { LEADERSHIP_MESSAGES } from '../../data/about.data';
 import { NOTICES_DATA } from '../../data/notices.data';
 import { AppIconComponent } from '../../shared/app-icon/app-icon.component';
@@ -23,7 +22,6 @@ export class HomeComponent {
   readonly notices = NOTICES_DATA;
   readonly marqueeNotices = [...NOTICES_DATA, ...NOTICES_DATA];
   readonly admissions = this.data.getAdmissions();
-  readonly programs = ACADEMIC_PROGRAMS;
   readonly leadership = LEADERSHIP_MESSAGES;
   readonly criteria = this.data.getAdmissionCriteria();
   readonly facilities = this.data.getFacilities().slice(0, 4);

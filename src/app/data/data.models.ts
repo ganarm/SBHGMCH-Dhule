@@ -10,6 +10,7 @@ export interface LeadershipMessage {
   title: string;
   name: string;
   designation: string;
+  photoUrl?: string;
   message: string[];
 }
 

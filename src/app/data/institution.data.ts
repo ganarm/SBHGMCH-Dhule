@@ -23,6 +23,8 @@ export const INSTITUTION_DEAN_MESSAGE = {
   title: "Dean's Message",
   name: 'Dr. Ajit Pathak',
   designation: 'Dean',
+  photoUrl:
+    'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=900&q=80',
   message: [
     'It is my privilege to welcome you to our Government College of Nursing, Dhule — an institution dedicated to shaping the next generation of nursing professionals who serve with knowledge, skill, and compassion.',
     'Affiliated with Shri. Bhausaheb Hire Government Medical College & Sarvopachar Rugnalay, we offer rigorous academic programmes, hands-on clinical training, and a supportive learning environment grounded in professional ethics.',
@@ -36,6 +38,8 @@ export const INSTITUTION_PRINCIPAL_MESSAGE = {
   title: "Principal's Message",
   name: 'Mr. Mahesh C. Dhayal',
   designation: 'Principal',
+  photoUrl:
+    'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=900&q=80',
   message: [
     'It gives me immense pleasure to welcome you to our Government College of Nursing, Dhule.',
     'We strive to provide quality nursing education through a balanced blend of theory, simulation, and supervised clinical practice at our parent medical college hospital and community health settings.',

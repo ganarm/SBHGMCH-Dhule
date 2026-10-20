@@ -70,25 +70,46 @@
 <section class="section intro-section">
   <div class="container intro-grid">
     <div class="intro-copy">
-      <span class="eyebrow">Welcome</span>
-      <h2>Government College of Nursing, Dhule</h2>
-      <p>
-        We are committed to developing skilled, compassionate, and ethically grounded nursing professionals
-        who serve communities with competence, empathy, and professionalism.
-      </p>
+      <div class="intro-copy-inner">
+        <span class="eyebrow">Welcome</span>
+        <h2>Government College of Nursing, Dhule</h2>
+        <p>
+          We are committed to developing skilled, compassionate, and ethically grounded nursing professionals
+          who serve communities with competence, empathy, and professionalism.
+        </p>
+      </div>
+
       <div class="intro-actions">
         <a class="btn btn-primary" [routerLink]="['/about', 'vision-mission']">Read More About Us</a>
       </div>
     </div>
 
     <div class="mission-vision-stack">
-      <article class="info-card">
-        <h3>Vision</h3>
-        <p>{{ about.vision }}</p>
+      <article class="info-card vision-card">
+        <div class="info-card-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M2.5 12C4.2 8.5 7.5 6 12 6C16.5 6 19.8 8.5 21.5 12C19.8 15.5 16.5 18 12 18C7.5 18 4.2 15.5 2.5 12Z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+            <circle cx="12" cy="12" r="3.25" stroke="currentColor" stroke-width="1.8"/>
+          </svg>
+        </div>
+        <div class="info-card-body">
+          <h3>Vision</h3>
+          <p>{{ about.vision }}</p>
+        </div>
       </article>
-      <article class="info-card accent">
-        <h3>Mission</h3>
-        <p>{{ about.mission }}</p>
+
+      <article class="info-card mission-card">
+        <div class="info-card-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M4 18V6.5C4 5.7 4.7 5 5.5 5H12.5L18 9.5V18C18 18.8 17.3 19.5 16.5 19.5H5.5C4.7 19.5 4 18.8 4 18Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+            <path d="M12.5 5V9.5H18" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+            <path d="M8 13.5H13.5M8 16.5H11.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <div class="info-card-body">
+          <h3>Mission</h3>
+          <p>{{ about.mission }}</p>
+        </div>
       </article>
     </div>
   </div>
@@ -96,27 +117,30 @@
 
 <section class="section programs-section">
   <div class="container">
-    <div class="section-title">
-      <span class="eyebrow">Academics</span>
-      <h2>Academic programmes</h2>
-      <p>Professional education shaped by competency-based practice, clinical training, and community engagement.</p>
-    </div>
-
     <div class="program-grid">
-      @for (program of programs; track program.slug) {
+      @for (program of admissions; track program.slug) {
         <article class="program-card">
-          <div class="program-topline">
-            <span>{{ program.duration }}</span>
-            <span>{{ program.intake }} seats</span>
+          <div class="program-header">
+            <h3>{{ program.name }}</h3>
+            <span class="program-status" [attr.data-status]="program.status">{{ statusLabel(program.status) }}</span>
           </div>
-          <h3>{{ program.name }}</h3>
-          <p>{{ program.description }}</p>
-          <ul>
-            @for (highlight of program.highlights; track highlight) {
-              <li>{{ highlight }}</li>
-            }
-          </ul>
-          <a class="btn btn-outline" [routerLink]="['/academics', program.slug]">Programme details</a>
+
+          <div class="program-meta">
+            <div class="meta-row">
+              <span>Intake</span>
+              <strong>{{ program.intake }} seats</strong>
+            </div>
+            <div class="meta-row">
+              <span>Duration</span>
+              <strong>{{ program.duration }}</strong>
+            </div>
+            <div class="meta-row">
+              <span>Deadline</span>
+              <strong>{{ formatDate(program.applicationDeadline ?? '2026-04-30') }}</strong>
+            </div>
+          </div>
+
+          <a class="btn btn-primary" [routerLink]="['/academics', program.slug]">Programme details</a>
         </article>
       }
     </div>
@@ -134,51 +158,15 @@
     <div class="leadership-grid">
       @for (member of leadership; track member.slug) {
         <article class="leader-card">
-          <div class="leader-header">
-            <h3>{{ member.name }}</h3>
-            <span>{{ member.designation }}</span>
+          <img [src]="member.photoUrl || 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=600&q=80'" [alt]="member.name" loading="lazy" />
+          <div class="leader-body">
+            <div class="leader-header">
+              <h3>{{ member.name }}</h3>
+              <span>{{ member.designation }}</span>
+            </div>
+            <p>{{ member.message[0] }}</p>
+            <a [routerLink]="['/about', 'message', member.slug]">Read message</a>
           </div>
-          <p>{{ member.message[0] }}</p>
-          <a [routerLink]="['/about', 'message', member.slug]">Read message</a>
-        </article>
-      }
-    </div>
-  </div>
-</section>
-
-<section class="section admissions-preview">
-  <div class="container">
-    <div class="admission-highlight">
-      <div class="admission-copy">
-        <span class="eyebrow">Admissions Open</span>
-        <h2>Admissions Open (INC Criteria)</h2>
-        <p>{{ criteria.eligibility[0] }}</p>
-      </div>
-      <div class="admission-actions">
-        <a class="btn btn-primary" routerLink="/academics/admission">View eligibility criteria</a>
-      </div>
-    </div>
-
-    <div class="section-title section-title-inline">
-      <span class="eyebrow">Admissions</span>
-      <h2>Academic year 2026–27</h2>
-      <p>Programme status and intake at a glance. Final dates follow government and university counselling.</p>
-    </div>
-    <div class="admission-cards">
-      @for (prog of admissions; track prog.slug) {
-        <article class="admission-card" [attr.data-status]="prog.status">
-          <div class="card-top">
-            <h3>{{ prog.name }}</h3>
-            <span class="status">{{ statusLabel(prog.status) }}</span>
-          </div>
-          <dl>
-            <div><dt>Intake</dt><dd>{{ prog.intake }} seats</dd></div>
-            <div><dt>Duration</dt><dd>{{ prog.duration }}</dd></div>
-            @if (prog.applicationDeadline) {
-              <div><dt>Deadline</dt><dd>{{ formatDate(prog.applicationDeadline) }}</dd></div>
-            }
-          </dl>
-          <a class="btn btn-primary" [routerLink]="['/academics', prog.slug]">Programme details</a>
         </article>
       }
     </div>

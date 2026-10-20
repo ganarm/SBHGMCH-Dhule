@@ -1,13 +1,9 @@
 import { FacilityDetail } from './data.models';
 
-const HOSPITAL_IMG =
-  'https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&w=1200&q=80';
-const HOSTEL_IMG =
-  'https://images.unsplash.com/photo-1555854877-bab0e564b8d5?auto=format&fit=crop&w=1200&q=80';
-const LAB_IMG =
-  'https://images.unsplash.com/photo-1579684385127-1ef15d508118?auto=format&fit=crop&w=1200&q=80';
-const LIBRARY_IMG =
-  'https://images.unsplash.com/photo-1521587760476-6c12a4b040da?auto=format&fit=crop&w=1200&q=80';
+const HOSPITAL_IMG = '/images/Hospital.jpg';
+const HOSTEL_IMG = "/images/Girl's Hostel.jpg";
+const LAB_IMG = '/images/Pre-Clinical Lab.jpg';
+const LIBRARY_IMG = '/images/College Image.jpg';
 
 export const FACILITY_DETAILS: FacilityDetail[] = [
   {
