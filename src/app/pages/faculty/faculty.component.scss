@@ -1,0 +1,66 @@
+@use '../shared/page';
+
+.faculty-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 1.25rem;
+}
+
+.faculty-card {
+  background: var(--color-surface);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  border: 1px solid var(--color-border);
+  transition:
+    transform 0.2s,
+    box-shadow 0.2s;
+
+  img {
+    width: 100%;
+    aspect-ratio: 4 / 5;
+    object-fit: cover;
+  }
+
+  &:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-md);
+
+    .faculty-info {
+      background: var(--color-primary);
+      color: #fff;
+    }
+
+    .designation,
+    .qual {
+      color: rgba(255, 255, 255, 0.9);
+    }
+
+    h2 {
+      color: #fff;
+    }
+  }
+}
+
+.faculty-info {
+  padding: 1rem 1.1rem 1.25rem;
+  transition: background 0.2s;
+
+  h2 {
+    font-family: var(--font-body);
+    font-size: 1rem;
+    margin: 0 0 0.25rem;
+  }
+
+  .designation {
+    margin: 0;
+    font-weight: 600;
+    font-size: 0.875rem;
+    color: var(--color-secondary);
+  }
+
+  .qual {
+    margin: 0.35rem 0 0;
+    font-size: 0.8rem;
+    color: var(--color-text-muted);
+  }
+}

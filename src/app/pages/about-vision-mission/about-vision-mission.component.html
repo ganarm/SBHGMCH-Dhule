@@ -1,0 +1,27 @@
+<div class="page-hero">
+  <div class="container">
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <span>Home</span><span>/</span><span>About Us</span><span>/</span><span>Vision &amp; Mission</span>
+    </nav>
+    <h1>Vision &amp; Mission</h1>
+    <p>Aim, vision, mission, and institutional objectives of Government College of Nursing, Dhule.</p>
+  </div>
+</div>
+
+<div class="container page-body">
+  <div class="content-card">
+    <h2>Aim</h2>
+    <p>{{ about.aim }}</p>
+
+    <h2>Vision</h2>
+    <p>{{ about.vision }}</p>
+
+    <h2>Mission</h2>
+    <p>{{ about.mission }}</p>
+
+    <h2>Objectives</h2>
+    <ol class="objectives-list">
+      <li *ngFor="let objective of about.objectives">{{ objective }}</li>
+    </ol>
+  </div>
+</div>

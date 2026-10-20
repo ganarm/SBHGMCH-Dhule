@@ -1,0 +1,173 @@
+<a class="skip-link" href="#main-content">Skip to main content</a>
+
+<div class="utility-bar">
+  <div class="container utility-inner">
+    <div class="utility-left">
+      <p class="utility-location">
+        <app-icon name="location" [size]="16" />
+        <span>{{ settings.contact.address }}</span>
+      </p>
+      <a [href]="'mailto:' + settings.contact.email" class="utility-link" [attr.aria-label]="settings.contact.email">
+        <app-icon name="envelope" [size]="16" />
+        <span class="email-full">{{ settings.contact.email }}</span>
+        <span class="email-short">Email</span>
+      </a>
+    </div>
+
+    <div class="utility-right">
+      <a [href]="telLink('02562239407')" class="utility-link">
+        <app-icon name="phone" [size]="16" />
+        02562-239407
+      </a>
+      <a [href]="telLink('02562239408')" class="utility-link">
+        <app-icon name="phone" [size]="16" />
+        02562-239408
+      </a>
+    </div>
+  </div>
+</div>
+
+<header class="site-header" [class.compact]="isCompact()">
+  <div class="container brand-block">
+    <div class="header-mark header-mark-left" aria-hidden="true"></div>
+
+    <div class="brand-text" aria-label="Government College of Nursing, Dhule">
+      <span class="society">ASSOCIATED WITH SHRI. BHAUSAHEB HIRE GOVERNMENT MEDICAL COLLEGE &amp; SARVOPACHAR RUGNALAY</span>
+      <span class="institute">Government College of Nursing, Dhule</span>
+      <span class="approvals">Approved by Indian Nursing Council (INC), New Delhi &amp; Maharashtra Nursing Council (MNC), Mumbai.</span>
+    </div>
+
+    <div class="header-mark header-mark-right" aria-hidden="true"></div>
+  </div>
+
+  <div
+    class="nav-bar"
+    [class.suppress-dropdowns]="suppressDropdownHover()"
+    (mouseleave)="onNavBarPointerLeave()"
+  >
+    <div class="container nav-inner">
+      <button
+        type="button"
+        class="menu-toggle"
+        [attr.aria-expanded]="mobileOpen()"
+        aria-controls="mobile-nav"
+        (click)="toggleMobile()"
+      >
+        <app-icon name="menu" [size]="18" />
+        <span>Menu</span>
+      </button>
+
+      <nav class="desktop-nav" aria-label="Primary navigation">
+        @for (item of nav(); track item.label) {
+          @if (hasChildren(item)) {
+            <div class="nav-item has-dropdown">
+              <span class="nav-link dropdown-trigger" [attr.title]="item.label">
+                {{ item.barLabel ?? item.label }}
+                <app-icon name="chevron-down" [size]="12" class="chevron" />
+              </span>
+              <ul class="dropdown">
+                @for (child of item.children; track child.label) {
+                  <li>
+                    <a
+                      class="dropdown-link"
+                      [routerLink]="child.path"
+                      routerLinkActive="active"
+                      (click)="onSubnavClick()"
+                    >
+                      <app-icon name="angle-right" [size]="12" />
+                      {{ child.label }}
+                    </a>
+                  </li>
+                }
+              </ul>
+            </div>
+          } @else {
+            <a
+              class="nav-link"
+              [routerLink]="item.path"
+              routerLinkActive="active"
+              [routerLinkActiveOptions]="{ exact: item.path === '/' }"
+            >
+              @if (item.label === 'Home') {
+                <app-icon name="home" [size]="14" class="nav-icon" />
+              }
+              {{ item.barLabel ?? item.label }}
+            </a>
+          }
+        }
+
+        <div class="nav-search-shell" aria-label="Site search">
+          <div class="nav-search-box">
+            <input
+              type="search"
+              class="nav-search-input"
+              placeholder="Search site..."
+              [value]="searchQuery()"
+              (input)="onSearchInput($event)"
+              (focus)="showSearchResults.set(searchQuery().trim().length > 0)"
+              aria-label="Search site pages"
+            />
+            <button type="button" class="nav-search-trigger" aria-label="Search site pages">
+              <app-icon name="search" [size]="16" />
+            </button>
+          </div>
+
+          @if (showSearchResults() && filteredSearchResults().length > 0) {
+            <div class="search-results" role="listbox" aria-label="Site search results">
+              @for (item of filteredSearchResults(); track item.title) {
+                <button type="button" class="search-result" (click)="selectSearchResult(item)">
+                  <span class="search-result-title">{{ item.title }}</span>
+                  <small>{{ item.keywords }}</small>
+                </button>
+              }
+            </div>
+          } @else if (showSearchResults() && searchQuery().trim() && filteredSearchResults().length === 0) {
+            <div class="search-results empty" role="status">No matching pages found.</div>
+          }
+        </div>
+      </nav>
+    </div>
+  </div>
+
+  @if (mobileOpen()) {
+    <div class="mobile-backdrop" (click)="closeMobile()" role="presentation"></div>
+    <nav id="mobile-nav" class="mobile-nav" aria-label="Mobile navigation">
+      <div class="mobile-nav-head">
+        <strong>Navigation</strong>
+        <button type="button" class="mobile-close" (click)="closeMobile()" aria-label="Close menu">
+          <app-icon name="close" [size]="22" />
+        </button>
+      </div>
+      <ul class="mobile-list">
+        @for (item of nav(); track item.label) {
+          <li>
+            @if (hasChildren(item)) {
+              <button
+                type="button"
+                class="mobile-expand"
+                [attr.aria-expanded]="expandedMobile() === mobileSectionKey(item)"
+                (click)="toggleMobileSection(mobileSectionKey(item))"
+              >
+                {{ item.label }}
+                <span [class.rotated]="expandedMobile() === mobileSectionKey(item)">
+                  <app-icon name="chevron-down" [size]="14" />
+                </span>
+              </button>
+              @if (expandedMobile() === mobileSectionKey(item)) {
+                <ul class="mobile-sub">
+                  @for (child of item.children; track child.label) {
+                    <li>
+                      <a [routerLink]="child.path" (click)="onSubnavClick()">{{ child.label }}</a>
+                    </li>
+                  }
+                </ul>
+              }
+            } @else {
+              <a [routerLink]="item.path" (click)="onSubnavClick()" class="mobile-top-link">{{ item.label }}</a>
+            }
+          </li>
+        }
+      </ul>
+    </nav>
+  }
+</header>

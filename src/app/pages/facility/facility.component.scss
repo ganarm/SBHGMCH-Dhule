@@ -1,0 +1,26 @@
+@use '../shared/page';
+
+.facility-detail {
+  display: grid;
+  gap: 1.25rem;
+  max-width: 100%;
+
+  @media (min-width: 768px) {
+    grid-template-columns: 1fr 1fr;
+    align-items: start;
+    gap: 1.5rem;
+  }
+
+  > img {
+    border-radius: var(--radius-lg);
+    width: 100%;
+    max-height: min(360px, 55vw);
+    object-fit: cover;
+    box-shadow: var(--shadow-md);
+    order: -1;
+  }
+
+  .content-card {
+    max-width: none;
+  }
+}

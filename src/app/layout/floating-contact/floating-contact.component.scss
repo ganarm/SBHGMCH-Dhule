@@ -1,0 +1,49 @@
+.floating-contact {
+  position: fixed;
+  right: 1.25rem;
+  bottom: 1.25rem;
+  z-index: 90;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.fab {
+  width: 3.25rem;
+  height: 3.25rem;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  text-decoration: none;
+  box-shadow: 0 4px 14px rgba(28, 31, 36, 0.22);
+  transition:
+    transform 0.2s,
+    box-shadow 0.2s;
+
+  &:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 22px rgba(28, 31, 36, 0.28);
+    color: #fff;
+  }
+
+  &:focus-visible {
+    outline: 3px solid var(--color-accent);
+    outline-offset: 3px;
+  }
+}
+
+.fab-call {
+  background: var(--color-primary);
+}
+
+.fab-whatsapp {
+  background: var(--color-whatsapp);
+}
+
+@media print {
+  .floating-contact {
+    display: none;
+  }
+}

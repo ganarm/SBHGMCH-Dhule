@@ -1,0 +1,19 @@
+<div class="page-hero">
+  <div class="container">
+    <h1>Mandatory Disclosures</h1>
+    <p>Statutory documents and authorizations for public reference.</p>
+  </div>
+</div>
+
+<div class="container page-body">
+  <div class="content-card">
+    <ul class="disclosure-list">
+      <li *ngFor="let doc of documents; trackBy: trackDocument">
+        <a [href]="doc.href" download>
+          <app-icon name="pdf" [size]="16" />
+          {{ doc.title }}
+        </a>
+      </li>
+    </ul>
+  </div>
+</div>

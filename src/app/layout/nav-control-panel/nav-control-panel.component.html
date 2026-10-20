@@ -1,0 +1,30 @@
+<div class="nav-demo" [class.open]="open()">
+  <button type="button" class="nav-toggle" (click)="toggle()" [attr.aria-expanded]="open()">
+    <span class="nav-icon" aria-hidden="true">☰</span>
+    Demo navigation
+  </button>
+
+  @if (open()) {
+    <div class="nav-panel" role="dialog" aria-label="Show or hide menu links">
+      <p class="panel-title">Navigation visibility</p>
+      <p class="panel-hint">
+        Uncheck items the client does not want on the live site. Choices are saved in this browser only.
+      </p>
+      <button type="button" class="reset-btn" (click)="reset()">Reset to full menu</button>
+      <ul class="nav-checklist">
+        @for (row of rows(); track row.item.id) {
+          <li class="nav-check-row" [style.--depth]="row.depth">
+            <label class="nav-check-label">
+              <input
+                type="checkbox"
+                [checked]="isChecked(row.item)"
+                (change)="onCheck(row.item, $event)"
+              />
+              <span>{{ row.item.label }}</span>
+            </label>
+          </li>
+        }
+      </ul>
+    </div>
+  }
+</div>

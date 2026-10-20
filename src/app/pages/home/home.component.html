@@ -1,0 +1,253 @@
+<section class="hero" aria-label="Featured highlights">
+  <div class="hero-slide">
+    <img [src]="slides[activeSlide()].imageUrl" [alt]="slides[activeSlide()].alt" />
+    <div class="hero-overlay">
+      <div class="container hero-content">
+        @if (slides[activeSlide()].title) {
+          <h1>{{ slides[activeSlide()].title }}</h1>
+        }
+        @if (slides[activeSlide()].subtitle) {
+          <p class="hero-sub">{{ slides[activeSlide()].subtitle }}</p>
+        }
+        <div class="hero-actions">
+          <a routerLink="/admissions" class="btn btn-primary">
+            <app-icon name="graduation-cap" [size]="18" />
+            View admissions
+          </a>
+          <a routerLink="/notices" class="btn btn-outline light">
+            <app-icon name="bullhorn" [size]="18" />
+            Important notices
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <button type="button" class="hero-nav prev" (click)="prevSlide()" aria-label="Previous slide">‹</button>
+  <button type="button" class="hero-nav next" (click)="nextSlide()" aria-label="Next slide">›</button>
+  <div class="hero-dots" role="tablist" aria-label="Slides">
+    @for (slide of slides; track slide.imageUrl; let i = $index) {
+      <button
+        type="button"
+        role="tab"
+        [attr.aria-selected]="activeSlide() === i"
+        [class.active]="activeSlide() === i"
+        (click)="activeSlide.set(i)"
+        [attr.aria-label]="'Slide ' + (i + 1)"
+      ></button>
+    }
+  </div>
+</section>
+
+@if (notices.length) {
+  <section class="notice-ticker" aria-label="Important notices and announcements">
+    <div class="container notice-ticker-inner">
+      <div class="ticker-label-wrap">
+        <span class="ticker-label"><app-icon name="alert" [size]="14" /> Notices</span>
+      </div>
+
+      <div class="ticker-viewport" aria-live="polite">
+        <div class="ticker-track">
+          @for (notice of marqueeNotices; track notice.title + $index) {
+            <a class="ticker-item" [routerLink]="notice.link" [class.urgent]="notice.isUrgent">
+              @if (notice.isUrgent) {
+                <span class="urgent-badge">Urgent</span>
+              }
+              <span class="ticker-title">{{ notice.title }}</span>
+              <time>{{ notice.date }}</time>
+            </a>
+          }
+        </div>
+      </div>
+
+      <a routerLink="/notices" class="ticker-all-link">
+        <span>All Notices</span>
+        <app-icon name="chevron-right" [size]="12" />
+      </a>
+    </div>
+  </section>
+}
+
+<section class="section intro-section">
+  <div class="container intro-grid">
+    <div class="intro-copy">
+      <span class="eyebrow">Welcome</span>
+      <h2>Government College of Nursing, Dhule</h2>
+      <p>
+        We are committed to developing skilled, compassionate, and ethically grounded nursing professionals
+        who serve communities with competence, empathy, and professionalism.
+      </p>
+      <div class="intro-actions">
+        <a class="btn btn-primary" [routerLink]="['/about', 'vision-mission']">Read More About Us</a>
+      </div>
+    </div>
+
+    <div class="mission-vision-stack">
+      <article class="info-card">
+        <h3>Vision</h3>
+        <p>{{ about.vision }}</p>
+      </article>
+      <article class="info-card accent">
+        <h3>Mission</h3>
+        <p>{{ about.mission }}</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="section programs-section">
+  <div class="container">
+    <div class="section-title">
+      <span class="eyebrow">Academics</span>
+      <h2>Academic programmes</h2>
+      <p>Professional education shaped by competency-based practice, clinical training, and community engagement.</p>
+    </div>
+
+    <div class="program-grid">
+      @for (program of programs; track program.slug) {
+        <article class="program-card">
+          <div class="program-topline">
+            <span>{{ program.duration }}</span>
+            <span>{{ program.intake }} seats</span>
+          </div>
+          <h3>{{ program.name }}</h3>
+          <p>{{ program.description }}</p>
+          <ul>
+            @for (highlight of program.highlights; track highlight) {
+              <li>{{ highlight }}</li>
+            }
+          </ul>
+          <a class="btn btn-outline" [routerLink]="['/academics', program.slug]">Programme details</a>
+        </article>
+      }
+    </div>
+  </div>
+</section>
+
+<section class="section leadership-section">
+  <div class="container">
+    <div class="section-title">
+      <span class="eyebrow">Leadership</span>
+      <h2>Message from leadership</h2>
+      <p>Guidance, values, and vision from the institution’s academic and administrative leadership.</p>
+    </div>
+
+    <div class="leadership-grid">
+      @for (member of leadership; track member.slug) {
+        <article class="leader-card">
+          <div class="leader-header">
+            <h3>{{ member.name }}</h3>
+            <span>{{ member.designation }}</span>
+          </div>
+          <p>{{ member.message[0] }}</p>
+          <a [routerLink]="['/about', 'message', member.slug]">Read message</a>
+        </article>
+      }
+    </div>
+  </div>
+</section>
+
+<section class="section admissions-preview">
+  <div class="container">
+    <div class="admission-highlight">
+      <div class="admission-copy">
+        <span class="eyebrow">Admissions Open</span>
+        <h2>Admissions Open (INC Criteria)</h2>
+        <p>{{ criteria.eligibility[0] }}</p>
+      </div>
+      <div class="admission-actions">
+        <a class="btn btn-primary" routerLink="/academics/admission">View eligibility criteria</a>
+      </div>
+    </div>
+
+    <div class="section-title section-title-inline">
+      <span class="eyebrow">Admissions</span>
+      <h2>Academic year 2026–27</h2>
+      <p>Programme status and intake at a glance. Final dates follow government and university counselling.</p>
+    </div>
+    <div class="admission-cards">
+      @for (prog of admissions; track prog.slug) {
+        <article class="admission-card" [attr.data-status]="prog.status">
+          <div class="card-top">
+            <h3>{{ prog.name }}</h3>
+            <span class="status">{{ statusLabel(prog.status) }}</span>
+          </div>
+          <dl>
+            <div><dt>Intake</dt><dd>{{ prog.intake }} seats</dd></div>
+            <div><dt>Duration</dt><dd>{{ prog.duration }}</dd></div>
+            @if (prog.applicationDeadline) {
+              <div><dt>Deadline</dt><dd>{{ formatDate(prog.applicationDeadline) }}</dd></div>
+            }
+          </dl>
+          <a class="btn btn-primary" [routerLink]="['/academics', prog.slug]">Programme details</a>
+        </article>
+      }
+    </div>
+  </div>
+</section>
+
+<section class="section facilities-preview">
+  <div class="container">
+    <div class="section-title">
+      <span class="eyebrow">Campus</span>
+      <h2>Our infrastructure</h2>
+      <p>Spaces that support simulation, clinical readiness, and student wellbeing.</p>
+    </div>
+    <div class="facility-grid">
+      @for (f of facilities; track f.slug) {
+        <a class="facility-card" [routerLink]="['/facilities', f.slug]">
+          <img [src]="f.imageUrl" [alt]="f.title" loading="lazy" />
+          <div class="facility-body">
+            <h3>{{ f.title }}</h3>
+            <p>{{ f.summary }}</p>
+          </div>
+        </a>
+      }
+    </div>
+  </div>
+</section>
+
+<section class="section stats-section">
+  <div class="container stats-grid">
+    @for (item of stats; track item.label) {
+      <div class="stat-item">
+        <strong>{{ item.value }}</strong>
+        <span>{{ item.label }}</span>
+      </div>
+    }
+  </div>
+</section>
+
+<section class="section quick-links-section">
+  <div class="container">
+    <div class="section-title">
+      <span class="eyebrow">Quick links</span>
+      <h2>Essential information</h2>
+      <p>Access governance, disclosure, and communication resources for students and stakeholders.</p>
+    </div>
+
+    <div class="quick-links-grid">
+      <a class="quick-link-card" routerLink="/committees">
+        <span class="quick-link-label">Committees</span>
+        <strong>Governance & oversight</strong>
+      </a>
+      <a class="quick-link-card" routerLink="/mandatory-disclosures">
+        <span class="quick-link-label">Mandatory disclosures</span>
+        <strong>Institutional policies</strong>
+      </a>
+      <a class="quick-link-card" routerLink="/contact">
+        <span class="quick-link-label">Contact us</span>
+        <strong>Reach the campus office</strong>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section class="section cta-strip">
+  <div class="container cta-inner">
+    <div>
+      <h2>Plan a campus visit</h2>
+      <p>Meet the academic office, tour skills labs, and discuss eligibility with counsellors.</p>
+    </div>
+    <a routerLink="/contact" class="btn btn-secondary">Contact & directions</a>
+  </div>
+</section>

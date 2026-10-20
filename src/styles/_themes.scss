@@ -1,0 +1,309 @@
+/* Shared color tokens — overridden per [data-theme] for client demo */
+
+@mixin theme-colors(
+  $primary,
+  $primary-dark,
+  $primary-soft,
+  $nav,
+  $secondary,
+  $secondary-soft,
+  $accent,
+  $accent-soft,
+  $bg,
+  $surface,
+  $border,
+  $border-strong,
+  $cta,
+  $cta-hover
+) {
+  --color-primary: #{$primary};
+  --color-primary-dark: #{$primary-dark};
+  --color-primary-soft: #{$primary-soft};
+  --color-nav: #{$nav};
+  --color-nav-hover: #{$primary-dark};
+  --color-secondary: #{$secondary};
+  --color-secondary-light: #{$secondary};
+  --color-secondary-soft: #{$secondary-soft};
+  --color-accent: #{$accent};
+  --color-accent-soft: #{$accent-soft};
+  --color-cta: #{$cta};
+  --color-cta-hover: #{$cta-hover};
+  --color-bg: #{$bg};
+  --color-surface: #{$surface};
+  --color-surface-muted: #{$bg};
+  --color-border: #{$border};
+  --color-border-strong: #{$border-strong};
+  --color-footer-fg: rgba(255, 255, 255, 0.92);
+  --color-footer-link: rgba(255, 255, 255, 0.8);
+  --color-footer-muted: rgba(255, 255, 255, 0.55);
+  --color-footer-border: rgba(255, 255, 255, 0.12);
+}
+
+:root,
+[data-theme='maroon-green'] {
+  @include theme-colors(
+    #8b1e47,
+    #6b1736,
+    #f5e9ef,
+    #7a1a3f,
+    #1e4d3f,
+    #e9f3ef,
+    #c4922a,
+    #fbf6ea,
+    #f7f5f2,
+    #ffffff,
+    #e3ddd4,
+    #cfc6ba,
+    #c4922a,
+    #a67c1f
+  );
+}
+
+[data-theme='classic-maroon'] {
+  @include theme-colors(
+    #8b1e47,
+    #5c1530,
+    #f8eef2,
+    #7a1a3f,
+    #5c1530,
+    #f0e4ea,
+    #c9a227,
+    #faf5e8,
+    #faf8f6,
+    #ffffff,
+    #eadde4,
+    #d4bcc8,
+    #d4a017,
+    #b8860b
+  );
+}
+
+[data-theme='forest-green'] {
+  @include theme-colors(
+    #1a4d3e,
+    #123528,
+    #e8f3ef,
+    #1a4d3e,
+    #2d6a4f,
+    #dceee6,
+    #c9a227,
+    #faf3e3,
+    #f4f7f5,
+    #ffffff,
+    #d5e5de,
+    #b8cfc4,
+    #2d6a4f,
+    #1a4d3e
+  );
+}
+
+[data-theme='professional-blue'] {
+  @include theme-colors(
+    #1e3a5f,
+    #152a45,
+    #e8eef6,
+    #1e3a5f,
+    #3d6b9a,
+    #e3edf7,
+    #2e7d9a,
+    #e8f4f8,
+    #f5f8fc,
+    #ffffff,
+    #d8e3ef,
+    #b8c9dc,
+    #2563eb,
+    #1d4ed8
+  );
+}
+
+[data-theme='earth-brown'] {
+  @include theme-colors(
+    #5c3d2e,
+    #452d22,
+    #f3ebe4,
+    #5c3d2e,
+    #6b5344,
+    #efe6dc,
+    #8b6914,
+    #faf3e3,
+    #faf7f2,
+    #ffffff,
+    #e8dfd4,
+    #d4c4b4,
+    #b45309,
+    #92400e
+  );
+}
+
+[data-theme='navy-care'] {
+  @include theme-colors(
+    #0f2d4a,
+    #0a2035,
+    #e6eef5,
+    #0f2d4a,
+    #0d6e6e,
+    #e0f2f2,
+    #3aa6a6,
+    #e8f7f7,
+    #f6f9fb,
+    #ffffff,
+    #d5e0ea,
+    #b8c8d8,
+    #0d9488,
+    #0f766e
+  );
+}
+
+/* —— Rich / premium palettes (orange & bold accents) —— */
+
+[data-theme='vibrant-orange'] {
+  @include theme-colors(
+    #9f1239,
+    #881337,
+    #fff1f2,
+    #1e1b2e,
+    #312e81,
+    #eef2ff,
+    #fbbf24,
+    #fffbeb,
+    #f8fafc,
+    #ffffff,
+    #e2e8f0,
+    #cbd5e1,
+    #f97316,
+    #ea580c
+  );
+}
+
+[data-theme='saffron-heritage'] {
+  @include theme-colors(
+    #7f1d1d,
+    #6b1717,
+    #fef2f2,
+    #6b1736,
+    #14532d,
+    #ecfdf5,
+    #f59e0b,
+    #fffbeb,
+    #fffbf5,
+    #ffffff,
+    #f3e8d8,
+    #e7d5c4,
+    #ff7a18,
+    #ea580c
+  );
+}
+
+[data-theme='coral-midnight'] {
+  @include theme-colors(
+    #1e3a5f,
+    #0f2744,
+    #e8eef6,
+    #0f172a,
+    #334155,
+    #f1f5f9,
+    #38bdf8,
+    #e0f2fe,
+    #f1f5f9,
+    #ffffff,
+    #dbe4ee,
+    #c5d0dc,
+    #ff6b4a,
+    #f04e2e
+  );
+}
+
+[data-theme='royal-plum-gold'] {
+  @include theme-colors(
+    #5b21b6,
+    #4c1d95,
+    #f5f3ff,
+    #3b0764,
+    #6d28d9,
+    #ede9fe,
+    #eab308,
+    #fefce8,
+    #faf8ff,
+    #ffffff,
+    #e9e0f5,
+    #d4c4e8,
+    #f59e0b,
+    #d97706
+  );
+}
+
+[data-theme='emerald-gold'] {
+  @include theme-colors(
+    #065f46,
+    #064e3b,
+    #ecfdf5,
+    #064e3b,
+    #047857,
+    #d1fae5,
+    #fbbf24,
+    #fffbeb,
+    #f0fdf4,
+    #ffffff,
+    #d1e7dd,
+    #a7cfc0,
+    #eab308,
+    #ca8a04
+  );
+}
+
+[data-theme='wine-copper'] {
+  @include theme-colors(
+    #7c2d12,
+    #6b2710,
+    #fff7ed,
+    #4a1525,
+    #78350f,
+    #ffedd5,
+    #d97706,
+    #fff7ed,
+    #fdf8f6,
+    #ffffff,
+    #f0e0d8,
+    #dcc8bc,
+    #ea580c,
+    #c2410c
+  );
+}
+
+[data-theme='teal-sunset'] {
+  @include theme-colors(
+    #0f766e,
+    #0d5c56,
+    #f0fdfa,
+    #134e4a,
+    #115e59,
+    #ccfbf1,
+    #fb923c,
+    #fff7ed,
+    #f8fafc,
+    #ffffff,
+    #d5e8e6,
+    #b8d4d1,
+    #f97316,
+    #ea580c
+  );
+}
+
+[data-theme='rose-charcoal'] {
+  @include theme-colors(
+    #be185d,
+    #9d174d,
+    #fdf2f8,
+    #27272a,
+    #52525b,
+    #f4f4f5,
+    #f472b6,
+    #fce7f3,
+    #fafafa,
+    #ffffff,
+    #e4e4e7,
+    #d4d4d8,
+    #fb7185,
+    #e11d48
+  );
+}

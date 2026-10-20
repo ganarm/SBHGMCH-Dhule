@@ -1,0 +1,65 @@
+@if (!course()) {
+  <div class="container page-body">
+    <p>Programme not found. <a routerLink="/admissions">Return to admissions</a>.</p>
+  </div>
+} @else {
+  <div class="page-hero">
+    <div class="container">
+      <h1>{{ course()!.name }}</h1>
+      <p>{{ course()!.duration }} · Intake {{ course()!.intake }} seats</p>
+    </div>
+  </div>
+
+  <div class="container page-body">
+    <div class="content-card">
+      <h2>Eligibility</h2>
+      <ul>
+        @for (item of course()!.eligibility; track item) {
+          <li>{{ item }}</li>
+        }
+      </ul>
+
+      <h2>Recognized by</h2>
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>Authority</th>
+            <th>Reference</th>
+            <th>Date</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (row of course()!.recognizedBy; track row.body) {
+            <tr>
+              <td>{{ row.body }}</td>
+              <td>{{ row.reference }}</td>
+              <td>{{ row.date }}</td>
+            </tr>
+          }
+        </tbody>
+      </table>
+
+      <h2>Affiliated to</h2>
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>University</th>
+            <th>Reference</th>
+            <th>Date</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (row of course()!.affiliatedTo; track row.body) {
+            <tr>
+              <td>{{ row.body }}</td>
+              <td>{{ row.reference }}</td>
+              <td>{{ row.date }}</td>
+            </tr>
+          }
+        </tbody>
+      </table>
+
+      <a routerLink="/admissions" class="btn btn-primary">Back to admissions</a>
+    </div>
+  </div>
+}

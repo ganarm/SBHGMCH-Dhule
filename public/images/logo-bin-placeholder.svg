@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" role="img" aria-label="Bhonsala Institute of Nursing">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#7f1d1d"/>
+      <stop offset="100%" stop-color="#14532d"/>
+    </linearGradient>
+  </defs>
+  <circle cx="60" cy="60" r="56" fill="#fff" stroke="url(#bg)" stroke-width="4"/>
+  <circle cx="60" cy="60" r="48" fill="none" stroke="#d4af37" stroke-width="2" opacity="0.85"/>
+  <path fill="#7f1d1d" d="M60 28v64M44 44h32v8H44zm0 20h32v8H44z"/>
+  <text x="60" y="98" text-anchor="middle" font-family="Georgia, serif" font-size="11" font-weight="700" fill="#14532d">BIN</text>
+</svg>

@@ -1,0 +1,29 @@
+:root {
+  --color-text: #1c1f24;
+  --color-text-muted: #5a6169;
+  --color-text-inverse: #ffffff;
+
+  --color-success: #1a6b4f;
+  --color-warning: #8a5a00;
+  --color-danger: #a61b1b;
+
+  --color-whatsapp: #1a9f52;
+
+  --font-display: 'Libre Baskerville', Georgia, 'Times New Roman', serif;
+  --font-body: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-full: 999px;
+
+  --shadow-sm: 0 1px 3px rgba(28, 31, 36, 0.06);
+  --shadow-md: 0 10px 30px rgba(28, 31, 36, 0.08);
+  --shadow-lg: 0 18px 48px rgba(28, 31, 36, 0.12);
+
+  --header-utility: 2.25rem;
+  --header-brand: auto;
+  --nav-height: 3.25rem;
+  --container-max: 1240px;
+  --section-space: clamp(3rem, 6vw, 5rem);
+}

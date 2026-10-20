@@ -1,0 +1,24 @@
+@if (!message()) {
+  <div class="container page-body">
+    <p>Message not found.</p>
+  </div>
+} @else {
+  <div class="page-hero">
+    <div class="container">
+      <nav class="breadcrumb" aria-label="Breadcrumb">
+        <span>Home</span><span>/</span><span>About Us</span><span>/</span><span>{{ message()!.title }}</span>
+      </nav>
+      <h1>{{ message()!.title }}</h1>
+      <p>{{ message()!.name }} · {{ message()!.designation }}</p>
+    </div>
+  </div>
+
+  <div class="container page-body">
+    <div class="content-card">
+      @for (para of message()!.message; track para) {
+        <p>{{ para }}</p>
+      }
+      <p class="sign-off">— {{ message()!.name }}, {{ message()!.designation }}</p>
+    </div>
+  </div>
+}

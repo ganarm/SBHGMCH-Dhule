@@ -1,0 +1,145 @@
+import { Component, DestroyRef, HostListener, computed, inject, signal } from '@angular/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { NavigationEnd, Router, RouterLink, RouterLinkActive } from '@angular/router';
+import { filter } from 'rxjs';
+import { telHref } from '../../core/utils/contact-links';
+import { NavigationControlService } from '../../core/navigation/navigation-control.service';
+import { SiteDataService } from '../../core/services/site-data.service';
+import { NavItem } from '../../core/models/site.models';
+import { SearchItem, SEARCH_DATA } from '../../data/search.data';
+import { AppIconComponent } from '../../shared/app-icon/app-icon.component';
+
+@Component({
+  selector: 'app-header',
+  standalone: true,
+  imports: [RouterLink, RouterLinkActive, AppIconComponent],
+  templateUrl: './header.component.html',
+  styleUrl: './header.component.scss',
+})
+export class HeaderComponent {
+  private readonly data = inject(SiteDataService);
+  private readonly navControl = inject(NavigationControlService);
+  private readonly router = inject(Router);
+  private readonly destroyRef = inject(DestroyRef);
+
+  readonly settings = this.data.getSettings();
+  readonly nav = this.navControl.visibleNavigation;
+  readonly mobileOpen = signal(false);
+  readonly expandedMobile = signal<string | null>(null);
+  readonly isCompact = signal(false);
+  readonly searchQuery = signal('');
+  readonly showSearchResults = signal(false);
+  readonly filteredSearchResults = computed(() => {
+    const term = this.searchQuery().trim().toLowerCase();
+    if (!term) {
+      return [];
+    }
+
+    return SEARCH_DATA.filter((item) => {
+      const haystack = `${item.title} ${item.keywords}`.toLowerCase();
+      return haystack.includes(term);
+    }).slice(0, 8);
+  });
+  /** After a submenu click, hide flyouts until pointer leaves the nav bar */
+  readonly suppressDropdownHover = signal(false);
+
+  constructor() {
+    this.router.events
+      .pipe(
+        filter((e) => e instanceof NavigationEnd),
+        takeUntilDestroyed(this.destroyRef),
+      )
+      .subscribe(() => {
+        this.closeMobile();
+        this.suppressDropdownHover.set(true);
+        this.isCompact.set(window.scrollY > 24);
+      });
+
+    this.onWindowScroll();
+  }
+
+  @HostListener('document:keydown.escape')
+  onEscape(): void {
+    this.closeMobile();
+    this.clearSearch();
+  }
+
+  @HostListener('window:scroll')
+  onWindowScroll(): void {
+    this.isCompact.set(window.scrollY > 24);
+  }
+
+  @HostListener('document:click', ['$event.target'])
+  onDocumentClick(target: EventTarget | null): void {
+    const element = target as HTMLElement | null;
+    if (!element?.closest('.nav-search-shell')) {
+      this.showSearchResults.set(false);
+    }
+  }
+
+  toggleMobile(): void {
+    this.mobileOpen.update((v) => !v);
+    this.syncBodyScrollLock();
+  }
+
+  closeMobile(): void {
+    this.mobileOpen.set(false);
+    this.expandedMobile.set(null);
+    this.syncBodyScrollLock();
+  }
+
+  private syncBodyScrollLock(): void {
+    document.body.classList.toggle('nav-open', this.mobileOpen());
+  }
+
+  toggleMobileSection(key: string): void {
+    this.expandedMobile.update((c) => (c === key ? null : key));
+  }
+
+  mobileSectionKey(item: NavItem): string {
+    return item.path ?? item.label;
+  }
+
+  onSubnavClick(): void {
+    this.suppressDropdownHover.set(true);
+    this.closeMobile();
+    const el = document.activeElement;
+    if (el instanceof HTMLElement) {
+      el.blur();
+    }
+  }
+
+  onNavBarPointerLeave(): void {
+    this.suppressDropdownHover.set(false);
+  }
+
+  hasChildren(item: NavItem): boolean {
+    return !!item.children?.length;
+  }
+
+  onSearchInput(event: Event): void {
+    const input = event.target as HTMLInputElement;
+    const value = input.value;
+    this.searchQuery.set(value);
+    this.showSearchResults.set(value.trim().length > 0);
+  }
+
+  clearSearch(): void {
+    this.searchQuery.set('');
+    this.showSearchResults.set(false);
+  }
+
+  selectSearchResult(item: SearchItem): void {
+    this.router.navigateByUrl(item.route);
+    this.clearSearch();
+  }
+
+  telLink(number: string): string {
+    return telHref(number);
+  }
+
+  socialClass(icon: string): string {
+    return `social-chip social-${icon}`;
+  }
+
+}

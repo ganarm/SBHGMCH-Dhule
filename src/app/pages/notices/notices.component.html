@@ -1,0 +1,24 @@
+<div class="page-hero">
+  <div class="container">
+    <h1>Notices & announcements</h1>
+    <p>Important updates, admission circulars, and institute news. In production, staff publish these from the admin panel.</p>
+  </div>
+</div>
+
+<div class="container page-body">
+  <div class="notice-list">
+    @for (n of notices; track n.id) {
+      <article class="notice-item">
+        <div class="notice-meta">
+          <span [class]="chipClass(n.type)">{{ n.type }}</span>
+          <time [attr.datetime]="n.publishedAt">{{ formatDate(n.publishedAt) }}</time>
+        </div>
+        <h2>{{ n.title }}</h2>
+        <p>{{ n.summary }}</p>
+        <button type="button" class="link-btn">
+          <app-icon name="pdf" [size]="16" /> View circular
+        </button>
+      </article>
+    }
+  </div>
+</div>

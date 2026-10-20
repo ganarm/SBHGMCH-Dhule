@@ -1,0 +1,28 @@
+<div class="page-hero">
+  <div class="container">
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <span>Home</span><span>/</span><span>About Us</span><span>/</span><span>History</span>
+    </nav>
+    <h1>History</h1>
+    <p>Society registration and service region of the nursing institution.</p>
+  </div>
+</div>
+
+<div class="container page-body">
+  <div class="content-card">
+    <dl class="facts">
+      <div>
+        <dt>Registered</dt>
+        <dd>{{ history.registeredYear }} under {{ history.registrationAct }}</dd>
+      </div>
+      <div>
+        <dt>Service area</dt>
+        <dd>{{ history.serviceAreas.join(', ') }}</dd>
+      </div>
+    </dl>
+
+    @for (para of history.paragraphs; track para) {
+      <p>{{ para }}</p>
+    }
+  </div>
+</div>

@@ -1,0 +1,115 @@
+<footer class="site-footer">
+  <div class="newsletter-band">
+    <div class="container newsletter-inner">
+      <div class="newsletter-copy">
+        <app-icon name="envelope-open" [size]="28" />
+        <div>
+          <h2>Stay informed</h2>
+          <p>Notices, admission dates, and college updates delivered to your inbox.</p>
+        </div>
+      </div>
+      <form class="newsletter-form" (submit)="onSubscribe($event)">
+        <label class="sr-only" for="newsletter-email">Email address</label>
+        <input
+          id="newsletter-email"
+          type="email"
+          name="email"
+          placeholder="Your email address"
+          [(ngModel)]="newsletterEmail"
+          required
+        />
+        <button type="submit" class="btn btn-gold">
+          <app-icon name="send" [size]="16" />
+          Subscribe
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <div class="container footer-grid">
+    <section class="footer-brand">
+      <div class="footer-brand-head">
+        <img
+          class="footer-logo"
+          [src]="settings.logoUrl"
+          [alt]="settings.logoAlt"
+          width="56"
+          height="56"
+          decoding="async"
+        />
+        <h3>{{ settings.instituteName }}</h3>
+      </div>
+      <p class="footer-tagline">{{ settings.societyName }}</p>
+      <ul class="contact-lines">
+        <li>
+          <app-icon name="location" [size]="16" />
+          {{ settings.contact.address }}
+        </li>
+        <li>
+          <app-icon name="phone" [size]="16" />
+          <a [href]="telLink(settings.contact.landline)">{{ settings.contact.landline }}</a>
+        </li>
+        <li>
+          <app-icon name="mobile" [size]="16" />
+          <a [href]="telLink(settings.contact.mobile)">{{ settings.contact.mobile }}</a>
+        </li>
+        <li>
+          <app-icon name="envelope" [size]="16" />
+          <a [href]="'mailto:' + settings.contact.email">{{ settings.contact.email }}</a>
+        </li>
+      </ul>
+    </section>
+
+    <section>
+      <h3>Quick links</h3>
+      <ul class="footer-links">
+        @for (link of settings.quickLinks; track link.label) {
+          <li>
+            <a [href]="link.url" target="_blank" rel="noopener noreferrer">
+              <app-icon name="external" [size]="12" />
+              {{ link.label }}
+            </a>
+          </li>
+        }
+      </ul>
+    </section>
+
+    <section>
+      <h3>Institute</h3>
+      <ul class="footer-links">
+        <li><a routerLink="/admissions"><app-icon name="chevron-right" [size]="12" /> Admissions</a></li>
+        <li><a routerLink="/notices"><app-icon name="chevron-right" [size]="12" /> Notices</a></li>
+        <li><a routerLink="/faculty"><app-icon name="chevron-right" [size]="12" /> Faculty</a></li>
+        <li><a routerLink="/academics/bsc-nursing"><app-icon name="chevron-right" [size]="12" /> B.Sc. Nursing</a></li>
+        <li><a routerLink="/academics/gnm"><app-icon name="chevron-right" [size]="12" /> GNM</a></li>
+        <li><a routerLink="/contact"><app-icon name="chevron-right" [size]="12" /> Contact</a></li>
+      </ul>
+    </section>
+
+    <section>
+      <h3>Connect with us</h3>
+      <div class="social-row">
+        @for (s of settings.social; track s.label) {
+          <a
+            [href]="s.url"
+            [class]="'social-btn social-' + s.icon"
+            target="_blank"
+            rel="noopener noreferrer"
+            [attr.aria-label]="s.label"
+            [title]="s.label"
+          >
+            <app-icon [name]="socialIcon(s.icon)" [size]="18" />
+          </a>
+        }
+      </div>
+      <p class="social-note">Follow us for campus events, achievements, and admission alerts.</p>
+    </section>
+  </div>
+
+  <div class="footer-bottom">
+    <div class="container footer-bottom-inner">
+      <p>© {{ year }} {{ settings.instituteName }}. All rights reserved.</p>
+      <p class="accredit">{{ settings.approvalsLine }}</p>
+    </div>
+  </div>
+</footer>

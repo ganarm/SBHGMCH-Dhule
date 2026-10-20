@@ -1,0 +1,26 @@
+@if (!topic()) {
+  <div class="container page-body">
+    <p>Page not found.</p>
+  </div>
+} @else {
+  <div class="page-hero">
+    <div class="container">
+      <nav class="breadcrumb" aria-label="Breadcrumb">
+        <span>Home</span><span>/</span><span>Student Corner</span><span>/</span><span>{{ topic()!.title }}</span>
+      </nav>
+      <h1>{{ topic()!.title }}</h1>
+      <p>{{ topic()!.intro }}</p>
+    </div>
+  </div>
+
+  <div class="container page-body">
+    <div class="content-card topic-list">
+      @for (item of topic()!.items; track item.heading) {
+        <article>
+          <h2>{{ item.heading }}</h2>
+          <p>{{ item.detail }}</p>
+        </article>
+      }
+    </div>
+  </div>
+}

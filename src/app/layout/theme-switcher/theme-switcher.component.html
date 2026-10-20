@@ -1,0 +1,40 @@
+<div class="theme-demo" [class.open]="open()">
+  <button type="button" class="theme-toggle" (click)="toggle()" [attr.aria-expanded]="open()">
+    <span class="palette" aria-hidden="true"></span>
+    Demo themes
+  </button>
+
+  @if (open()) {
+    <div class="theme-panel" role="dialog" aria-label="Choose color theme">
+      <p class="panel-title">Color themes for client review</p>
+      <p class="panel-hint">
+        Preview only — includes rich orange, gold, coral, and plum combinations for CTAs.
+      </p>
+      <ul class="theme-list">
+        @for (t of options; track t.id) {
+          <li>
+            <button
+              type="button"
+              class="theme-option"
+              [class.active]="activeId() === t.id"
+              (click)="select(t.id)"
+            >
+              <span class="swatches" aria-hidden="true">
+                <span [style.background]="t.swatches[0]"></span>
+                <span [style.background]="t.swatches[1]"></span>
+                <span [style.background]="t.swatches[2]"></span>
+              </span>
+              <span class="meta">
+                <strong>{{ t.label }}</strong>
+                <small>{{ t.description }}</small>
+              </span>
+              @if (activeId() === t.id) {
+                <span class="check" aria-hidden="true">✓</span>
+              }
+            </button>
+          </li>
+        }
+      </ul>
+    </div>
+  }
+</div>

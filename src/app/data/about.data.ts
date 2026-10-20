@@ -1,0 +1,24 @@
+import { AboutContent, LeadershipMessage, SocietyHistory } from './data.models';
+import {
+  INSTITUTION_AIM,
+  INSTITUTION_DEAN_MESSAGE,
+  INSTITUTION_HISTORY,
+  INSTITUTION_MISSION,
+  INSTITUTION_OBJECTIVES,
+  INSTITUTION_PRINCIPAL_MESSAGE,
+  INSTITUTION_VISION,
+} from './institution.data';
+
+export const ABOUT_CONTENT: AboutContent = {
+  aim: INSTITUTION_AIM,
+  vision: INSTITUTION_VISION,
+  mission: INSTITUTION_MISSION,
+  objectives: INSTITUTION_OBJECTIVES,
+};
+
+export const LEADERSHIP_MESSAGES: LeadershipMessage[] = [
+  INSTITUTION_DEAN_MESSAGE,
+  INSTITUTION_PRINCIPAL_MESSAGE,
+];
+
+export const SOCIETY_HISTORY: SocietyHistory = INSTITUTION_HISTORY;

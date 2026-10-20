@@ -1,0 +1,19 @@
+@use '../shared/page';
+
+.facts {
+  display: grid;
+  gap: 1rem;
+  margin: 0 0 1.5rem;
+
+  dt {
+    font-weight: 600;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: var(--color-text-muted);
+  }
+
+  dd {
+    margin: 0.25rem 0 0;
+  }
+}

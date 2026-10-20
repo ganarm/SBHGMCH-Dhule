@@ -1,0 +1,53 @@
+@if (!page()) {
+  <div class="container page-body">
+    <p>Page not found. <a routerLink="/">Go home</a>.</p>
+  </div>
+} @else {
+  <div class="page-hero">
+    <div class="container">
+      <nav class="breadcrumb" aria-label="Breadcrumb">
+        @for (crumb of page()!.breadcrumb; track crumb; let last = $last) {
+          <span>{{ crumb }}</span>
+          @if (!last) {
+            <span>/</span>
+          }
+        }
+      </nav>
+      <h1>{{ page()!.title }}</h1>
+      @if (page()!.intro) {
+        <p>{{ page()!.intro }}</p>
+      }
+    </div>
+  </div>
+
+  <div class="container page-body">
+    <div class="content-card">
+      @if (page()!.quote) {
+        <blockquote class="quote-block">
+          {{ page()!.quote!.text }}
+          @if (page()!.quote!.translation) {
+            <span class="translation">{{ page()!.quote!.translation }}</span>
+          }
+        </blockquote>
+      }
+
+      @for (section of page()!.sections; track section) {
+        @if (section.heading) {
+          <h2>{{ section.heading }}</h2>
+        }
+        @if (section.paragraphs) {
+          @for (para of section.paragraphs; track para) {
+            <p>{{ para }}</p>
+          }
+        }
+        @if (section.bullets) {
+          <ul>
+            @for (b of section.bullets; track b) {
+              <li>{{ b }}</li>
+            }
+          </ul>
+        }
+      }
+    </div>
+  </div>
+}

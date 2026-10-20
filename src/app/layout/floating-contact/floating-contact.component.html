@@ -1,0 +1,20 @@
+<aside class="floating-contact" aria-label="Quick contact">
+  <a
+    class="fab fab-call"
+    [href]="telLink(settings.contact.mobile)"
+    title="Call admission office"
+    aria-label="Call admission office"
+  >
+    <app-icon name="phone" [size]="22" />
+  </a>
+  <a
+    class="fab fab-whatsapp"
+    [href]="whatsappLink()"
+    target="_blank"
+    rel="noopener noreferrer"
+    title="Chat on WhatsApp"
+    aria-label="Chat on WhatsApp"
+  >
+    <app-icon name="whatsapp" [size]="24" />
+  </a>
+</aside>

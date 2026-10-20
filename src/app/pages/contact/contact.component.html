@@ -1,0 +1,58 @@
+<div class="page-hero">
+  <div class="container">
+    <h1>Contact us</h1>
+    <p>Reach the academic office for admissions, document verification, and campus visits.</p>
+  </div>
+</div>
+
+<div class="container page-body contact-layout">
+  <section class="content-card contact-details">
+    <h2>Institute office</h2>
+    <p>{{ settings.contact.address }}</p>
+    <p>
+      <strong>Phone:</strong>
+      <a [href]="telLink(settings.contact.landline)">{{ settings.contact.landline }}</a
+      ><br />
+      <strong>Mobile:</strong> <a [href]="'tel:' + settings.contact.mobile">{{ settings.contact.mobile }}</a><br />
+      <strong>Email:</strong> <a [href]="'mailto:' + settings.contact.email">{{ settings.contact.email }}</a>
+    </p>
+    <div class="map-placeholder" role="img" aria-label="Map location in Dhule">
+      <p>Google Map embed — connect live map URL in production.</p>
+    </div>
+  </section>
+
+  <section class="content-card">
+    <h2>Send an inquiry</h2>
+    @if (submitted) {
+      <p class="success">Thank you. In production this form will email the institute office.</p>
+    }
+    <form (submit)="onSubmit($event)">
+      <label>
+        Full name
+        <input type="text" name="name" [(ngModel)]="form.name" required />
+      </label>
+      <label>
+        Email
+        <input type="email" name="email" [(ngModel)]="form.email" required />
+      </label>
+      <label>
+        Phone
+        <input type="tel" name="phone" [(ngModel)]="form.phone" />
+      </label>
+      <label>
+        Subject
+        <select name="subject" [(ngModel)]="form.subject">
+          <option>Admission inquiry</option>
+          <option>Document verification</option>
+          <option>Grievance</option>
+          <option>General</option>
+        </select>
+      </label>
+      <label>
+        Message
+        <textarea name="message" rows="5" [(ngModel)]="form.message" required></textarea>
+      </label>
+      <button type="submit" class="btn btn-primary">Submit inquiry</button>
+    </form>
+  </section>
+</div>

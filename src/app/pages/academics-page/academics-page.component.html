@@ -1,0 +1,52 @@
+@if (isAdmissionCriteria() && admission()) {
+  <div class="page-hero">
+    <div class="container">
+      <nav class="breadcrumb" aria-label="Breadcrumb">
+        <span>Home</span><span>/</span><span>Academics</span><span>/</span><span>Admission Criteria</span>
+      </nav>
+      <h1>{{ admission()!.title }}</h1>
+      <p>{{ admission()!.admissionAuthority }}</p>
+    </div>
+  </div>
+
+  <div class="container page-body">
+    <div class="content-card">
+      <h2>Eligibility</h2>
+      <ul>
+        @for (item of admission()!.eligibility; track item) {
+          <li>{{ item }}</li>
+        }
+      </ul>
+      <h2>Age</h2>
+      <p>{{ admission()!.ageRequirement }}</p>
+      <a routerLink="/admissions" class="btn btn-primary">View admissions</a>
+    </div>
+  </div>
+} @else if (program()) {
+  <div class="page-hero">
+    <div class="container">
+      <nav class="breadcrumb" aria-label="Breadcrumb">
+        <span>Home</span><span>/</span><span>Academics</span><span>/</span><span>{{ program()!.name }}</span>
+      </nav>
+      <h1>{{ program()!.name }}</h1>
+      <p>{{ program()!.duration }} · Intake {{ program()!.intake }} seats</p>
+    </div>
+  </div>
+
+  <div class="container page-body">
+    <div class="content-card">
+      <p>{{ program()!.description }}</p>
+      <h2>Programme highlights</h2>
+      <ul>
+        @for (h of program()!.highlights; track h) {
+          <li>{{ h }}</li>
+        }
+      </ul>
+      <a routerLink="/academics/admission-criteria" class="btn btn-outline">Admission criteria</a>
+    </div>
+  </div>
+} @else {
+  <div class="container page-body">
+    <p>Page not found. <a routerLink="/">Go home</a>.</p>
+  </div>
+}

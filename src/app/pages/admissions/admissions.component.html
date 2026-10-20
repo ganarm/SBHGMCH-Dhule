@@ -1,0 +1,41 @@
+<div class="page-hero">
+  <div class="container">
+    <h1>Admissions</h1>
+    <p>Eligibility, intake, and application timelines for B.Sc. Nursing and GNM programmes.</p>
+  </div>
+</div>
+
+<div class="container page-body">
+  <div class="admission-grid">
+    @for (p of programs; track p.slug) {
+      <article class="program-panel" [attr.data-status]="p.status">
+        <header>
+          <h2>{{ p.name }}</h2>
+          <span class="badge">{{ p.status }}</span>
+        </header>
+        <p class="year">Academic year {{ p.academicYear }}</p>
+        <ul>
+          <li><strong>Intake:</strong> {{ p.intake }} seats</li>
+          <li><strong>Duration:</strong> {{ p.duration }}</li>
+          @if (p.applicationDeadline) {
+            <li><strong>Application deadline:</strong> {{ formatDate(p.applicationDeadline) }}</li>
+          }
+        </ul>
+        <div class="actions">
+          <a class="btn btn-primary" [routerLink]="['/academics', p.slug]">Programme details</a>
+          <a class="btn btn-outline" routerLink="/academics/admission-criteria">Admission criteria</a>
+          <button type="button" class="btn btn-outline">{{ p.brochureLabel }}</button>
+        </div>
+      </article>
+    }
+  </div>
+
+  <aside class="info-box">
+    <h3>Counselling & documents</h3>
+    <p>
+      Admission is subject to state CET / NEET norms, document verification, and medical fitness. Bring original
+      certificates, caste / EWS certificates if applicable, and passport photographs as per the latest government
+      circular.
+    </p>
+  </aside>
+</div>

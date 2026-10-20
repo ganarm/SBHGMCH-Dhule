@@ -1,0 +1,41 @@
+@if (!facility()) {
+  <div class="container page-body">
+    <p>Facility not found. <a routerLink="/">Go home</a>.</p>
+  </div>
+} @else {
+  <div class="page-hero">
+    <div class="container">
+      <nav class="breadcrumb" aria-label="Breadcrumb">
+        <span>Home</span><span>/</span><span>Facilities</span><span>/</span><span>{{ facility()!.title }}</span>
+      </nav>
+      <h1>{{ facility()!.title }}</h1>
+      <p>{{ facility()!.summary }}</p>
+    </div>
+  </div>
+
+  <div class="container page-body">
+    <div class="facility-detail">
+      <img [src]="facility()!.imageUrl" [alt]="facility()!.title" loading="lazy" />
+      <div class="content-card">
+        @for (section of facility()!.sections; track section) {
+          @if (section.heading) {
+            <h2>{{ section.heading }}</h2>
+          }
+          @if (section.paragraphs) {
+            @for (para of section.paragraphs; track para) {
+              <p>{{ para }}</p>
+            }
+          }
+          @if (section.bullets) {
+            <ul>
+              @for (b of section.bullets; track b) {
+                <li>{{ b }}</li>
+              }
+            </ul>
+          }
+        }
+        <a routerLink="/" class="btn btn-outline">Back to home</a>
+      </div>
+    </div>
+  </div>
+}

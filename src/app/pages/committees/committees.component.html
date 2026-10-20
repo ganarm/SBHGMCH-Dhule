@@ -1,0 +1,33 @@
+<div class="page-hero">
+  <div class="container">
+    <h1>Committees</h1>
+    <p>Institutional committees grouped by academic, welfare, clinical, quality assurance, infrastructure, and community health functions.</p>
+  </div>
+</div>
+
+<div class="container page-body">
+  <div class="committees-layout">
+    <div class="tab-list" role="tablist" aria-label="Committee categories">
+      <button
+        *ngFor="let cat of categories"
+        type="button"
+        role="tab"
+        class="tab-btn"
+        [class.active]="activeCategory() === cat"
+        [attr.aria-selected]="activeCategory() === cat"
+        (click)="selectCategory(cat)"
+      >
+        {{ cat }}
+      </button>
+    </div>
+
+    <div class="tab-panel" role="tabpanel" [attr.aria-label]="activeCategory()">
+      <div class="accordion">
+        <details class="accordion-item" *ngFor="let item of committeesFor(activeCategory()); trackBy: trackCommittee">
+          <summary>{{ item.name }}</summary>
+          <p>{{ item.responsibility }}</p>
+        </details>
+      </div>
+    </div>
+  </div>
+</div>
