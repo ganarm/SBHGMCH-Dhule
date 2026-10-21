@@ -115,11 +115,17 @@ export interface DisclosureDocument {
   href: string;
 }
 
+export interface StudentCornerItem {
+  heading: string;
+  detail: string;
+  bullets?: string[];
+}
+
 export interface StudentCornerTopic {
   slug: string;
   title: string;
   intro: string;
-  items: { heading: string; detail: string }[];
+  items: StudentCornerItem[];
 }
 
 

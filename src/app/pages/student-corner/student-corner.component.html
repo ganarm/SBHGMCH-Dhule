@@ -14,13 +14,38 @@
   </div>
 
   <div class="container page-body">
-    <div class="content-card topic-list">
-      @for (item of topic()!.items; track item.heading) {
-        <article>
-          <h2>{{ item.heading }}</h2>
-          <p>{{ item.detail }}</p>
-        </article>
-      }
-    </div>
+    
+    <!-- Layout for Important Days (3-Column Calendar Grid) -->
+    @if (topic()!.slug === 'important-days') {
+      <div class="days-grid">
+        @for (item of topic()!.items; track item.heading) {
+          <div class="day-card">
+            <h3>{{ item.heading }}</h3>
+            <p>{{ item.detail }}</p>
+          </div>
+        }
+      </div>
+    } 
+    
+    <!-- Layout for everything else (Cards with Bullet Points) -->
+    @else {
+      <div class="topic-grid">
+        @for (item of topic()!.items; track item.heading) {
+          <div class="topic-card">
+            <h2>{{ item.heading }}</h2>
+            <p class="detail">{{ item.detail }}</p>
+            
+            @if (item.bullets && item.bullets.length > 0) {
+              <ul>
+                @for (bullet of item.bullets; track bullet) {
+                  <li>{{ bullet }}</li>
+                }
+              </ul>
+            }
+          </div>
+        }
+      </div>
+    }
+
   </div>
 }
