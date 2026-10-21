@@ -115,6 +115,11 @@ export interface DisclosureDocument {
   href: string;
 }
 
+export interface DisclosureCategory {
+  title: string;
+  documents: DisclosureDocument[];
+}
+
 export interface StudentCornerItem {
   heading: string;
   detail: string;

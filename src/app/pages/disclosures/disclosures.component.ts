@@ -1,19 +1,22 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { MANDATORY_DISCLOSURES } from '../../data/disclosures.data';
-import { AppIconComponent } from '../../shared/app-icon/app-icon.component';
 
 @Component({
   selector: 'app-disclosures',
   standalone: true,
-  imports: [CommonModule, AppIconComponent],
+  imports: [CommonModule], 
   templateUrl: './disclosures.component.html',
   styleUrl: './disclosures.component.scss',
 })
 export class DisclosuresComponent {
-  readonly documents = MANDATORY_DISCLOSURES;
+  readonly disclosures = MANDATORY_DISCLOSURES;
 
-  trackDocument(index: number, doc: (typeof MANDATORY_DISCLOSURES)[number]): string {
-    return `${doc.title}-${index}`;
+  trackCategory(index: number, category: any): string {
+    return category.title;
+  }
+
+  trackDocument(index: number, doc: any): string {
+    return doc.title;
   }
 }

@@ -1,58 +1,124 @@
 <div class="page-hero">
   <div class="container">
-    <h1>Contact us</h1>
-    <p>Reach the academic office for admissions, document verification, and campus visits.</p>
+    <h1>Contact Us</h1>
+    <p>Get in touch with the college administration and hospital departments.</p>
   </div>
 </div>
 
-<div class="container page-body contact-layout">
-  <section class="content-card contact-details">
-    <h2>Institute office</h2>
-    <p>{{ settings.contact.address }}</p>
-    <p>
-      <strong>Phone:</strong>
-      <a [href]="telLink(settings.contact.landline)">{{ settings.contact.landline }}</a
-      ><br />
-      <strong>Mobile:</strong> <a [href]="'tel:' + settings.contact.mobile">{{ settings.contact.mobile }}</a><br />
-      <strong>Email:</strong> <a [href]="'mailto:' + settings.contact.email">{{ settings.contact.email }}</a>
-    </p>
-    <div class="map-placeholder" role="img" aria-label="Map location in Dhule">
-      <p>Google Map embed — connect live map URL in production.</p>
-    </div>
-  </section>
+<div class="container page-body">
+  
+  <!-- Top Layout (Info + Map on Left, Form on Right) -->
+  <div class="contact-layout">
+    
+    <!-- Left Side: Information & Map -->
+    <div class="contact-info-column">
+      
+      <div class="info-card">
+        <div class="info-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+        </div>
+        <div class="info-content">
+          <h3>Campus Address</h3>
+          <p>{{ settings.contact.address }}</p>
+          <p class="sub-text">(Associated with Shri. Bhausaheb Hire Govt. Medical College)</p>
+        </div>
+      </div>
 
-  <section class="content-card">
-    <h2>Send an inquiry</h2>
-    @if (submitted) {
-      <p class="success">Thank you. In production this form will email the institute office.</p>
-    }
-    <form (submit)="onSubmit($event)">
-      <label>
-        Full name
-        <input type="text" name="name" [(ngModel)]="form.name" required />
-      </label>
-      <label>
-        Email
-        <input type="email" name="email" [(ngModel)]="form.email" required />
-      </label>
-      <label>
-        Phone
-        <input type="tel" name="phone" [(ngModel)]="form.phone" />
-      </label>
-      <label>
-        Subject
-        <select name="subject" [(ngModel)]="form.subject">
-          <option>Admission inquiry</option>
-          <option>Document verification</option>
-          <option>Grievance</option>
-          <option>General</option>
-        </select>
-      </label>
-      <label>
-        Message
-        <textarea name="message" rows="5" [(ngModel)]="form.message" required></textarea>
-      </label>
-      <button type="submit" class="btn btn-primary">Submit inquiry</button>
-    </form>
-  </section>
+      <div class="info-card">
+        <div class="info-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+        </div>
+        <div class="info-content">
+          <h3>Phone Numbers</h3>
+          <p><strong>College:</strong> <a [href]="telLink(settings.contact.landline)">{{ settings.contact.landline }}</a></p>
+          <p><strong>Hospital:</strong> 02562-237675, 288821</p>
+        </div>
+      </div>
+
+      <div class="info-card">
+        <div class="info-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+        </div>
+        <div class="info-content">
+          <h3>Email Addresses</h3>
+          <p><strong>Official:</strong> <a [href]="'mailto:' + settings.contact.email">{{ settings.contact.email }}</a></p>
+          <p><strong>Dean:</strong> deangmcdhule&#64;gmail.com</p>
+        </div>
+      </div>
+
+      <div class="map-container">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3719.165424823431!2d74.7629348!3d20.9042516!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2sShri%20Bhausaheb%20Hire%20Government%20Medical%20College!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+      </div>
+
+    </div>
+
+    <!-- Right Side: Contact Form -->
+    <div class="contact-form-card">
+      <h2>Send us a Message</h2>
+      
+      @if (submitted) {
+        <div class="success-message">
+          Thank you. Your inquiry has been sent successfully.
+        </div>
+      }
+
+      <form (submit)="onSubmit($event)">
+        <div class="form-group">
+          <label>Full Name</label>
+          <input type="text" name="name" [(ngModel)]="form.name" placeholder="Enter your full name" required />
+        </div>
+        
+        <div class="form-group">
+          <label>Email Address</label>
+          <input type="email" name="email" [(ngModel)]="form.email" placeholder="Enter your email address" required />
+        </div>
+
+        <div class="form-group">
+          <label>Phone Number</label>
+          <input type="tel" name="phone" [(ngModel)]="form.phone" placeholder="Enter your phone number" />
+        </div>
+
+        <div class="form-group">
+          <label>Subject</label>
+          <select name="subject" [(ngModel)]="form.subject">
+            <option>Admission inquiry</option>
+            <option>Document verification</option>
+            <option>Grievance</option>
+            <option>General</option>
+          </select>
+        </div>
+        
+        <div class="form-group">
+          <label>Message</label>
+          <textarea name="message" rows="5" [(ngModel)]="form.message" placeholder="Write your message here..." required></textarea>
+        </div>
+
+        <button type="submit" class="btn-submit">Send Message</button>
+      </form>
+    </div>
+
+  </div>
+</div>
+
+<!-- KEY CONTACTS SECTION -->
+<div class="full-width-directory">
+  <div class="directory-section">
+    <h2 class="section-title">Key Contacts</h2>
+    <div class="directory-grid">
+      @for (contact of directoryContacts; track contact.name) {
+        <div class="directory-card">
+          <h4>{{ contact.name }}</h4>
+          <div class="role">{{ contact.role }}</div>
+          <div class="contact-info">
+            @if (contact.email) {
+              <span><a [href]="'mailto:' + contact.email">{{ contact.email }}</a></span>
+            }
+            @if (contact.phone) {
+              <br><span><a [href]="telLink(contact.phone)">{{ contact.phone }}</a></span>
+            }
+          </div>
+        </div>
+      }
+    </div>
+  </div>
 </div>

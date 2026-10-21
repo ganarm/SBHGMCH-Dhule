@@ -1,33 +1,61 @@
 <div class="page-hero">
   <div class="container">
-    <h1>Committees</h1>
+    <h1>College Committees</h1>
     <p>Institutional committees grouped by academic, welfare, clinical, quality assurance, infrastructure, and community health functions.</p>
   </div>
 </div>
 
 <div class="container page-body">
   <div class="committees-layout">
-    <div class="tab-list" role="tablist" aria-label="Committee categories">
-      <button
-        *ngFor="let cat of categories"
-        type="button"
-        role="tab"
-        class="tab-btn"
-        [class.active]="activeCategory() === cat"
-        [attr.aria-selected]="activeCategory() === cat"
-        (click)="selectCategory(cat)"
-      >
-        {{ cat }}
-      </button>
-    </div>
+    
+    <!-- Left Sidebar -->
+    <aside class="sidebar">
+      <div class="sidebar-title">Categories</div>
+      <ul class="sidebar-menu">
+        @for (cat of categories; track cat) {
+          <li>
+            <button 
+              type="button" 
+              [class.active]="activeCategory() === cat" 
+              (click)="selectCategory(cat)"
+            >
+              {{ cat }}
+              <span class="count-badge">{{ getCategoryCount(cat) }}</span>
+            </button>
+          </li>
+        }
+      </ul>
+    </aside>
 
-    <div class="tab-panel" role="tabpanel" [attr.aria-label]="activeCategory()">
-      <div class="accordion">
-        <details class="accordion-item" *ngFor="let item of committeesFor(activeCategory()); trackBy: trackCommittee">
-          <summary>{{ item.name }}</summary>
-          <p>{{ item.responsibility }}</p>
-        </details>
+    <!-- Right Content -->
+    <main class="content-area">
+      
+      <!-- Search Bar -->
+      <div class="search-wrapper">
+        <span class="search-icon">🔍</span>
+        <input 
+          type="text" 
+          class="search-bar" 
+          placeholder="Search committees by name or keyword..." 
+          [ngModel]="searchQuery()" 
+          (ngModelChange)="searchQuery.set($event)"
+        >
       </div>
-    </div>
+
+      <!-- Grid -->
+      <div class="committees-grid">
+        @for (item of filteredCommittees(); track trackCommittee($index, item)) {
+          <div class="committee-card">
+            <h3>{{ item.name }}</h3>
+            <p>{{ item.responsibility }}</p>
+          </div>
+        } @empty {
+          <div class="no-results">
+            <p>No committees found matching your search in this category.</p>
+          </div>
+        }
+      </div>
+
+    </main>
   </div>
 </div>

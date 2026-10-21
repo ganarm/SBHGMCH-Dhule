@@ -1,19 +1,39 @@
 <div class="page-hero">
   <div class="container">
     <h1>Mandatory Disclosures</h1>
-    <p>Statutory documents and authorizations for public reference.</p>
+    <p>Statutory documents, approvals, and institutional records for public reference.</p>
   </div>
 </div>
 
 <div class="container page-body">
-  <div class="content-card">
-    <ul class="disclosure-list">
-      <li *ngFor="let doc of documents; trackBy: trackDocument">
-        <a [href]="doc.href" download>
-          <app-icon name="pdf" [size]="16" />
-          {{ doc.title }}
-        </a>
-      </li>
-    </ul>
-  </div>
+  
+  @for (category of disclosures; track trackCategory($index, category)) {
+    <div class="category-section">
+      <h2 class="category-title">{{ category.title }}</h2>
+      
+      <div class="docs-grid">
+        @for (doc of category.documents; track trackDocument($index, doc)) {
+          <div class="doc-card">
+            <div>
+              <!-- Raw SVG replaces app-icon to fix NG8001 error -->
+              <div class="pdf-icon-wrapper">
+                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                  <polyline points="14 2 14 8 20 8"></polyline>
+                  <line x1="16" y1="13" x2="8" y2="13"></line>
+                  <line x1="16" y1="17" x2="8" y2="17"></line>
+                  <polyline points="10 9 9 9 8 9"></polyline>
+                </svg>
+              </div>
+              <div class="doc-title">{{ doc.title }}</div>
+            </div>
+            <a [href]="doc.href" target="_blank" class="doc-btn">
+              Download PDF
+            </a>
+          </div>
+        }
+      </div>
+    </div>
+  }
+
 </div>
