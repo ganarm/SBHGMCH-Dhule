@@ -81,12 +81,33 @@ export interface AdmissionCriteria {
   admissionAuthority: string;
 }
 
+export interface LabDetail {
+  id: string;
+  title: string;
+  summary: string;
+  images: string[];
+  inventory: { name: string; qty: string }[];
+}
+
 export interface FacilityDetail {
   slug: string;
   title: string;
   summary: string;
   imageUrl: string;
-  sections: { heading?: string; paragraphs?: string[]; bullets?: string[] }[];
+  images?: string[];
+  labs?: LabDetail[];
+  sections?: {
+    heading?: string;
+    paragraphs?: string[];
+    bullets?: string[];
+  }[];
+}
+
+export interface FacilityItem {
+  slug: string;
+  title: string;
+  summary: string;
+  imageUrl: string;
 }
 
 export interface DisclosureDocument {
@@ -100,3 +121,5 @@ export interface StudentCornerTopic {
   intro: string;
   items: { heading: string; detail: string }[];
 }
+
+

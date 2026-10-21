@@ -3,6 +3,7 @@
     <p>Facility not found. <a routerLink="/">Go home</a>.</p>
   </div>
 } @else {
+  <!-- Page Hero -->
   <div class="page-hero">
     <div class="container">
       <nav class="breadcrumb" aria-label="Breadcrumb">
@@ -14,28 +15,110 @@
   </div>
 
   <div class="container page-body">
-    <div class="facility-detail">
-      <img [src]="facility()!.imageUrl" [alt]="facility()!.title" loading="lazy" />
-      <div class="content-card">
-        @for (section of facility()!.sections; track section) {
-          @if (section.heading) {
-            <h2>{{ section.heading }}</h2>
-          }
-          @if (section.paragraphs) {
-            @for (para of section.paragraphs; track para) {
-              <p>{{ para }}</p>
+    
+    <!-- ========================================== -->
+    <!-- LABORATORIES LAYOUT (Sidebar + 50/50 Split) -->
+    <!-- ========================================== -->
+    @if (facility()!.labs) {
+      <div class="layout-grid">
+        
+        <!-- Left Sidebar -->
+        <aside class="sidebar-nav">
+          <div class="sidebar-header">Select Lab</div>
+          <ul class="sidebar-links">
+            @for (lab of facility()!.labs; track lab.id) {
+              <li>
+                <button 
+                  [class.active]="(activeLabId() || facility()!.labs![0].id) === lab.id" 
+                  (click)="setActiveLab(lab.id)"
+                >
+                  {{ lab.title }}
+                </button>
+              </li>
             }
-          }
-          @if (section.bullets) {
-            <ul>
-              @for (b of section.bullets; track b) {
-                <li>{{ b }}</li>
+          </ul>
+        </aside>
+
+        <!-- Right Content (50/50 Split) -->
+        <div class="facility-split">
+          
+          <!-- Carousel -->
+          <div class="image-carousel" (mouseenter)="pauseSlideshow()" (mouseleave)="resumeSlideshow()">
+            @for (img of currentLab()!.images; track img; let i = $index) {
+              <img [src]="img" [alt]="currentLab()!.title" class="carousel-slide" [class.active]="activeImageIndex() === i" />
+            }
+            @if (currentLab()!.images.length > 1) {
+              <div class="carousel-dots">
+                @for (img of currentLab()!.images; track img; let i = $index) {
+                  <button type="button" [class.active]="activeImageIndex() === i" (click)="setActiveImage(i)"></button>
+                }
+              </div>
+            }
+          </div>
+
+          <!-- Info & Inventory -->
+          <div class="content-card">
+            <h2>{{ currentLab()!.title }}</h2>
+            <p>{{ currentLab()!.summary }}</p>
+            
+            <div class="inventory-header">
+              <h3>Available Inventory</h3>
+            </div>
+            <ul class="inventory-list">
+              @for (item of currentLab()!.inventory; track item.name) {
+                <li>
+                  <span class="item-name">{{ item.name }}</span>
+                  <span class="item-qty">{{ item.qty }}</span>
+                </li>
               }
             </ul>
-          }
-        }
-        <a routerLink="/" class="btn btn-outline">Back to home</a>
+          </div>
+        </div>
+
       </div>
-    </div>
+    } 
+    
+    <!-- ========================================== -->
+    <!-- STANDARD FACILITY LAYOUT (Hospital, Hostel, Library)-->
+    <!-- ========================================== -->
+    @else {
+      <div class="facility-split">
+        <!-- Carousel -->
+        <div class="image-carousel" (mouseenter)="pauseSlideshow()" (mouseleave)="resumeSlideshow()">
+          @if (facility()!.images && facility()!.images!.length > 0) {
+            @for (img of facility()!.images; track img; let i = $index) {
+              <img [src]="img" [alt]="facility()!.title" class="carousel-slide" [class.active]="activeImageIndex() === i" />
+            }
+          } @else {
+            <img [src]="facility()!.imageUrl" [alt]="facility()!.title" class="carousel-slide active" />
+          }
+          
+          @if (facility()!.images && facility()!.images!.length > 1) {
+            <div class="carousel-dots">
+              @for (img of facility()!.images; track img; let i = $index) {
+                <button type="button" [class.active]="activeImageIndex() === i" (click)="setActiveImage(i)"></button>
+              }
+            </div>
+          }
+        </div>
+
+        <!-- Text Content -->
+        <div class="content-card">
+          @for (section of facility()!.sections; track section) {
+            @if (section.heading) { <h2>{{ section.heading }}</h2> }
+            @if (section.paragraphs) {
+              @for (para of section.paragraphs; track para) { <p>{{ para }}</p> }
+            }
+            @if (section.bullets) {
+              <ul>
+                @for (b of section.bullets; track b) { <li>{{ b }}</li> }
+              </ul>
+            }
+          }
+          <a routerLink="/" class="btn btn-outline">Back to home</a>
+        </div>
+      </div>
+    }
+
   </div>
 }
