@@ -641,3 +641,115 @@
     align-items: flex-start;
   }
 }
+
+/* =========================================
+   KEY PERSONS SECTION (Theme Responsive)
+   ========================================= */
+.key-persons-section {
+  background-color: transparent; /* Let the page background handle it */
+  padding-top: 2rem;
+}
+
+.key-persons-title {
+  text-align: center;
+  margin-bottom: 2.5rem;
+
+  h2 {
+    color: var(--color-primary); /* Adapts to the active theme */
+    font-size: 2.2rem;
+    font-weight: 700;
+    margin: 0;
+  }
+}
+
+.key-persons-grid {
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+  gap: 1.5rem;
+  align-items: start;
+}
+
+.person-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.person-image-wrap {
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  border-radius: 12px;
+  border: 3.5px solid var(--color-primary); /* Uses theme primary color for border */
+  overflow: hidden;
+  margin-bottom: 1rem;
+  background-color: var(--color-surface);
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top center;
+  }
+}
+
+.person-info {
+  width: 100%;
+
+  h3 {
+    font-size: 0.95rem;
+    color: var(--color-primary);
+    margin-bottom: 0.4rem;
+    line-height: 1.3;
+    font-weight: 700;
+  }
+
+  .person-title {
+    font-size: 0.85rem;
+    color: var(--color-text-muted);
+    margin-bottom: 0.2rem;
+    line-height: 1.4;
+  }
+
+  .person-sub {
+    font-size: 0.75rem;
+    color: var(--color-text-muted);
+    margin: 0;
+    line-height: 1.4;
+  }
+}
+
+/* Responsive adjustments */
+@media (max-width: 1200px) {
+  .key-persons-grid {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem 1.5rem;
+  }
+}
+
+@media (max-width: 900px) {
+  .key-persons-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 680px) {
+  .key-persons-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem 1rem;
+  }
+  
+  .key-persons-title h2 {
+    font-size: 1.8rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .key-persons-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .person-image-wrap {
+    max-width: 250px;
+  }
+}

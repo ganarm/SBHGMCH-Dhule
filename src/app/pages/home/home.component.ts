@@ -32,6 +32,57 @@ export class HomeComponent {
     { value: '15k+', label: 'Sq.m. Campus Area' },
   ];
 
+  readonly keyPersons = [
+    { 
+      name: 'Shri. Devendra Fadnavis', 
+      title: "Hon'ble Chief Minister", 
+      sub: 'Maharashtra State', 
+      image: '/images/Devendra-Fadnavis.png' 
+    },
+    { 
+      name: 'Shri. Eknath Shinde', 
+      title: "Hon'ble Deputy Chief Minister", 
+      sub: 'Maharashtra State', 
+      image: '/images/eknath-shinde.png' 
+    },
+    { 
+      name: 'Smt. Sunetra Ajit Pawar', 
+      title: "Hon'ble Deputy Chief Minister", 
+      sub: 'Maharashtra State', 
+      image: '/images/Smt-Sunetra-Ajit-Pawar.png' 
+    },
+    { 
+      name: 'Shri. Hasan Mushrif', 
+      title: "Hon'ble Minister Medical Education", 
+      sub: 'Maharashtra State', 
+      image: '/images/hasan-mushrif.png' 
+    },
+    { 
+      name: 'Smt. Madhuri Misal', 
+      title: "Hon'ble Minister of State", 
+      sub: 'Medical Education, Maharashtra State', 
+      image: '/images/madhuri-misal.png' 
+    },
+    { 
+      name: 'Shri. Dheeraj Kumar', 
+      title: 'Secretary,', 
+      sub: 'Medical Education and Drugs', 
+      image: '/images/dheeraj-kumar.png' 
+    },
+    { 
+      name: 'Shri. Anil Bhandari', 
+      title: 'Commissioner, Medical Education & Ayush and', 
+      sub: 'Director, Medical Education & Research', 
+      image: '/images/anil_bhandari.png' 
+    },
+    { 
+      name: 'Dr. Archana Badhe', 
+      title: 'State Nursing Superintendent Medical Education', 
+      sub: '& Ayush and Director, Medical Education & Research', 
+      image: '/images/Archana.jpeg' 
+    },
+  ];
+
   activeSlide = signal(0);
 
   prevSlide(): void {

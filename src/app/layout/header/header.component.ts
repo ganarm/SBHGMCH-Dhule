@@ -141,5 +141,4 @@ export class HeaderComponent {
   socialClass(icon: string): string {
     return `social-chip social-${icon}`;
   }
-
 }

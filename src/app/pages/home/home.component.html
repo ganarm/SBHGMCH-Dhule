@@ -115,6 +115,29 @@
   </div>
 </section>
 
+<section class="section key-persons-section">
+  <div class="container">
+    <div class="section-title key-persons-title">
+      <h2>Key Persons</h2>
+    </div>
+
+    <div class="key-persons-grid">
+      @for (person of keyPersons; track person.name) {
+        <div class="person-card">
+          <div class="person-image-wrap">
+            <img [src]="person.image" [alt]="person.name" loading="lazy" />
+          </div>
+          <div class="person-info">
+            <h3>{{ person.name }}</h3>
+            <p class="person-title">{{ person.title }}</p>
+            <p class="person-sub">{{ person.sub }}</p>
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+</section>
+
 <section class="section programs-section">
   <div class="container">
     <div class="program-grid">

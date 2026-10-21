@@ -4,6 +4,7 @@
   margin-top: var(--section-space);
 }
 
+/* —— Newsletter Band —— */
 .newsletter-band {
   background: linear-gradient(105deg, var(--color-secondary) 0%, var(--color-nav) 100%);
   padding: 2rem 0;
@@ -83,11 +84,56 @@
   }
 }
 
-.footer-grid {
+/* =========================================
+   MAIN FOOTER LAYOUT (1/3 Video, 2/3 Info)
+   ========================================= */
+.footer-main {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 2rem 2.5rem;
-  padding: 3rem 0 2rem;
+  grid-template-columns: 1fr 2fr; /* 1/3 and 2/3 split */
+  gap: 3rem;
+  padding: 3.5rem 0;
+  align-items: center;
+  border-bottom: 1px solid var(--color-footer-border, rgba(255, 255, 255, 0.1));
+
+  @media (max-width: 1024px) {
+    grid-template-columns: 1fr; /* Stack on smaller screens */
+    gap: 2.5rem;
+  }
+}
+
+/* --- Left Column: Video --- */
+.footer-video-col {
+  width: 100%;
+}
+
+.video-frame {
+  border: 8px solid #ffffff;
+  border-radius: var(--radius-md);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+  overflow: hidden;
+  background-color: #000;
+  
+  video {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+}
+
+/* --- Right Column: Information Grid --- */
+.footer-info-col {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr 1fr; /* Brand gets a bit more space */
+  gap: 2rem;
+
+  @media (max-width: 1200px) {
+    grid-template-columns: 1fr 1fr; /* Drop to 2 columns */
+    .footer-brand { grid-column: 1 / -1; } /* Brand takes full width */
+  }
+
+  @media (max-width: 600px) {
+    grid-template-columns: 1fr; /* Stack everything on mobile */
+  }
 
   h3 {
     font-family: var(--font-body);
@@ -119,7 +165,7 @@
 
 .footer-brand h3 {
   font-family: var(--font-display);
-  font-size: 1rem;
+  font-size: 1.15rem;
   text-transform: none;
   letter-spacing: 0;
   color: var(--color-text-inverse);
@@ -188,51 +234,7 @@
   }
 }
 
-.social-row {
-  display: flex;
-  gap: 0.65rem;
-  margin-bottom: 0.75rem;
-}
-
-.social-btn {
-  width: 2.75rem;
-  height: 2.75rem;
-  border-radius: 50%;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  color: #fff;
-  text-decoration: none;
-  transition:
-    transform 0.2s,
-    filter 0.2s;
-
-  &:hover {
-    transform: translateY(-2px);
-    filter: brightness(1.08);
-    color: #fff;
-  }
-}
-
-.social-instagram {
-  background: linear-gradient(135deg, #f58529, #dd2a7b, #8134af);
-}
-
-.social-facebook {
-  background: #1877f2;
-}
-
-.social-youtube {
-  background: #ff0000;
-}
-
-.social-note {
-  font-size: 0.8125rem;
-  color: var(--color-footer-muted, rgba(255, 255, 255, 0.5));
-  margin: 0;
-  line-height: 1.5;
-}
-
+/* —— Footer Bottom —— */
 .footer-bottom {
   border-top: 1px solid var(--color-footer-border, rgba(255, 255, 255, 0.1));
   padding: 1.25rem 0 1.75rem;

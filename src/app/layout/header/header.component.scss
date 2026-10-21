@@ -99,7 +99,7 @@
   }
 }
 
-/* —— Brand —— */
+/* —— Brand / Header —— */
 .site-header {
   background: #ffffff;
   position: sticky;
@@ -108,9 +108,7 @@
   box-shadow: 0 2px 10px rgba(15, 23, 42, 0.08);
   border-bottom: 1px solid rgba(0, 51, 102, 0.12);
   overflow: visible;
-  transition:
-    box-shadow 0.2s ease,
-    border-color 0.2s ease;
+  transition: box-shadow 0.2s ease, border-color 0.2s ease;
 }
 
 .site-header.compact {
@@ -123,8 +121,7 @@
 }
 
 .site-header.compact .header-mark {
-  width: 3.5rem;
-  height: 3.5rem;
+  height: 4.5rem; /* Smaller height when scrolled */
 }
 
 .site-header.compact .society {
@@ -151,24 +148,38 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 1rem 2rem;
+  gap: 1.5rem;
   min-height: 11rem;
   padding: 1.25rem 0;
   background: #ffffff;
   transition: min-height 0.2s ease, padding 0.2s ease;
 }
 
+/* UPDATED LOGO SIZING */
 .header-mark {
-  width: 5.25rem;
-  height: 5.25rem;
-  border-radius: 50%;
-  border: 2px solid color-mix(in srgb, var(--color-nav) 32%, white);
-  background: linear-gradient(
-    135deg,
-    color-mix(in srgb, var(--color-nav) 10%, white) 0%,
-    color-mix(in srgb, var(--color-nav) 22%, white) 100%
-  );
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 7rem; /* Increased size for premium look */
   flex-shrink: 0;
+  background: transparent;
+  border: none;
+
+  img {
+    height: 100%;
+    width: auto;
+    max-width: 11rem; /* Prevents very wide logos from breaking layout */
+    object-fit: contain;
+    display: block;
+  }
+}
+
+/* Fine-tuning the visual balance */
+.header-mark-left img {
+  transform: scale(1.05); /* Slight boost for the rectangular logo */
+}
+.header-mark-right img {
+  transform: scale(1);
 }
 
 .brand-text {
@@ -193,7 +204,7 @@
 
 .institute {
   font-family: 'Times New Roman', Georgia, serif;
-  font-size: clamp(1.5rem, 2.6vw, 2.5rem);
+  font-size: clamp(1.6rem, 2.8vw, 2.6rem);
   line-height: 1.15;
   color: var(--color-nav);
   font-weight: 700;
@@ -207,85 +218,15 @@
   max-width: 46rem;
 }
 
-@media (max-width: 767px) {
-  .brand-block {
-    min-height: auto;
-    padding: 1rem 0;
-  }
-
-  .header-mark {
-    display: none;
-  }
-
-  .brand-text {
-    width: 100%;
-  }
-
-  .society {
-    font-size: 0.58rem;
-    letter-spacing: 0.03em;
-  }
-
-  .institute {
-    font-size: clamp(1.2rem, 6vw, 1.9rem);
-  }
-
-  .approvals {
-    font-size: 0.64rem;
-  }
-}
-
-.nav-bar {
-  background: linear-gradient(180deg, var(--color-nav) 0%, color-mix(in srgb, var(--color-nav) 86%, #000 14%) 100%);
-  color: #ffffff;
-  transition: all 0.3s ease-in-out;
-}
-
-.nav-inner {
-  display: flex;
-  align-items: center;
-  min-height: 3.25rem;
-  transition: all 0.3s ease-in-out;
-}
-
-.desktop-nav {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0;
-  width: 100%;
-  align-items: center;
-  transition: all 0.3s ease-in-out;
-}
-
-.nav-link {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 3.25rem;
-  padding: 0.75rem 1rem;
-  font-size: 0.82rem;
-  font-weight: 700;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-  color: #ffffff;
-  text-decoration: none;
-  border-left: 1px solid rgba(255, 255, 255, 0.18);
-  transition: background 0.2s ease, color 0.2s ease;
-
-  &:hover,
-  &.active {
-    background: rgba(255, 255, 255, 0.1);
-    color: #ffffff;
-  }
-}
-
-/* —— Main nav —— */
+/* —— Main Nav —— */
 .nav-bar {
   background: linear-gradient(180deg, var(--color-nav) 0%, color-mix(in srgb, var(--color-nav) 88%, #000 12%) 100%);
+  color: #ffffff;
   overflow: visible;
   position: relative;
   z-index: 90;
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  transition: all 0.3s ease-in-out;
 }
 
 .nav-bar .container.nav-inner {
@@ -471,9 +412,7 @@
   background: transparent;
   cursor: pointer;
   white-space: nowrap;
-  transition:
-    background 0.2s,
-    color 0.2s;
+  transition: background 0.2s, color 0.2s;
   border-bottom: 3px solid transparent;
 
   .chevron {
@@ -547,10 +486,7 @@
   visibility: hidden;
   transform: translateY(4px);
   pointer-events: none;
-  transition:
-    opacity 0.15s ease,
-    transform 0.15s ease,
-    visibility 0.15s;
+  transition: opacity 0.15s ease, transform 0.15s ease, visibility 0.15s;
 
   &::before {
     content: '';
@@ -689,4 +625,72 @@
   display: inline-flex;
   transform: rotate(180deg);
   transition: transform 0.2s;
+}
+
+/* =========================================
+   RESPONSIVE (MOBILE) OVERRIDES
+   ========================================= */
+@media (max-width: 767px) {
+  /* 1. Hide the Utility Bar on mobile to save space */
+  .utility-bar {
+    display: none;
+  }
+
+  /* 2. Adjust the Brand Block */
+  .brand-block {
+    min-height: auto;
+    padding: 0.75rem 0;
+    gap: 0.5rem;
+  }
+
+  /* 3. Show Logos on Mobile */
+  .header-mark {
+    display: flex;
+    height: 3.5rem; 
+  }
+  
+  .header-mark img {
+    max-width: 5rem;
+  }
+
+  .brand-text {
+    width: auto;
+    flex: 1;
+    gap: 0.15rem;
+  }
+
+  .society {
+    font-size: 0.45rem;
+    letter-spacing: 0.02em;
+    line-height: 1.2;
+  }
+
+  .institute {
+    font-size: 1.1rem;
+    line-height: 1.1;
+  }
+
+  .approvals {
+    font-size: 0.55rem;
+    line-height: 1.2;
+  }
+}
+
+/* Extra small devices */
+@media (max-width: 420px) {
+  .header-mark {
+    height: 2.8rem;
+  }
+  .header-mark img {
+    max-width: 4rem;
+  }
+  
+  .institute {
+    font-size: 0.95rem;
+  }
+  
+  /* Optional: Hide the smallest text on tiny screens to prevent wrapping */
+  .society, .approvals {
+    display: none; 
+  }
 }
