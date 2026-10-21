@@ -5,6 +5,7 @@ import { AcademicsPageComponent } from './pages/academics-page/academics-page.co
 import { AdmissionsComponent } from './pages/admissions/admissions.component';
 import { CommitteesComponent } from './pages/committees/committees.component';
 import { ContactComponent } from './pages/contact/contact.component';
+import { CourseDetailsComponent } from './pages/course/course-details.component';
 import { DisclosuresComponent } from './pages/disclosures/disclosures.component';
 import { FacilityComponent } from './pages/facility/facility.component';
 import { FacultyComponent } from './pages/faculty/faculty.component';
@@ -29,8 +30,10 @@ export const routes: Routes = [
       { path: 'about/messages', redirectTo: 'about/message/dean', pathMatch: 'full' },
       { path: 'about/message/:slug', component: LeadershipMessageComponent },
       { path: 'about/history', component: HistoryComponent },
+      { path: 'academics', redirectTo: 'admissions', pathMatch: 'full' },
       { path: 'academics/admission', redirectTo: 'academics/admission-criteria', pathMatch: 'full' },
-      { path: 'academics/:slug', component: AcademicsPageComponent },
+      { path: 'academics/admission-criteria', component: AcademicsPageComponent },
+      { path: 'academics/:slug', component: CourseDetailsComponent },
       { path: 'facilities/:slug', component: FacilityComponent },
       { path: 'student-corner/:slug', component: StudentCornerComponent },
       { path: 'committees', component: CommitteesComponent },

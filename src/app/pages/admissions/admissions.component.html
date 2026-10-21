@@ -1,41 +1,164 @@
 <div class="page-hero">
   <div class="container">
-    <h1>Admissions</h1>
-    <p>Eligibility, intake, and application timelines for B.Sc. Nursing and GNM programmes.</p>
+    <h1>{{ data.title }}</h1>
+    <p>{{ data.subtitle }}</p>
   </div>
 </div>
 
 <div class="container page-body">
-  <div class="admission-grid">
-    @for (p of programs; track p.slug) {
-      <article class="program-panel" [attr.data-status]="p.status">
-        <header>
-          <h2>{{ p.name }}</h2>
-          <span class="badge">{{ p.status }}</span>
-        </header>
-        <p class="year">Academic year {{ p.academicYear }}</p>
-        <ul>
-          <li><strong>Intake:</strong> {{ p.intake }} seats</li>
-          <li><strong>Duration:</strong> {{ p.duration }}</li>
-          @if (p.applicationDeadline) {
-            <li><strong>Application deadline:</strong> {{ formatDate(p.applicationDeadline) }}</li>
-          }
-        </ul>
-        <div class="actions">
-          <a class="btn btn-primary" [routerLink]="['/academics', p.slug]">Programme details</a>
-          <a class="btn btn-outline" routerLink="/academics/admission-criteria">Admission criteria</a>
-          <button type="button" class="btn btn-outline">{{ p.brochureLabel }}</button>
-        </div>
-      </article>
-    }
+  
+  <!-- Admission Helpline (Top Alert) -->
+  <div class="contact-alert">
+    <i class="fa-solid fa-headset alert-icon"></i>
+    <strong>Admission Helpline (10 AM to 5 PM):</strong>
+    <ul>
+      @for (num of data.helpline; track num) {
+        <li>{{ num }}</li>
+      }
+    </ul>
   </div>
 
-  <aside class="info-box">
-    <h3>Counselling & documents</h3>
-    <p>
-      Admission is subject to state CET / NEET norms, document verification, and medical fitness. Bring original
-      certificates, caste / EWS certificates if applicable, and passport photographs as per the latest government
-      circular.
-    </p>
-  </aside>
+  <!-- Sidebar Layout Grid -->
+  <div class="admissions-layout">
+    
+    <!-- Left Column: Sidebar Navigation -->
+    <aside class="sidebar-nav">
+      <div class="sidebar-header">Select Programme</div>
+      <ul class="sidebar-links">
+        <li>
+          <button 
+            [class.active]="activeTab() === 'bsc'" 
+            (click)="activeTab.set('bsc')">
+            B.Sc. Nursing
+            <i class="fa-solid fa-chevron-right"></i>
+          </button>
+        </li>
+        <li>
+          <button 
+            [class.active]="activeTab() === 'gnm'" 
+            (click)="activeTab.set('gnm')">
+            GNM
+            <i class="fa-solid fa-chevron-right"></i>
+          </button>
+        </li>
+        <li>
+          <button 
+            [class.active]="activeTab() === 'msc'" 
+            (click)="activeTab.set('msc')">
+            M.Sc. Nursing
+            <i class="fa-solid fa-chevron-right"></i>
+          </button>
+        </li>
+      </ul>
+    </aside>
+
+    <!-- Right Column: Content Area -->
+    <div class="content-area">
+      
+      <!-- B.Sc. Nursing Content -->
+      @if (activeTab() === 'bsc') {
+        <div class="tab-content">
+          <!-- Top Info Grid -->
+          <div class="top-info-grid">
+            <div class="criteria-box">
+              <h3>Admission Criteria</h3>
+              <p [innerHTML]="data.courses.bsc.criteria"></p>
+            </div>
+            <div class="download-box">
+              <h3>Official Brochure</h3>
+              <p>Download the PDF for the application form, medical format, and full instructions.</p>
+              <a [href]="data.courses.bsc.brochurePdf" download class="btn btn-primary">
+                <i class="fa-solid fa-file-pdf"></i> Download PDF
+              </a>
+            </div>
+          </div>
+
+          <!-- Fees Section -->
+          <section id="fees">
+            <h2 class="section-title">Approved Fees (B.Sc. Nursing)</h2>
+            <p class="note">{{ data.courses.bsc.feesNote }}</p>
+            
+            <div class="fees-grid">
+              @for (category of data.courses.bsc.fees; track category.name) {
+                <div class="fee-card">
+                  <div class="fee-header">
+                    <h3>{{ category.name }}</h3>
+                    <span class="total">{{ category.total }}</span>
+                  </div>
+                  <ul class="fee-items">
+                    @for (item of category.items; track item.label) {
+                      <li><span>{{ item.label }}</span><span>{{ item.amount }}</span></li>
+                    }
+                  </ul>
+                  <div class="dd-info">
+                    <i class="fa-solid fa-circle-info"></i>
+                    <span><strong>Note:</strong> {{ category.ddInfo }}</span>
+                  </div>
+                </div>
+              }
+            </div>
+          </section>
+
+          <!-- Documents Section -->
+          <section>
+            <h2 class="section-title">Document Checklist</h2>
+            <p class="note">All original documents + 2 sets of self-attested photocopies are required. Bring a pen drive with scanned PDFs.</p>
+            
+            <div class="docs-grid">
+              <!-- Mandatory Card -->
+              <div class="doc-card">
+                <div class="doc-header">
+                  <i class="fa-solid fa-folder-open"></i>
+                  <h3>Mandatory Documents</h3>
+                </div>
+                <ul class="check-list">
+                  @for (doc of data.courses.bsc.documents.mandatory; track doc) {
+                    <li>
+                      <i class="fa-solid fa-circle-check"></i> 
+                      <span>{{ doc }}</span>
+                    </li>
+                  }
+                </ul>
+              </div>
+
+              <!-- Applicable Card -->
+              <div class="doc-card">
+                <div class="doc-header">
+                  <i class="fa-solid fa-user-check"></i>
+                  <h3>If Applicable</h3>
+                </div>
+                <ul class="check-list">
+                  @for (doc of data.courses.bsc.documents.applicable; track doc) {
+                    <li>
+                      <i class="fa-solid fa-circle-check"></i> 
+                      <span>{{ doc }}</span>
+                    </li>
+                  }
+                </ul>
+              </div>
+            </div>
+          </section>
+        </div>
+      }
+
+      <!-- GNM Content (Placeholder) -->
+      @if (activeTab() === 'gnm') {
+        <div class="tab-content placeholder-panel">
+          <i class="fa-solid fa-file-circle-exclamation"></i>
+          <h2>{{ data.courses.gnm.name }}</h2>
+          <p>{{ data.courses.gnm.notice }}</p>
+        </div>
+      }
+
+      <!-- M.Sc. Content (Placeholder) -->
+      @if (activeTab() === 'msc') {
+        <div class="tab-content placeholder-panel">
+          <i class="fa-solid fa-file-circle-exclamation"></i>
+          <h2>{{ data.courses.msc.name }}</h2>
+          <p>{{ data.courses.msc.notice }}</p>
+        </div>
+      }
+
+    </div>
+  </div>
 </div>

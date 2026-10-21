@@ -40,8 +40,12 @@ export class HeaderComponent {
       return haystack.includes(term);
     }).slice(0, 8);
   });
-  /** After a submenu click, hide flyouts until pointer leaves the nav bar */
+  
   readonly suppressDropdownHover = signal(false);
+
+  // Track exact URL and fragment for accurate dropdown highlighting
+  currentUrl = '/';
+  currentFragment: string | undefined = undefined;
 
   constructor() {
     this.router.events
@@ -49,13 +53,44 @@ export class HeaderComponent {
         filter((e) => e instanceof NavigationEnd),
         takeUntilDestroyed(this.destroyRef),
       )
-      .subscribe(() => {
+      .subscribe((event) => {
+        const navEnd = event as NavigationEnd;
+        this.updateActiveState(navEnd.urlAfterRedirects);
         this.closeMobile();
         this.suppressDropdownHover.set(true);
         this.isCompact.set(window.scrollY > 24);
       });
 
+    // Set initial state
+    this.updateActiveState(this.router.url);
     this.onWindowScroll();
+  }
+
+  private updateActiveState(url: string) {
+    const tree = this.router.parseUrl(url);
+    const primary = tree.root.children['primary'];
+    this.currentUrl = primary ? '/' + primary.segments.map((s) => s.path).join('/') : '/';
+    this.currentFragment = tree.fragment || undefined;
+  }
+
+  // This is the method that was missing/erroring
+  isLinkActive(path: string | undefined): boolean {
+    if (!path) return false;
+    const basePath = this.routePath(path);
+    const fragment = this.routeFragment(path);
+
+    // Check if base path matches
+    if (this.currentUrl !== basePath) {
+      return false;
+    }
+
+    // If link has a fragment, it must match the current fragment exactly
+    if (fragment) {
+      return this.currentFragment === fragment;
+    }
+
+    // If link has NO fragment, it is only active if current URL has no fragment
+    return !this.currentFragment;
   }
 
   @HostListener('document:keydown.escape')
@@ -115,6 +150,14 @@ export class HeaderComponent {
 
   hasChildren(item: NavItem): boolean {
     return !!item.children?.length;
+  }
+
+  routePath(path: string | undefined): string {
+    return path?.split('#', 1)[0] || '/';
+  }
+
+  routeFragment(path: string | undefined): string | undefined {
+    return path?.split('#', 2)[1] || undefined;
   }
 
   onSearchInput(event: Event): void {

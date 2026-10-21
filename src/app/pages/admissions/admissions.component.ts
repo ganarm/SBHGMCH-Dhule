@@ -1,23 +1,17 @@
-import { Component, inject } from '@angular/core';
-import { RouterLink } from '@angular/router';
-import { SiteDataService } from '../../core/services/site-data.service';
+import { Component, signal } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { ADMISSIONS_PAGE_DATA } from '../../data/academics.data';
 
 @Component({
   selector: 'app-admissions',
   standalone: true,
-  imports: [RouterLink],
+  imports: [CommonModule],
   templateUrl: './admissions.component.html',
   styleUrl: './admissions.component.scss',
 })
 export class AdmissionsComponent {
-  private readonly data = inject(SiteDataService);
-  readonly programs = this.data.getAdmissions();
-
-  formatDate(iso: string): string {
-    return new Date(iso).toLocaleDateString('en-IN', {
-      day: 'numeric',
-      month: 'long',
-      year: 'numeric',
-    });
-  }
+  readonly data = ADMISSIONS_PAGE_DATA;
+  
+  // State for the tabs (defaults to B.Sc. Nursing)
+  activeTab = signal<'bsc' | 'gnm' | 'msc'>('bsc');
 }

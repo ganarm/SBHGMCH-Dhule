@@ -32,11 +32,18 @@ export const NAVIGATION_CONFIG: NavConfigItem[] = [
     'About',
   ),
   leaf('faculty', 'Faculty', '/faculty'),
-  group('academics', 'Academics', [
-    leaf('acad-bsc', 'B.Sc. Nursing', '/academics/bsc-nursing'),
-    leaf('acad-gnm', 'GNM', '/academics/gnm'),
-    leaf('acad-adm', 'Admission Criteria', '/academics/admission-criteria'),
-  ]),
+  group(
+    'academics',
+    'Academics',
+    [
+      leaf('acad-bsc', 'B.Sc. Nursing', '/academics/bsc-nursing'),
+      leaf('acad-gnm', 'GNM', '/academics/gnm'),
+      leaf('acad-msc', 'M.Sc. Nursing', '/academics/msc-nursing'),
+      leaf('acad-adm', 'Admission Criteria', '/admissions'),
+      leaf('acad-fees', 'Approved Fees', '/admissions#fees'),
+    ],
+    '/academics',
+  ),
   group('facilities', 'Facilities', [
     leaf('fac-hospital', 'Hospital', '/facilities/hospital'),
     leaf('fac-hostel', 'Hostel', '/facilities/hostel'),
