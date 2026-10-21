@@ -39,8 +39,10 @@ export const NAVIGATION_CONFIG: NavConfigItem[] = [
       leaf('acad-bsc', 'B.Sc. Nursing', '/academics/bsc-nursing'),
       leaf('acad-gnm', 'GNM', '/academics/gnm'),
       leaf('acad-msc', 'M.Sc. Nursing', '/academics/msc-nursing'),
-      leaf('acad-adm', 'Admission Criteria', '/admissions'),
-      leaf('acad-fees', 'Approved Fees', '/admissions#fees'),
+      
+      // ONLY ONE ADMISSION LINK REMAINS HERE
+      leaf('acad-adm', 'Admission', '/admissions'),
+      
     ],
     '/academics',
   ),
