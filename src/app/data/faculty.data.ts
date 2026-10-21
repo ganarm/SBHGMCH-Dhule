@@ -69,7 +69,7 @@ export const FACULTY_DATA: FacultyMember[] = [
     initials: 'SC',
     designation: 'Administrative Officer',
     qualification: 'Administration',
-    image: './images/Sandhya.png',
+    image: '',
   },
   {
     name: 'Mrs. Devyani Sonawane',
