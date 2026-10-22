@@ -1,7 +1,7 @@
 import { AdmissionProgram, HeroSlide, Notice, SiteSettings } from '../models/site.models';
 
 export const SITE_SETTINGS: SiteSettings = {
-  societyName: 'ASSOCIATED WITH SHRI. BHAUSAHEB HIRE GOVERNMENT MEDICAL COLLEGE & SARVOPACHAR RUGNALAY',
+  societyName: 'SHRI. BHAUSAHEB HIRE GOVERNMENT MEDICAL COLLEGE & SARVOPACHAR RUGNALAYA',
   instituteName: 'Government College of Nursing, Dhule',
   logoUrl: './images/logo-bin-placeholder.svg',
   logoAlt: 'Government College of Nursing, Dhule logo',
@@ -47,7 +47,7 @@ export const HERO_SLIDES: HeroSlide[] = [
     alt: 'Government College of Nursing, Dhule building and campus',
     title: 'Government College of Nursing, Dhule',
     subtitle:
-      'Associated with Shri. Bhausaheb Hire Government Medical College & Sarvopachar Rugnalay. Dedicated to excellence in nursing education and community service.',
+      'Shri. Bhausaheb Hire Government Medical College & Sarvopachar Rugnalaya. Dedicated to excellence in nursing education and community service.',
   },
   {
     imageUrl: './images/Hospital.jpg',

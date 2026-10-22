@@ -45,11 +45,6 @@
   gap: 0.45rem;
   margin: 0;
   color: #ffffff;
-  opacity: 0.98;
-
-  i {
-    color: #ffffff;
-  }
 }
 
 .utility-link {
@@ -59,89 +54,16 @@
   color: #ffffff;
   text-decoration: none;
   font-weight: 600;
-  min-height: 2.25rem;
 
   &:hover {
     color: rgba(255, 255, 255, 0.8);
   }
 }
 
-.email-short {
-  display: none;
-}
-
-@media (max-width: 640px) {
-  .utility-inner {
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: center;
-    padding: 0.5rem 0;
-  }
-
-  .utility-left,
-  .utility-right {
-    width: 100%;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 0.35rem;
-  }
-
-  .utility-location span {
-    font-size: 0.75rem;
-  }
-
-  .email-full {
-    display: none;
-  }
-
-  .email-short {
-    display: inline;
-  }
-}
-
 /* —— Brand / Header —— */
 .site-header {
   background: #ffffff;
-  position: sticky;
-  top: 0;
-  z-index: 100;
-  box-shadow: 0 2px 10px rgba(15, 23, 42, 0.08);
   border-bottom: 1px solid rgba(0, 51, 102, 0.12);
-  overflow: visible;
-  transition: box-shadow 0.2s ease, border-color 0.2s ease;
-}
-
-.site-header.compact {
-  box-shadow: 0 4px 16px rgba(15, 23, 42, 0.12);
-}
-
-.site-header.compact .brand-block {
-  min-height: 6.25rem;
-  padding: 0.65rem 0;
-}
-
-.site-header.compact .header-mark {
-  height: 4.5rem; /* Smaller height when scrolled */
-}
-
-.site-header.compact .society {
-  font-size: 0.56rem;
-}
-
-.site-header.compact .institute {
-  font-size: clamp(1.2rem, 1.8vw, 1.9rem);
-}
-
-.site-header.compact .approvals {
-  font-size: 0.62rem;
-}
-
-.site-header.compact .nav-inner,
-.site-header.compact .nav-link,
-.site-header.compact .dropdown-trigger,
-.site-header.compact .nav-search-trigger,
-.site-header.compact .nav-search-box {
-  min-height: 2.75rem;
 }
 
 .brand-block {
@@ -149,38 +71,29 @@
   align-items: center;
   justify-content: space-between;
   gap: 1.5rem;
-  min-height: 11rem;
-  padding: 1.25rem 0;
+  min-height: 10rem;
+  padding: 1rem 0;
   background: #ffffff;
-  transition: min-height 0.2s ease, padding 0.2s ease;
 }
 
-/* UPDATED LOGO SIZING */
 .header-mark {
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 7rem; /* Increased size for premium look */
+  height: 6.5rem;
   flex-shrink: 0;
-  background: transparent;
-  border: none;
 
   img {
     height: 100%;
     width: auto;
-    max-width: 11rem; /* Prevents very wide logos from breaking layout */
+    max-width: 10rem;
     object-fit: contain;
     display: block;
   }
 }
 
-/* Fine-tuning the visual balance */
-.header-mark-left img {
-  transform: scale(1.05); /* Slight boost for the rectangular logo */
-}
-.header-mark-right img {
-  transform: scale(1);
-}
+.header-mark-left img { transform: scale(1.05); }
+.header-mark-right img { transform: scale(1); }
 
 .brand-text {
   display: flex;
@@ -194,39 +107,86 @@
 }
 
 .society {
-  font-size: 0.68rem;
+  font-size: 0.7rem;
   font-weight: 700;
   letter-spacing: 0.05em;
   text-transform: uppercase;
   color: #6b7280;
-  line-height: 1.5;
+  line-height: 1.4;
 }
 
 .institute {
   font-family: 'Times New Roman', Georgia, serif;
-  font-size: clamp(1.6rem, 2.8vw, 2.6rem);
+  font-size: clamp(1.6rem, 2.8vw, 2.4rem);
   line-height: 1.15;
   color: var(--color-nav);
   font-weight: 700;
   letter-spacing: 0.01em;
 }
 
-.approvals {
-  font-size: 0.72rem;
-  line-height: 1.4;
-  color: #5a6472;
-  max-width: 46rem;
+.highlight-text {
+  font-size: 0.95rem;
+  color: var(--color-primary);
+  font-weight: 600;
+  margin: 0.1rem 0;
 }
 
-/* —— Main Nav —— */
+.approvals {
+  font-size: 0.75rem;
+  line-height: 1.4;
+  color: #5a6472;
+  white-space: nowrap; 
+}
+
+/* --- PREMIUM CODES DESIGN --- */
+.codes-inline-block {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-top: 10px;
+  flex-wrap: wrap;
+}
+
+.code-badge {
+  display: flex;
+  align-items: center;
+  background: #f8fafc;
+  border: 1px solid #cbd5e1;
+  border-radius: 6px;
+  padding: 6px 12px;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+  gap: 8px;
+}
+
+.code-label {
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: #64748b;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.code-separator {
+  color: #cbd5e1;
+  font-size: 1.2rem;
+  line-height: 1;
+}
+
+.code-value {
+  font-size: 0.9rem;
+  font-weight: 800;
+  color: var(--color-primary, #003366);
+  letter-spacing: 1px;
+}
+
+/* —— Main Nav (STICKY) —— */
 .nav-bar {
   background: linear-gradient(180deg, var(--color-nav) 0%, color-mix(in srgb, var(--color-nav) 88%, #000 12%) 100%);
   color: #ffffff;
-  overflow: visible;
-  position: relative;
-  z-index: 90;
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08);
-  transition: all 0.3s ease-in-out;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .nav-bar .container.nav-inner {
@@ -248,7 +208,6 @@
   margin-left: auto;
   z-index: 10;
   flex-shrink: 0;
-  transition: all 0.3s ease-in-out;
 }
 
 .nav-search-box {
@@ -263,7 +222,6 @@
   border-radius: 999px;
   background: rgba(255, 255, 255, 0.08);
   flex-shrink: 0;
-  transition: all 0.3s ease-in-out;
 }
 
 .nav-search-input {
@@ -277,7 +235,6 @@
   padding: 0.2rem 0;
   flex: 1;
   min-width: 0;
-  transition: all 0.3s ease-in-out;
 
   &::placeholder {
     color: rgba(255, 255, 255, 0.72);
@@ -296,7 +253,6 @@
   color: rgba(255, 255, 255, 0.96);
   cursor: pointer;
   flex-shrink: 0;
-  transition: all 0.3s ease-in-out;
 
   &:hover {
     background: rgba(255, 255, 255, 0.08);
@@ -630,8 +586,14 @@
 /* =========================================
    RESPONSIVE (MOBILE) OVERRIDES
    ========================================= */
+@media (max-width: 1200px) {
+  .code-block {
+    display: none;
+  }
+}
+
 @media (max-width: 767px) {
-  /* 1. Hide the Utility Bar on mobile to save space */
+  /* 1. Hide the Utility Bar on mobile as requested */
   .utility-bar {
     display: none;
   }
@@ -660,7 +622,7 @@
   }
 
   .society {
-    font-size: 0.45rem;
+    font-size: 0.5rem;
     letter-spacing: 0.02em;
     line-height: 1.2;
   }
@@ -670,27 +632,21 @@
     line-height: 1.1;
   }
 
+  .highlight-text {
+    font-size: 0.65rem;
+    line-height: 1.2;
+  }
+
   .approvals {
     font-size: 0.55rem;
     line-height: 1.2;
+    white-space: normal; /* Allow wrapping on mobile */
   }
-}
 
-/* Extra small devices */
-@media (max-width: 420px) {
-  .header-mark {
-    height: 2.8rem;
-  }
-  .header-mark img {
-    max-width: 4rem;
-  }
-  
-  .institute {
-    font-size: 0.95rem;
-  }
-  
-  /* Optional: Hide the smallest text on tiny screens to prevent wrapping */
-  .society, .approvals {
-    display: none; 
+  /* 4. Codes Mobile Layout */
+  .codes-inline-block {
+    flex-direction: column;
+    gap: 8px;
+    align-items: center;
   }
 }

@@ -9,7 +9,7 @@ export const FACILITY_DETAILS: FacilityDetail[] = [
   {
     slug: 'hospital',
     title: 'Hospital',
-    summary: 'Clinical training at Shri. Bhausaheb Hire Government Medical College & Sarvopachar Rugnalay — Hospital Building 1 & 2 with 250 beds and approximately 14,928 sq.m built-up area.',
+    summary: 'Clinical training at Shri. Bhausaheb Hire Government Medical College & Sarvopachar Rugnalaya — Hospital Building 1 & 2 with 250 beds and approximately 14,928 sq.m built-up area.',
     imageUrl: HOSPITAL_IMG,
     images: [
       './images/Hospital-Picture1.jpg', './images/Hospital-Picture2.jpg',

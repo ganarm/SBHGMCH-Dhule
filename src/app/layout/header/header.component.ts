@@ -26,7 +26,8 @@ export class HeaderComponent {
   readonly nav = this.navControl.visibleNavigation;
   readonly mobileOpen = signal(false);
   readonly expandedMobile = signal<string | null>(null);
-  readonly isCompact = signal(false);
+  
+  // Removed isCompact logic as we don't shrink the header anymore
   readonly searchQuery = signal('');
   readonly showSearchResults = signal(false);
   readonly filteredSearchResults = computed(() => {
@@ -58,12 +59,10 @@ export class HeaderComponent {
         this.updateActiveState(navEnd.urlAfterRedirects);
         this.closeMobile();
         this.suppressDropdownHover.set(true);
-        this.isCompact.set(window.scrollY > 24);
       });
 
     // Set initial state
     this.updateActiveState(this.router.url);
-    this.onWindowScroll();
   }
 
   private updateActiveState(url: string) {
@@ -73,23 +72,19 @@ export class HeaderComponent {
     this.currentFragment = tree.fragment || undefined;
   }
 
-  // This is the method that was missing/erroring
   isLinkActive(path: string | undefined): boolean {
     if (!path) return false;
     const basePath = this.routePath(path);
     const fragment = this.routeFragment(path);
 
-    // Check if base path matches
     if (this.currentUrl !== basePath) {
       return false;
     }
 
-    // If link has a fragment, it must match the current fragment exactly
     if (fragment) {
       return this.currentFragment === fragment;
     }
 
-    // If link has NO fragment, it is only active if current URL has no fragment
     return !this.currentFragment;
   }
 
@@ -97,11 +92,6 @@ export class HeaderComponent {
   onEscape(): void {
     this.closeMobile();
     this.clearSearch();
-  }
-
-  @HostListener('window:scroll')
-  onWindowScroll(): void {
-    this.isCompact.set(window.scrollY > 24);
   }
 
   @HostListener('document:click', ['$event.target'])
