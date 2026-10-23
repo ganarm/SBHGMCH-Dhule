@@ -85,7 +85,7 @@
         <!-- Quick Facts -->
         @if (courseDetails.duration || courseDetails.intake) {
           <div class="sidebar-card">
-            <h3>{{ courseDetails.slug === 'bsc-nursing' ? 'Programme Details' : 'Quick Facts' }}</h3>
+            <h3>Programme Details</h3>
             @if (courseDetails.duration) {
               <div class="fact-row"><span>Duration</span><strong>{{ courseDetails.duration }}</strong></div>
             }
@@ -97,7 +97,7 @@
 
         <!-- Help Card -->
         <div class="sidebar-card">
-          <h3>{{ courseDetails.slug === 'bsc-nursing' ? 'Admission Support' : 'Need Help?' }}</h3>
+          <h3>Admission Support</h3>
           <p class="help-text">Contact the admission office for any queries regarding this course.</p>
           <div class="fact-row" style="border: none; padding: 0;">
             <i class="fa-solid fa-phone" style="color: var(--color-primary); margin-right: 8px;"></i> 

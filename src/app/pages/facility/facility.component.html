@@ -41,14 +41,20 @@
           
           <!-- Carousel -->
           <div class="image-carousel" (mouseenter)="pauseSlideshow()" (mouseleave)="resumeSlideshow()">
-            @for (img of currentLab()!.images; track img; let i = $index) {
-              <img [src]="img" [alt]="currentLab()!.title" class="carousel-slide" [class.active]="activeImageIndex() === i" />
-            }
-            @if (currentLab()!.images.length > 1) {
-              <div class="carousel-dots">
-                @for (img of currentLab()!.images; track img; let i = $index) {
-                  <button type="button" [class.active]="activeImageIndex() === i" (click)="setActiveImage(i)"></button>
-                }
+            @if (currentLab()!.images.length) {
+              @for (img of currentLab()!.images; track img; let i = $index) {
+                <img [src]="img" [alt]="currentLab()!.title" class="carousel-slide" [class.active]="activeImageIndex() === i" />
+              }
+              @if (currentLab()!.images.length > 1) {
+                <div class="carousel-dots">
+                  @for (img of currentLab()!.images; track img; let i = $index) {
+                    <button type="button" [class.active]="activeImageIndex() === i" (click)="setActiveImage(i)"></button>
+                  }
+                </div>
+              }
+            } @else {
+              <div class="image-placeholder">
+                <span>{{ currentLab()!.title }} photos will be added soon.</span>
               </div>
             }
           </div>

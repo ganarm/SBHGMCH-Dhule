@@ -1,9 +1,37 @@
 import { FacilityDetail } from './data.models';
 
-const HOSPITAL_IMG = './images/Hospital.jpg';
-const HOSTEL_IMG = "./images/Girl's Hostel.jpg";
-const LAB_IMG = './images/Pre-ClinicalLab-Picture1.jpg';
-const LIBRARY_IMG = './images/Library1.jpg';
+function numberedImages(directory: string, prefix: string, count: number): string[] {
+  return Array.from(
+    { length: count },
+    (_, index) => `/images/${directory}/${prefix}${index + 1}.jpg`,
+  );
+}
+
+const HOSPITAL_IMAGES = numberedImages('Hospital', 'Hospital-Picture', 8);
+const GIRLS_HOSTEL_IMAGES = numberedImages('Hostel/GirlsHostel', 'GirlsHostel-Picture', 3);
+const BOYS_HOSTEL_IMAGES = numberedImages('Hostel/BoyssHostel', 'BoyssHostel-Picture', 3);
+const PRE_CLINICAL_IMAGES = numberedImages(
+  'Laboratories/PreClinicalLab',
+  'Pre-ClinicalLab-Picture',
+  4,
+);
+const NUTRITION_IMAGES = Array.from(
+  { length: 8 },
+  (_, index) => `/images/Laboratories/NutritionLab/NutritionLab${index + 1}.jpeg`,
+);
+const COMMUNITY_HEALTH_IMAGES = numberedImages(
+  'Laboratories/CommunityHealthLab',
+  'CHNPicture',
+  4,
+);
+const AV_AIDS_IMAGES = numberedImages('Laboratories/AVAidsLab', 'AVPicture', 3);
+const COMPUTER_LAB_IMAGES = numberedImages('Laboratories/ComputerLab', 'ComputerLab', 3);
+const LIBRARY_IMAGES = numberedImages('Library', 'Library', 5);
+
+const HOSPITAL_IMG = HOSPITAL_IMAGES[0];
+const HOSTEL_IMG = GIRLS_HOSTEL_IMAGES[0];
+const LAB_IMG = PRE_CLINICAL_IMAGES[0];
+const LIBRARY_IMG = LIBRARY_IMAGES[0];
 
 export const FACILITY_DETAILS: FacilityDetail[] = [
   {
@@ -11,13 +39,7 @@ export const FACILITY_DETAILS: FacilityDetail[] = [
     title: 'Hospital',
     summary: 'Clinical training at Shri. Bhausaheb Hire Government Medical College & Sarvopachar Rugnalaya — Hospital Building 1 & 2 with 250 beds and approximately 14,928 sq.m built-up area.',
     imageUrl: HOSPITAL_IMG,
-    images: [
-      './images/Hospital-Picture1.jpg', './images/Hospital-Picture2.jpg',
-      './images/Hospital-Picture3.jpg', './images/Hospital-Picture4.jpg',
-      './images/Hospital-Picture5.jpg', './images/Hospital-Picture6.jpg',
-      './images/Hospital-Picture7.jpg', './images/Hospital-Picture8.jpg',
-      './images/Hospital-Picture9.jpg'
-    ],
+    images: HOSPITAL_IMAGES,
     sections: [
       {
         heading: 'Hospital Building 1 & 2',
@@ -37,12 +59,7 @@ export const FACILITY_DETAILS: FacilityDetail[] = [
     title: 'Hostel',
     summary: 'Separate hostel blocks (B-1 and B-2) for nursing students with capacity of 150 students per building, warden supervision, and study-friendly amenities.',
     imageUrl: HOSTEL_IMG,
-    images: [
-      './images/GirlsHostel-Picture1.jpg', './images/GirlsHostel-Picture2.jpg',
-      './images/GirlsHostel-Picture3.jpg', './images/GirlsHostel-Picture4.jpg',
-      './images/BoyssHostel-Picture1.jpg', './images/BoyssHostel-Picture2.jpg',
-      './images/BoyssHostel-Picture3.jpg'
-    ],
+    images: [...GIRLS_HOSTEL_IMAGES, ...BOYS_HOSTEL_IMAGES],
     sections: [
       {
         heading: 'Hostel Block B-1 & B-2',
@@ -65,12 +82,7 @@ export const FACILITY_DETAILS: FacilityDetail[] = [
         id: 'pre-clinical',
         title: 'Pre-Clinical Lab',
         summary: 'Foundational lab for anatomy, physiology, and basic medical sciences.',
-        images: [
-          './images/Pre-ClinicalLab-Picture1.jpg',
-          './images/Pre-ClinicalLab-Picture2.jpg',
-          './images/Pre-ClinicalLab-Picture3.jpg',
-          './images/Pre-ClinicalLab-Picture4.jpg'
-        ],
+        images: PRE_CLINICAL_IMAGES,
         inventory: [
           { name: 'Anatomy Models & Skeletons', qty: 'Available' },
           { name: 'Microscopes', qty: 'Available' },
@@ -81,11 +93,7 @@ export const FACILITY_DETAILS: FacilityDetail[] = [
         id: 'fon',
         title: 'Nursing Foundation Lab',
         summary: 'Equipped with advanced mannequins and medical equipment for hands-on clinical practice.',
-        images: [
-          './images/FONPicture1.jpg',
-          './images/FONPicture2.jpg',
-          './images/FONPicture3.jpg'
-        ],
+        images: [],
         inventory: [
           { name: 'Beds', qty: '04' },
           { name: 'Nursing Multi-Procedures Mannequins', qty: '01' },
@@ -100,12 +108,7 @@ export const FACILITY_DETAILS: FacilityDetail[] = [
         id: 'mch',
         title: 'Maternal & Child Health Lab',
         summary: 'Simulation models for midwifery, labour, and pediatric care.',
-        images: [
-          './images/MCHPicture1.jpg',
-          './images/MCHPicture2.jpg',
-          './images/MCHPicture3.jpg',
-          './images/MCHPicture4.jpg'
-        ],
+        images: [],
         inventory: [
           { name: 'Delivery Instruments Set', qty: '01' },
           { name: 'Fetal Skull and Pelvis', qty: '02' },
@@ -119,13 +122,7 @@ export const FACILITY_DETAILS: FacilityDetail[] = [
         id: 'nutrition',
         title: 'Nutrition Lab',
         summary: 'Centralised granite kitchen and equipment for diet planning and demonstrations.',
-        images: [
-          './images/NutritionLabPicture1.jpg',
-          './images/NutritionLabPicture2.jpg',
-          './images/NutritionLabPicture3.jpg',
-          './images/NutritionLabPicture4.jpg',
-          './images/NutritionLabPicture5.jpg'
-        ],
+        images: NUTRITION_IMAGES,
         inventory: [
           { name: 'Centralised Granite Stone Kitchen', qty: '01' },
           { name: 'Gas Cylinders', qty: '02' },
@@ -140,12 +137,7 @@ export const FACILITY_DETAILS: FacilityDetail[] = [
         id: 'chn',
         title: 'Community Health Lab',
         summary: 'Equipment for community outreach, field visits, and public health demonstrations.',
-        images: [
-          './images/CHNPicture1.jpg',
-          './images/CHNPicture2.jpg',
-          './images/CHNPicture3.jpg',
-          './images/CHNPicture4.jpg'
-        ],
+        images: COMMUNITY_HEALTH_IMAGES,
         inventory: [
           { name: 'Community Bags', qty: '20' },
           { name: 'Digital BP Apparatus', qty: '02' },
@@ -159,11 +151,7 @@ export const FACILITY_DETAILS: FacilityDetail[] = [
         id: 'av-aids',
         title: 'A.V. Aids Lab',
         summary: 'Modern audio-visual equipment for interactive learning and presentations.',
-        images: [
-          './images/AVPicture1.jpg',
-          './images/AVPicture2.jpg',
-          './images/AVPicture3.jpg'
-        ],
+        images: AV_AIDS_IMAGES,
         inventory: [
           { name: 'LCD Projector Multimedia', qty: '02' },
           { name: 'Mobile Screen For Projector', qty: '02' },
@@ -178,11 +166,7 @@ export const FACILITY_DETAILS: FacilityDetail[] = [
         id: 'computer',
         title: 'Computer Lab',
         summary: 'Facilities for nursing informatics, research, and digital literacy.',
-        images: [
-          './images/ComputerLab1.jpg',
-          './images/ComputerLab2.jpg',
-          './images/ComputerLab3.jpg'
-        ],
+        images: COMPUTER_LAB_IMAGES,
         inventory: [
           { name: 'Acer Desktop Computers', qty: '20+' },
           { name: 'Air Conditioner', qty: '01' },
@@ -196,13 +180,7 @@ export const FACILITY_DETAILS: FacilityDetail[] = [
     title: 'Library',
     summary: 'A comprehensive learning resource centre with over 700+ nursing textbooks, reference volumes, national/international journals, and quiet reading spaces.',
     imageUrl: LIBRARY_IMG,
-    images: [
-      './images/Library1.jpg',
-      './images/Library2.jpg',
-      './images/Library3.jpg',
-      './images/Library4.jpg',
-      './images/Library5.jpg'
-    ],
+    images: LIBRARY_IMAGES,
     sections: [
       {
         heading: 'Extensive Book Collection',
