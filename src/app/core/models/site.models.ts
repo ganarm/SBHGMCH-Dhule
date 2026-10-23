@@ -11,25 +11,15 @@ export interface NavItem {
 export interface SiteSettings {
   societyName: string;
   instituteName: string;
-  /** Header/footer logo — replace with client artwork in production */
-  logoUrl: string;
-  logoAlt: string;
-  shortName: string;
+  headerTagline: string;
   approvalsLine: string;
-  mission: string;
-  vision: string;
-  aims: string[];
   contact: {
     address: string;
-    landline: string;
-    mobile: string;
-    whatsapp: string;
+    phone: string;
     email: string;
-    mapEmbedUrl: string;
+    principalEmail: string;
   };
-  social: { label: string; url: string; icon: 'instagram' | 'facebook' | 'youtube' }[];
   quickLinks: { label: string; url: string }[];
-  alumniRegistrationUrl: string;
 }
 
 export interface HeroSlide {

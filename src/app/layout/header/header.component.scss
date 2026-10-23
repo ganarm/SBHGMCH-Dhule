@@ -47,6 +47,10 @@
   color: #ffffff;
 }
 
+:host {
+  display: contents;
+}
+
 .utility-link {
   display: inline-flex;
   align-items: center;

@@ -3,34 +3,15 @@ import { AdmissionProgram, HeroSlide, Notice, SiteSettings } from '../models/sit
 export const SITE_SETTINGS: SiteSettings = {
   societyName: 'SHRI. BHAUSAHEB HIRE GOVERNMENT MEDICAL COLLEGE & SARVOPACHAR RUGNALAYA',
   instituteName: 'Government College of Nursing, Dhule',
-  logoUrl: './images/logo-bin-placeholder.svg',
-  logoAlt: 'Government College of Nursing, Dhule logo',
-  shortName: 'GCN Dhule',
+  headerTagline: 'Dedicated to excellence in nursing education and community service.',
   approvalsLine:
-    'Approved by Indian Nursing Council (INC) & Maharashtra Nursing Council (MNC).',
-  mission:
-    'To provide quality nursing education through academic excellence, competency-based clinical training, evidence-based practice, research, community engagement, and the promotion of professional ethics and lifelong learning.',
-  vision:
-    'To become a centre of excellence in nursing education, clinical practice, research, and community health services, contributing to the development of a healthier society.',
-  aims: [
-    'Prepare competent, compassionate, and ethical nursing professionals for comprehensive patient care.',
-    'Deliver clinical training through the parent government medical college hospital and community settings.',
-    'Promote research, lifelong learning, and professional responsibility among students and faculty.',
-  ],
+    'Approved by Maharashtra University of Health sciences Nashik, Nursing Council (MNC), Mumbai & Indian Nursing Council (INC), New Delhi.',
   contact: {
-    address: 'Chakkarbardi, Malegaon Road, Dhule - 424311',
-    landline: '02562-239407, 02562-239408',
-    mobile: '02562-239407',
-    whatsapp: '912562239407',
-    email: 'gmcdhule@gmail.com',
-    mapEmbedUrl:
-      'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3744.8!2d74.77!3d20.9!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjDCsDU0JzAwLjAiTiA3NMKwNDYnMDAuMCJF!5e0!3m2!1sen!2sin!4v1700000000000',
+    address: 'SBHGMC & SR, near Surat Bypass road, Chakkarbardi, Dhule - 424311',
+    phone: '02562-297050',
+    email: 'gcondhule@gmail.com',
+    principalEmail: 'principalgcondhule@gmail.com',
   },
-  social: [
-    { label: 'Instagram', url: 'https://instagram.com', icon: 'instagram' },
-    { label: 'Facebook', url: 'https://facebook.com', icon: 'facebook' },
-    { label: 'YouTube', url: 'https://youtube.com', icon: 'youtube' },
-  ],
   quickLinks: [
     { label: 'Maharashtra Nursing Council', url: 'https://www.maharashtranursingcouncil.org' },
     { label: 'Indian Nursing Council', url: 'https://www.indiannursingcouncil.org' },
@@ -38,7 +19,6 @@ export const SITE_SETTINGS: SiteSettings = {
     { label: 'MahaDBT', url: 'https://mahadbt.maharashtra.gov.in' },
     { label: 'National Scholarship Portal', url: 'https://scholarships.gov.in' },
   ],
-  alumniRegistrationUrl: '#alumni-register',
 };
 
 export const HERO_SLIDES: HeroSlide[] = [

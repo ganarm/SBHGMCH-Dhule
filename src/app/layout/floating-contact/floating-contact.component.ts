@@ -1,5 +1,5 @@
 import { Component, inject } from '@angular/core';
-import { telHref, whatsappHref } from '../../core/utils/contact-links';
+import { telHref } from '../../core/utils/contact-links';
 import { SiteDataService } from '../../core/services/site-data.service';
 import { AppIconComponent } from '../../shared/app-icon/app-icon.component';
 
@@ -16,9 +16,5 @@ export class FloatingContactComponent {
 
   telLink(number: string): string {
     return telHref(number);
-  }
-
-  whatsappLink(): string {
-    return whatsappHref(this.settings);
   }
 }

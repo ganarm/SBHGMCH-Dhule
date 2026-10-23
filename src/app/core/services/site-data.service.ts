@@ -16,7 +16,7 @@ import {
   Notice,
   SiteSettings,
 } from '../models/site.models';
-import { ADMISSIONS, HERO_SLIDES, NOTICES, SITE_SETTINGS } from '../data/mock-site.data';
+import { ADMISSIONS, HERO_SLIDES, NOTICES, SITE_SETTINGS } from '../data/site-content.data';
 
 @Injectable({ providedIn: 'root' })
 export class SiteDataService {

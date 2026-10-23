@@ -47,7 +47,7 @@ function committee(slug: string, title: string): ContentPage {
       },
       {
         heading: 'Contact',
-        paragraphs: ['For queries, email info@nursing.bhonsala.in or visit the academic office during working hours.'],
+        paragraphs: ['For queries, visit the academic office during working hours.'],
       },
     ],
   };

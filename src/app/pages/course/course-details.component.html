@@ -90,7 +90,7 @@
           <p class="help-text">Contact the admission office for any queries regarding this course.</p>
           <div class="fact-row" style="border: none; padding: 0;">
             <i class="fa-solid fa-phone" style="color: var(--color-primary); margin-right: 8px;"></i> 
-            <strong>02562 297050</strong>
+            <strong><a [href]="telLink(settings.contact.phone)">{{ settings.contact.phone }}</a></strong>
           </div>
         </div>
 

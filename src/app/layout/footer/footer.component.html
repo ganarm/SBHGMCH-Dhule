@@ -62,15 +62,15 @@
           </li>
           <li>
             <app-icon name="phone" [size]="16" />
-            <a [href]="telLink(settings.contact.landline)">{{ settings.contact.landline }}</a>
-          </li>
-          <li>
-            <app-icon name="mobile" [size]="16" />
-            <a [href]="telLink(settings.contact.mobile)">{{ settings.contact.mobile }}</a>
+            <a [href]="telLink(settings.contact.phone)">{{ settings.contact.phone }}</a>
           </li>
           <li>
             <app-icon name="envelope" [size]="16" />
             <a [href]="'mailto:' + settings.contact.email">{{ settings.contact.email }}</a>
+          </li>
+          <li>
+            <app-icon name="envelope" [size]="16" />
+            <a [href]="'mailto:' + settings.contact.principalEmail">{{ settings.contact.principalEmail }}</a>
           </li>
         </ul>
       </section>

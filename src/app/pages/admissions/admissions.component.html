@@ -11,11 +11,7 @@
   <div class="contact-alert">
     <i class="fa-solid fa-headset alert-icon"></i>
     <strong>Admission Helpline (10 AM to 5 PM):</strong>
-    <ul>
-      @for (num of data.helpline; track num) {
-        <li>{{ num }}</li>
-      }
-    </ul>
+    <a [href]="telLink(settings.contact.phone)">{{ settings.contact.phone }}</a>
   </div>
 
   <!-- Sidebar Layout Grid -->

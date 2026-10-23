@@ -29,20 +29,20 @@ export class ContactComponent {
     {
       name: 'Dr. Ajit Pathak',
       role: 'Dean',
-      email: 'deangmcdhule@gmail.com',
-      phone: ''
+      email: this.settings.contact.principalEmail,
+      showPhone: false
     },
     {
       name: 'Mr. Mahesh C. Dhayal',
       role: 'Principal',
-      email: 'gmcdhule@gmail.com',
-      phone: '02562-239407'
+      email: this.settings.contact.email,
+      showPhone: true
     },
     {
       name: 'Mrs. Sandhya Chaudhari',
       role: 'Administrative Officer',
       email: '',
-      phone: '02562-239408'
+      showPhone: true
     }
   ];
 

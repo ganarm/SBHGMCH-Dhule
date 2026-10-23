@@ -4,6 +4,7 @@ import { ActivatedRoute, RouterLink } from '@angular/router';
 import { map } from 'rxjs';
 import { COURSE_DETAILS_DATA, CourseDetails } from '../../data/academics.data';
 import { SiteDataService } from '../../core/services/site-data.service';
+import { telHref } from '../../core/utils/contact-links';
 
 @Component({
   selector: 'app-course-details',
@@ -15,6 +16,7 @@ import { SiteDataService } from '../../core/services/site-data.service';
 export class CourseDetailsComponent {
   private readonly route = inject(ActivatedRoute);
   private readonly data = inject(SiteDataService);
+  readonly settings = this.data.getSettings();
 
   private readonly slug = toSignal(
     this.route.paramMap.pipe(map((params) => params.get('slug') ?? '')),
@@ -39,4 +41,8 @@ export class CourseDetailsComponent {
         }
       : undefined;
   });
+
+  telLink(number: string): string {
+    return telHref(number);
+  }
 }

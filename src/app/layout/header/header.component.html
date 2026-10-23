@@ -5,22 +5,22 @@
     <div class="utility-left">
       <p class="utility-location">
         <app-icon name="location" [size]="16" />
-        <span>SBHGMC &amp; SR, NEAR SURAT BIAPASS ROAD, Chakkarbardi, Dhule - 424311</span>
+        <span>{{ settings.contact.address }}</span>
       </p>
-      <a href="mailto:gcondhule@gmail.com" class="utility-link">
+      <a [href]="'mailto:' + settings.contact.email" class="utility-link">
         <app-icon name="envelope" [size]="16" />
-        <span class="email-full">gcondhule&#64;gmail.com</span>
+        <span class="email-full">{{ settings.contact.email }}</span>
       </a>
-      <a href="mailto:principalgcondhule@gmail.com" class="utility-link">
+      <a [href]="'mailto:' + settings.contact.principalEmail" class="utility-link">
         <app-icon name="envelope" [size]="16" />
-        <span class="email-full">principalgcondhule&#64;gmail.com</span>
+        <span class="email-full">{{ settings.contact.principalEmail }}</span>
       </a>
     </div>
 
     <div class="utility-right">
-      <a href="tel:02562297050" class="utility-link">
+      <a [href]="telLink(settings.contact.phone)" class="utility-link">
         <app-icon name="phone" [size]="16" />
-        02562-297050
+        {{ settings.contact.phone }}
       </a>
     </div>
   </div>
@@ -34,11 +34,11 @@
     </div>
 
     <!-- Center Text -->
-    <div class="brand-text" aria-label="Government College of Nursing, Dhule">
-      <span class="society">SHRI. BHAUSAHEB HIRE GOVERNMENT MEDICAL COLLEGE &amp; SARVOPACHAR RUGNALAYA</span>
-      <span class="institute">Government College of Nursing, Dhule</span>
-      <span class="highlight-text">Dedicated to excellence in nursing education and community service.</span>
-      <span class="approvals">Approved by Maharashtra University of Health Sciences, Nashik, Maharashtra Nursing Council (MNC), Mumbai and Indian Nursing Council (INC), New Delhi</span>
+    <div class="brand-text" [attr.aria-label]="settings.instituteName">
+      <span class="society">{{ settings.societyName }}</span>
+      <span class="institute">{{ settings.instituteName }}</span>
+      <span class="highlight-text">{{ settings.headerTagline }}</span>
+      <span class="approvals">{{ settings.approvalsLine }}</span>
       
       <!-- PREMIUM CODES DESIGN -->
       <div class="codes-inline-block">
@@ -60,26 +60,27 @@
     </div>
     
   </div>
+</header>
 
-  <!-- STICKY NAVIGATION BAR -->
-  <div
-    class="nav-bar"
-    [class.suppress-dropdowns]="suppressDropdownHover()"
-    (mouseleave)="onNavBarPointerLeave()"
-  >
-    <div class="container nav-inner">
-      <button
-        type="button"
-        class="menu-toggle"
-        [attr.aria-expanded]="mobileOpen()"
-        aria-controls="mobile-nav"
-        (click)="toggleMobile()"
-      >
-        <app-icon name="menu" [size]="18" />
-        <span>Menu</span>
-      </button>
+<!-- STICKY NAVIGATION BAR -->
+<div
+  class="nav-bar"
+  [class.suppress-dropdowns]="suppressDropdownHover()"
+  (mouseleave)="onNavBarPointerLeave()"
+>
+  <div class="container nav-inner">
+    <button
+      type="button"
+      class="menu-toggle"
+      [attr.aria-expanded]="mobileOpen()"
+      aria-controls="mobile-nav"
+      (click)="toggleMobile()"
+    >
+      <app-icon name="menu" [size]="18" />
+      <span>Menu</span>
+    </button>
 
-      <nav class="desktop-nav" aria-label="Primary navigation">
+    <nav class="desktop-nav" aria-label="Primary navigation">
         @for (item of nav(); track item.label) {
           @if (hasChildren(item)) {
             <div class="nav-item has-dropdown">
@@ -149,13 +150,13 @@
             <div class="search-results empty" role="status">No matching pages found.</div>
           }
         </div>
-      </nav>
-    </div>
+    </nav>
   </div>
+</div>
 
-  @if (mobileOpen()) {
-    <div class="mobile-backdrop" (click)="closeMobile()" role="presentation"></div>
-    <nav id="mobile-nav" class="mobile-nav" aria-label="Mobile navigation">
+@if (mobileOpen()) {
+  <div class="mobile-backdrop" (click)="closeMobile()" role="presentation"></div>
+  <nav id="mobile-nav" class="mobile-nav" aria-label="Mobile navigation">
       <div class="mobile-nav-head">
         <strong>Navigation</strong>
         <button type="button" class="mobile-close" (click)="closeMobile()" aria-label="Close menu">
@@ -202,6 +203,5 @@
           </li>
         }
       </ul>
-    </nav>
-  }
-</header>
+  </nav>
+}

@@ -71,7 +71,6 @@ export const COURSE_DETAILS_DATA: Record<string, CourseDetails> = {
 export const ADMISSIONS_PAGE_DATA = {
   title: 'Admissions 2026-2027',
   subtitle: 'Information Brochure, Fees & Criteria',
-  helpline: ['02562 297050 (10 AM to 5 PM)', 'Mob: 9665000348', 'Mob: 9272363867', 'Mob: 9130972261'],
   courses: {
     bsc: {
       name: 'B.Sc. Nursing',
