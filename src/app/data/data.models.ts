@@ -5,6 +5,13 @@ export interface AboutContent {
   objectives: string[];
 }
 
+export interface Notice {
+  title: string;
+  link: string;
+  date?: string;
+  tag?: string;
+}
+
 export interface LeadershipMessage {
   slug: 'dean' | 'principal';
   title: string;
@@ -41,6 +48,7 @@ export interface FacultyMember {
   designation: string;
   qualification: string;
   image?: string;
+  category: 'teaching' | 'non-teaching' | 'guest';
 }
 
 export interface FacultyEntry {
@@ -132,5 +140,3 @@ export interface StudentCornerTopic {
   intro: string;
   items: StudentCornerItem[];
 }
-
-

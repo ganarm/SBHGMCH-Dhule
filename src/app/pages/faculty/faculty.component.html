@@ -1,25 +1,27 @@
 <div class="page-hero">
   <div class="container">
-    <h1>Faculty</h1>
-    <p>Faculty and staff of Government College of Nursing, Dhule.</p>
+    <h1>{{ title() }}</h1>
+    <p>{{ description() }}</p>
   </div>
 </div>
 
 <div class="container page-body">
-  <div class="faculty-grid">
-    <article class="faculty-card" *ngFor="let member of faculty; trackBy: trackByMember">
-      <div class="faculty-photo" [class.has-image]="member.image">
-        <img *ngIf="member.image; else placeholder" [src]="member.image" [alt]="member.name" loading="lazy" />
-        <ng-template #placeholder>
-          <span class="initials">{{ member.initials }}</span>
-        </ng-template>
-      </div>
+  @if (faculty().length) {
+    <div class="faculty-grid">
+      <article class="faculty-card" *ngFor="let member of faculty(); trackBy: trackByMember">
+        <div class="faculty-photo" [class.has-image]="member.image">
+          <img *ngIf="member.image; else placeholder" [src]="member.image" [alt]="member.name" loading="lazy" />
+          <ng-template #placeholder>
+            <span class="initials">{{ member.initials }}</span>
+          </ng-template>
+        </div>
 
-      <div class="faculty-info">
-        <h2>{{ member.name }}</h2>
-        <p class="designation">{{ member.designation }}</p>
-        <p class="qual">{{ member.qualification }}</p>
-      </div>
-    </article>
-  </div>
+        <div class="faculty-info">
+          <h2>{{ member.name }}</h2>
+          <p class="designation">{{ member.designation }}</p>
+          <p class="qual">{{ member.qualification }}</p>
+        </div>
+      </article>
+    </div>
+  }
 </div>

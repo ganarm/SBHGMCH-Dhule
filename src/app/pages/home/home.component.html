@@ -144,29 +144,42 @@
   <div class="container">
     <div class="program-grid">
       @for (program of admissions; track program.slug) {
-        <article class="program-card">
+        <a class="program-card" [routerLink]="program.detailPath">
+          <i [attr.class]="'program-watermark fa-solid ' + program.icon" aria-hidden="true"></i>
           <div class="program-header">
-            <h3>{{ program.name }}</h3>
+            <h3>{{ program.cardTitle || program.title }}</h3>
             <span class="program-status" [attr.data-status]="program.status">{{ statusLabel(program.status) }}</span>
           </div>
 
-          <div class="program-meta">
-            <div class="meta-row">
-              <span>Intake</span>
-              <strong>{{ program.intake }} seats</strong>
+          <dl class="program-facts">
+            <div class="program-fact">
+              <dt>Duration</dt>
+              <dd>{{ program.duration }}</dd>
             </div>
-            <div class="meta-row">
-              <span>Duration</span>
-              <strong>{{ program.duration }}</strong>
+            <div class="program-fact">
+              <dt>Intake</dt>
+              <dd>{{ program.intake }} Seats</dd>
             </div>
-            <div class="meta-row">
-              <span>Deadline</span>
-              <strong>{{ program.applicationDeadline ? formatDate(program.applicationDeadline) : 'Not announced' }}</strong>
+            <div class="program-fact">
+              <dt>Affiliation</dt>
+              <dd>{{ program.affiliation }}</dd>
             </div>
-          </div>
+            <div class="program-fact">
+              <dt>Level</dt>
+              <dd>{{ program.level }}</dd>
+            </div>
+          </dl>
 
-          <a class="btn btn-primary" [routerLink]="['/academics', program.slug]">Programme details</a>
-        </article>
+          @if (program.admissionRoute) {
+            <p class="program-highlight program-highlight--info">
+              <strong>Admission Route:</strong> {{ program.admissionRoute }}
+            </p>
+          }
+          @if (program.note) {
+            <p class="program-highlight program-highlight--warning">{{ program.note }}</p>
+          }
+          <span class="program-action">{{ program.actionLabel }} <span aria-hidden="true">→</span></span>
+        </a>
       }
     </div>
   </div>

@@ -6,7 +6,7 @@ import {
   INSTITUTION_OBJECTIVES,
   INSTITUTION_PRINCIPAL_MESSAGE,
   INSTITUTION_VISION,
-} from './institution.data';
+} from './about-institution.data';
 
 export const DEAN_MESSAGE = {
   name: 'Dr. Ajit Pathak',

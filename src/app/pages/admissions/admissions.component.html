@@ -1,160 +1,112 @@
-<div class="page-hero">
+<header class="page-hero">
   <div class="container">
     <h1>{{ data.title }}</h1>
     <p>{{ data.subtitle }}</p>
   </div>
-</div>
+</header>
 
 <div class="container page-body">
-  
-  <!-- Admission Helpline (Top Alert) -->
-  <div class="contact-alert">
-    <i class="fa-solid fa-headset alert-icon"></i>
-    <strong>Admission Helpline (10 AM to 5 PM):</strong>
-    <a [href]="telLink(settings.contact.phone)">{{ settings.contact.phone }}</a>
+  <div class="program-tabs" role="tablist" aria-label="Admission programmes">
+    <button
+      id="bsc-program-tab"
+      type="button"
+      role="tab"
+      [attr.aria-selected]="activeProgram() === 'bsc'"
+      aria-controls="bsc-program-panel"
+      [class.active]="activeProgram() === 'bsc'"
+      (click)="selectProgram('bsc')">
+      B.Sc. Nursing
+    </button>
+    <button
+      id="gnm-program-tab"
+      type="button"
+      role="tab"
+      [attr.aria-selected]="activeProgram() === 'gnm'"
+      aria-controls="gnm-program-panel"
+      [class.active]="activeProgram() === 'gnm'"
+      (click)="selectProgram('gnm')">
+      GNM
+    </button>
   </div>
 
-  <!-- Sidebar Layout Grid -->
-  <div class="admissions-layout">
-    
-    <!-- Left Column: Sidebar Navigation -->
-    <aside class="sidebar-nav">
-      <div class="sidebar-header">Select Programme</div>
-      <ul class="sidebar-links">
-        <li>
-          <button 
-            [class.active]="activeTab() === 'bsc'" 
-            (click)="activeTab.set('bsc')">
-            B.Sc. Nursing
-            <i class="fa-solid fa-chevron-right"></i>
+  @if (activeProgram() === 'bsc') {
+    <section id="bsc-program-panel" role="tabpanel" aria-labelledby="bsc-program-tab">
+      <div class="document-tabs" role="tablist" aria-label="B.Sc. Nursing admission information">
+        @for (tab of documentTabs; track tab.key) {
+          <button
+            type="button"
+            role="tab"
+            [attr.aria-selected]="activeDocumentTab() === tab.key"
+            [class.active]="activeDocumentTab() === tab.key"
+            (click)="selectDocument(tab.key)">
+            {{ tab.label }}
           </button>
-        </li>
-        <li>
-          <button 
-            [class.active]="activeTab() === 'gnm'" 
-            (click)="activeTab.set('gnm')">
-            GNM
-            <i class="fa-solid fa-chevron-right"></i>
-          </button>
-        </li>
-        <li>
-          <button 
-            [class.active]="activeTab() === 'msc'" 
-            (click)="activeTab.set('msc')">
-            M.Sc. Nursing
-            <i class="fa-solid fa-chevron-right"></i>
-          </button>
-        </li>
-      </ul>
-    </aside>
+        }
+      </div>
 
-    <!-- Right Column: Content Area -->
-    <div class="content-area">
-      
-      <!-- B.Sc. Nursing Content -->
-      @if (activeTab() === 'bsc') {
-        <div class="tab-content">
-          <!-- Top Info Grid -->
-          <div class="top-info-grid">
-            <div class="criteria-box">
-              <h3>Admission Criteria</h3>
-              <p [innerHTML]="data.courses.bsc.criteria"></p>
-            </div>
-            <div class="download-box">
-              <h3>Official Brochure</h3>
-              <p>Download the PDF for the application form, medical format, and full instructions.</p>
-              <a [href]="data.courses.bsc.brochurePdf" download class="btn btn-primary">
-                <i class="fa-solid fa-file-pdf"></i> Download PDF
+      <div class="tab-panel" role="tabpanel">
+        @if (currentPdf(); as pdf) {
+          <article class="pdf-viewer-card">
+            <div class="pdf-toolbar">
+              <h2>{{ pdf.title }}</h2>
+              <a class="download-button" [href]="pdf.downloadHref" download>
+                <i class="fa-solid fa-download" aria-hidden="true"></i>
+                Download PDF
               </a>
             </div>
-          </div>
-
-          <!-- Fees Section -->
-          <section id="fees">
-            <h2 class="section-title">Approved Fees (B.Sc. Nursing)</h2>
-            <p class="note">{{ data.courses.bsc.feesNote }}</p>
-            
+            <iframe [src]="pdf.safeSrc" [title]="pdf.title + ' PDF viewer'"></iframe>
+          </article>
+        } @else if (activeDocumentTab() === 'fees') {
+          <section aria-labelledby="fees-title">
+            <h2 id="fees-title" class="section-title">Approved Fees</h2>
             <div class="fees-grid">
-              @for (category of data.courses.bsc.fees; track category.name) {
-                <div class="fee-card">
-                  <div class="fee-header">
+              @for (category of data.bsc.fees; track category.name) {
+                <article class="fee-card">
+                  <header class="fee-header">
                     <h3>{{ category.name }}</h3>
-                    <span class="total">{{ category.total }}</span>
-                  </div>
-                  <ul class="fee-items">
-                    @for (item of category.items; track item.label) {
-                      <li><span>{{ item.label }}</span><span>{{ item.amount }}</span></li>
+                    <strong>{{ category.total }}</strong>
+                  </header>
+                  <ul class="fee-breakdown">
+                    @for (fee of category.items; track fee.label) {
+                      <li>
+                        <span>{{ fee.label }}</span>
+                        <strong>{{ fee.amount }}</strong>
+                      </li>
                     }
                   </ul>
-                  <div class="dd-info">
-                    <i class="fa-solid fa-circle-info"></i>
-                    <span><strong>Note:</strong> {{ category.ddInfo }}</span>
-                  </div>
-                </div>
+                </article>
               }
             </div>
           </section>
-
-          <!-- Documents Section -->
-          <section>
-            <h2 class="section-title">Document Checklist</h2>
-            <p class="note">All original documents + 2 sets of self-attested photocopies are required. Bring a pen drive with scanned PDFs.</p>
-            
-            <div class="docs-grid">
-              <!-- Mandatory Card -->
-              <div class="doc-card">
-                <div class="doc-header">
-                  <i class="fa-solid fa-folder-open"></i>
-                  <h3>Mandatory Documents</h3>
-                </div>
-                <ul class="check-list">
-                  @for (doc of data.courses.bsc.documents.mandatory; track doc) {
-                    <li>
-                      <i class="fa-solid fa-circle-check"></i> 
-                      <span>{{ doc }}</span>
-                    </li>
-                  }
-                </ul>
-              </div>
-
-              <!-- Applicable Card -->
-              <div class="doc-card">
-                <div class="doc-header">
-                  <i class="fa-solid fa-user-check"></i>
-                  <h3>If Applicable</h3>
-                </div>
-                <ul class="check-list">
-                  @for (doc of data.courses.bsc.documents.applicable; track doc) {
-                    <li>
-                      <i class="fa-solid fa-circle-check"></i> 
-                      <span>{{ doc }}</span>
-                    </li>
-                  }
-                </ul>
-              </div>
-            </div>
+        } @else {
+          <section class="documents-grid" aria-label="Documents required">
+            <article class="document-card">
+              <h2>Mandatory Documents</h2>
+              <ul class="document-list">
+                @for (document of data.bsc.documentsRequired.mandatory; track document) {
+                  <li>{{ document }}</li>
+                }
+              </ul>
+            </article>
+            <article class="document-card">
+              <h2>If Applicable</h2>
+              <ul class="document-list">
+                @for (document of data.bsc.documentsRequired.applicable; track document) {
+                  <li>{{ document }}</li>
+                }
+              </ul>
+            </article>
           </section>
-        </div>
-      }
-
-      <!-- GNM Content (Placeholder) -->
-      @if (activeTab() === 'gnm') {
-        <div class="tab-content placeholder-panel">
-          <i class="fa-solid fa-file-circle-exclamation"></i>
-          <h2>{{ data.courses.gnm.name }}</h2>
-          <p>{{ data.courses.gnm.notice }}</p>
-        </div>
-      }
-
-      <!-- M.Sc. Content (Placeholder) -->
-      @if (activeTab() === 'msc') {
-        <div class="tab-content placeholder-panel">
-          <i class="fa-solid fa-file-circle-exclamation"></i>
-          <h2>{{ data.courses.msc.name }}</h2>
-          <p>{{ data.courses.msc.notice }}</p>
-        </div>
-      }
-
-    </div>
-  </div>
+        }
+      </div>
+    </section>
+  } @else {
+    <section id="gnm-program-panel" role="tabpanel" aria-labelledby="gnm-program-tab">
+      <div class="gnm-warning" role="alert">
+        <strong>NOTE:</strong>
+        The admission process for the GNM course has been put on hold due to the upgradation
+        of the GNM programme to the B.Sc. Nursing programme for the Academic Year 2026–27.
+      </div>
+    </section>
+  }
 </div>

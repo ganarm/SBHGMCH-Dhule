@@ -63,6 +63,11 @@
     align-items: center;
     gap: 0.5rem;
   }
+
+  .course-note {
+    background: color-mix(in srgb, var(--color-warning) 12%, var(--color-surface));
+    border-left-color: var(--color-warning);
+  }
   
   p {
     color: var(--color-text);

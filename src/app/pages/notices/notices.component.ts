@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { NOTICES_DATA } from '../../data/notices.data';
+import { NOTICES_DATA } from '../../data/home.data';
 
 @Component({
   selector: 'app-notices',

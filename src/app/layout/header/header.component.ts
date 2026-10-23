@@ -6,7 +6,7 @@ import { telHref } from '../../core/utils/contact-links';
 import { NavigationControlService } from '../../core/navigation/navigation-control.service';
 import { SiteDataService } from '../../core/services/site-data.service';
 import { NavItem } from '../../core/models/site.models';
-import { SearchItem, SEARCH_DATA } from '../../data/search.data';
+import { getSearchKeywords, SearchItem } from '../../data/search.data';
 import { AppIconComponent } from '../../shared/app-icon/app-icon.component';
 
 @Component({
@@ -27,16 +27,30 @@ export class HeaderComponent {
   readonly mobileOpen = signal(false);
   readonly expandedMobile = signal<string | null>(null);
   
-  // Removed isCompact logic as we don't shrink the header anymore
   readonly searchQuery = signal('');
   readonly showSearchResults = signal(false);
+  readonly searchItems = computed<SearchItem[]>(() =>
+    this.nav().flatMap((section) => {
+      const items = section.children?.length ? section.children : [section];
+      return items
+        .filter((item): item is NavItem & { path: string } => !!item.path)
+        .map((item) => {
+          const pathTerms = item.path.replace(/[/-]/g, ' ');
+          return {
+            title: item.label,
+            keywords: `${section.label} ${item.label} ${pathTerms} ${getSearchKeywords(section.label, item.path)}`,
+            route: item.path,
+          };
+        });
+    }),
+  );
   readonly filteredSearchResults = computed(() => {
     const term = this.searchQuery().trim().toLowerCase();
     if (!term) {
       return [];
     }
 
-    return SEARCH_DATA.filter((item) => {
+    return this.searchItems().filter((item) => {
       const haystack = `${item.title} ${item.keywords}`.toLowerCase();
       return haystack.includes(term);
     }).slice(0, 8);

@@ -1,21 +1,21 @@
 import { inject, Injectable } from '@angular/core';
-import { ABOUT_CONTENT, LEADERSHIP_MESSAGES, SOCIETY_HISTORY } from '../../data/about.data';
-import { ACADEMIC_PROGRAMS, ADMISSION_CRITERIA } from '../../data/academics.data';
-import { COMMITTEE_CATEGORIES, COMMITTEES } from '../../data/committees.data';
 import { CommitteeCategory, FacultyEntry, LeadershipMessage } from '../../data/data.models';
-import { MANDATORY_DISCLOSURES } from '../../data/disclosures.data';
-import { FACULTY_MEMBERS } from '../../data/faculty.data';
-import { FACILITY_DETAILS } from '../../data/facilities.data';
-import { STUDENT_CORNER_TOPICS } from '../../data/student-corner.data';
 import { NavigationControlService } from '../navigation/navigation-control.service';
 import {
-  AdmissionProgram,
   FacilityItem,
   HeroSlide,
   NavItem,
   SiteSettings,
 } from '../models/site.models';
-import { ADMISSIONS, HERO_SLIDES, SITE_SETTINGS } from '../data/site-content.data';
+import { SITE_SETTINGS } from '../../data/college-info.data';
+import { HERO_SLIDES } from '../../data/home.data';
+import { ADMISSION_PROGRAMS, ADMISSION_CRITERIA, ACADEMIC_PROGRAMS } from '../../data/academics.data';
+import { FACULTY_MEMBERS } from '../../data/faculty.data';
+import { ABOUT_CONTENT, LEADERSHIP_MESSAGES, SOCIETY_HISTORY } from '../../data/about.data';
+import { COMMITTEE_CATEGORIES, COMMITTEES } from '../../data/committees.data';
+import { FACILITY_DETAILS } from '../../data/facilities.data';
+import { MANDATORY_DISCLOSURES } from '../../data/disclosures.data';
+import { STUDENT_CORNER_TOPICS } from '../../data/student-corner.data';
 
 @Injectable({ providedIn: 'root' })
 export class SiteDataService {
@@ -33,8 +33,8 @@ export class SiteDataService {
     return HERO_SLIDES;
   }
 
-  getAdmissions(): AdmissionProgram[] {
-    return ADMISSIONS;
+  getAdmissions() {
+    return ADMISSION_PROGRAMS;
   }
 
   getFaculty(): FacultyEntry[] {

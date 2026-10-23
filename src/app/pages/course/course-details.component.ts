@@ -1,8 +1,8 @@
 import { Component, computed, inject } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { ActivatedRoute, RouterLink } from '@angular/router';
-import { map } from 'rxjs';
-import { COURSE_DETAILS_DATA, CourseDetails } from '../../data/academics.data';
+import { combineLatest, map } from 'rxjs';
+import { CourseDetails, COURSE_DETAILS_DATA } from '../../data/academics.data';
 import { SiteDataService } from '../../core/services/site-data.service';
 import { telHref } from '../../core/utils/contact-links';
 
@@ -19,27 +19,25 @@ export class CourseDetailsComponent {
   readonly settings = this.data.getSettings();
 
   private readonly slug = toSignal(
-    this.route.paramMap.pipe(map((params) => params.get('slug') ?? '')),
-    { initialValue: this.route.snapshot.paramMap.get('slug') ?? '' },
+    combineLatest([this.route.paramMap, this.route.data]).pipe(
+      map(([params, data]) => {
+        const routeSlug = params.get('slug');
+        const configuredSlug = data['courseSlug'];
+        return routeSlug ?? (typeof configuredSlug === 'string' ? configuredSlug : '');
+      }),
+    ),
+    {
+      initialValue: this.route.snapshot.paramMap.get('slug') ??
+        (typeof this.route.snapshot.data['courseSlug'] === 'string'
+          ? this.route.snapshot.data['courseSlug']
+          : ''),
+    },
   );
 
   readonly course = computed<CourseDetails | undefined>(() => {
-    const slug = this.slug();
-    const details = COURSE_DETAILS_DATA[slug];
-
-    if (details) {
-      return details;
-    }
-
-    const program = this.data.getAcademicProgram(slug);
-    return program
-      ? {
-          title: program.name,
-          subtitle: `${program.duration} · Intake ${program.intake} seats`,
-          overview: program.description,
-          highlights: program.highlights,
-        }
-      : undefined;
+    const routeSlug = this.slug();
+    const slug = routeSlug === 'bsc' ? 'bsc-nursing' : routeSlug;
+    return COURSE_DETAILS_DATA[slug];
   });
 
   telLink(number: string): string {

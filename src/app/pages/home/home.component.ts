@@ -1,8 +1,8 @@
 import { Component, inject, signal } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { SiteDataService } from '../../core/services/site-data.service';
+import { NOTICES_DATA, HOME_STATS, HOME_KEY_PERSONS } from '../../data/home.data';
 import { LEADERSHIP_MESSAGES } from '../../data/about.data';
-import { NOTICES_DATA } from '../../data/notices.data';
 import { AppIconComponent } from '../../shared/app-icon/app-icon.component';
 
 @Component({
@@ -19,68 +19,13 @@ export class HomeComponent {
   readonly about = this.data.getAboutContent();
   readonly slides = this.data.getHeroSlides();
   readonly notices = NOTICES_DATA;
-  readonly marqueeNotices = NOTICES_DATA.length > 1 ? [...NOTICES_DATA, ...NOTICES_DATA] : NOTICES_DATA;
+  readonly marqueeNotices = this.notices.length > 1 ? [...this.notices, ...this.notices] : this.notices;
   readonly admissions = this.data.getAdmissions();
   readonly leadership = LEADERSHIP_MESSAGES;
   readonly criteria = this.data.getAdmissionCriteria();
   readonly facilities = this.data.getFacilities().slice(0, 4);
-  readonly stats = [
-    { value: '90', label: 'Total Annual Intake' },
-    { value: '2', label: 'Academic Programs' },
-    { value: '250', label: 'Hospital Beds' },
-    { value: '15k+', label: 'Sq.m. Campus Area' },
-  ];
-
-  readonly keyPersons = [
-    { 
-      name: 'Shri. Devendra Fadnavis', 
-      title: "Hon'ble Chief Minister", 
-      sub: 'Maharashtra State', 
-      image: './images/Devendra-Fadnavis.png'
-    },
-    { 
-      name: 'Shri. Eknath Shinde', 
-      title: "Hon'ble Deputy Chief Minister", 
-      sub: 'Maharashtra State', 
-      image: './images/eknath-shinde.png'
-    },
-    { 
-      name: 'Smt. Sunetra Ajit Pawar', 
-      title: "Hon'ble Deputy Chief Minister", 
-      sub: 'Maharashtra State', 
-      image: './images/Smt-Sunetra-Ajit-Pawar.png'
-    },
-    { 
-      name: 'Shri. Hasan Mushrif', 
-      title: "Hon'ble Minister Medical Education", 
-      sub: 'Maharashtra State', 
-      image: './images/hasan-mushrif.png'
-    },
-    { 
-      name: 'Smt. Madhuri Misal', 
-      title: "Hon'ble Minister of State", 
-      sub: 'Medical Education, Maharashtra State', 
-      image: './images/madhuri-misal.png'
-    },
-    { 
-      name: 'Shri. Dheeraj Kumar', 
-      title: 'Secretary,', 
-      sub: 'Medical Education and Drugs', 
-      image: './images/dheeraj-kumar.png'
-    },
-    { 
-      name: 'Shri. Anil Bhandari', 
-      title: 'Commissioner, Medical Education & Ayush and', 
-      sub: 'Director, Medical Education & Research', 
-      image: './images/anil_bhandari.png'
-    },
-    { 
-      name: 'Dr. Archana Badhe', 
-      title: 'State Nursing Superintendent Medical Education', 
-      sub: '& Ayush and Director, Medical Education & Research', 
-      image: './images/Archana.jpeg'
-    },
-  ];
+  readonly stats = HOME_STATS;
+  readonly keyPersons = HOME_KEY_PERSONS;
 
   activeSlide = signal(0);
 
@@ -93,15 +38,7 @@ export class HomeComponent {
     this.activeSlide.set((this.activeSlide() + 1) % this.slides.length);
   }
 
-  formatDate(iso: string): string {
-    return new Date(iso).toLocaleDateString('en-IN', {
-      day: 'numeric',
-      month: 'short',
-      year: 'numeric',
-    });
-  }
-
   statusLabel(status: string): string {
-    return status.charAt(0).toUpperCase() + status.slice(1);
+    return status.replace('-', ' ').replace(/^\w/, (letter) => letter.toUpperCase());
   }
 }

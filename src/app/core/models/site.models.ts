@@ -27,17 +27,6 @@ export interface HeroSlide {
   subtitle?: string;
 }
 
-export interface AdmissionProgram {
-  slug: string;
-  name: string;
-  status: 'open' | 'closed' | 'upcoming';
-  academicYear: string;
-  intake: number;
-  duration: string;
-  applicationDeadline?: string;
-  brochureLabel: string;
-}
-
 export interface FacultyMember {
   id: string;
   name: string;

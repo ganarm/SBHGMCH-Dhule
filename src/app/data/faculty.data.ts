@@ -7,6 +7,7 @@ export const FACULTY_DATA: FacultyMember[] = [
     designation: 'Principal',
     qualification: 'M.Sc. Nursing (Child Health Nursing)',
     image: './images/Mahesh.jpg',
+    category: 'teaching',
   },
   {
     name: 'Mr. Shashikant P. Sonawane',
@@ -14,6 +15,7 @@ export const FACULTY_DATA: FacultyMember[] = [
     designation: 'Vice Principal',
     qualification: 'M.Sc. Nursing (Medical Surgical Nursing)',
     image: './images/Shashikant.jpg',
+    category: 'teaching',
   },
   {
     name: 'Mr. Amol D. Patil',
@@ -21,6 +23,7 @@ export const FACULTY_DATA: FacultyMember[] = [
     designation: 'Associate Professor',
     qualification: 'M.Sc. Nursing (Medical Surgical Nursing)',
     image: './images/Amol.jpg',
+    category: 'teaching',
   },
   {
     name: 'Mr. Ganesh R. Shete',
@@ -28,6 +31,7 @@ export const FACULTY_DATA: FacultyMember[] = [
     designation: 'Assistant Professor',
     qualification: 'M.Sc. Nursing (Medical Surgical Nursing)',
     image: './images/Ganesh.jpg',
+    category: 'teaching',
   },
   {
     name: 'Mrs. Ashwini R. Rajput',
@@ -35,6 +39,7 @@ export const FACULTY_DATA: FacultyMember[] = [
     designation: 'Assistant Professor',
     qualification: 'M.Sc. Nursing (Obstetrical & Gynecological Nursing)',
     image: './images/Ashwini.png',
+    category: 'teaching',
   },
   {
     name: 'Smt. Anita Sabale',
@@ -42,6 +47,7 @@ export const FACULTY_DATA: FacultyMember[] = [
     designation: 'Tutor',
     qualification: 'M.Sc. Nursing (Mental Health Nursing)',
     image: './images/Anita.png',
+    category: 'teaching',
   },
   {
     name: 'Smt. Shital Kumbhar',
@@ -49,6 +55,7 @@ export const FACULTY_DATA: FacultyMember[] = [
     designation: 'Tutor',
     qualification: 'M.Sc. Nursing (Obstetrical & Gynecological Nursing)',
     image: './images/Shital.png',
+    category: 'teaching',
   },
   {
     name: 'Mr. Ashish Wankhede',
@@ -56,6 +63,7 @@ export const FACULTY_DATA: FacultyMember[] = [
     designation: 'Tutor',
     qualification: 'M.Sc. Nursing (Community Health Nursing)',
     image: './images/Ashish.png',
+    category: 'teaching',
   },
   {
     name: 'Mr. Pritam K. Thingale',
@@ -63,6 +71,7 @@ export const FACULTY_DATA: FacultyMember[] = [
     designation: 'Tutor',
     qualification: 'M.Sc. Nursing (Medical Surgical Nursing)',
     image: './images/Pritam.png',
+    category: 'teaching',
   },
   {
     name: 'Mrs. Sandhya Chaudhari',
@@ -70,6 +79,7 @@ export const FACULTY_DATA: FacultyMember[] = [
     designation: 'Administrative Officer',
     qualification: 'Administration',
     image: '',
+    category: 'non-teaching',
   },
   {
     name: 'Mrs. Devyani Sonawane',
@@ -77,6 +87,7 @@ export const FACULTY_DATA: FacultyMember[] = [
     designation: 'Administrative Staff',
     qualification: 'Administration',
     image: '',
+    category: 'non-teaching',
   },
 ];
 

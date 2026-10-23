@@ -2,11 +2,6 @@
   @if (course(); as courseDetails) {
     <header class="page-hero">
       <div class="container">
-        <nav class="breadcrumb" aria-label="Breadcrumb">
-          <a routerLink="/">Home</a> <span>/</span>
-          <span>Academics</span> <span>/</span>
-          <span>{{ courseDetails.title }}</span>
-        </nav>
         <h1>{{ courseDetails.title }}</h1>
         <p>{{ courseDetails.subtitle }}</p>
       </div>
@@ -21,12 +16,17 @@
         <section class="section-block">
           <h2>Overview</h2>
           <p class="course-overview">{{ courseDetails.overview }}</p>
+
+          @if (courseDetails.note) {
+            <div class="eligibility-box course-note">
+              <p>{{ courseDetails.note }}</p>
+            </div>
+          }
           
-          @if (courseDetails.eligibility) {
+          @if (courseDetails.admissionRoute) {
             <div class="eligibility-box">
               <h3><i class="fa-solid fa-circle-exclamation"></i> Admission Route</h3>
-              <!-- Use innerHTML to render <strong> tags properly -->
-              <p [innerHTML]="courseDetails.eligibility"></p>
+              <p>{{ courseDetails.admissionRoute }}</p>
             </div>
           }
         </section>
@@ -74,13 +74,9 @@
             @if (courseDetails.duration) {
               <div class="fact-row"><span>Duration</span><strong>{{ courseDetails.duration }}</strong></div>
             }
-            @if (courseDetails.intake) {
-              <div class="fact-row"><span>Intake</span><strong>{{ courseDetails.intake }}</strong></div>
-            }
-            <div class="fact-row"><span>Affiliation</span><strong>INC & MNC</strong></div>
-            @if (courseDetails.level) {
-              <div class="fact-row"><span>Level</span><strong>{{ courseDetails.level }}</strong></div>
-            }
+            <div class="fact-row"><span>Intake</span><strong>{{ courseDetails.intake }} Seats</strong></div>
+            <div class="fact-row"><span>Affiliation</span><strong>{{ courseDetails.affiliation }}</strong></div>
+            <div class="fact-row"><span>Level</span><strong>{{ courseDetails.level }}</strong></div>
           </div>
         }
 

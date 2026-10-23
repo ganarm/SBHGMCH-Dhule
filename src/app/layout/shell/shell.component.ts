@@ -4,6 +4,7 @@ import { FooterComponent } from '../footer/footer.component';
 import { HeaderComponent } from '../header/header.component';
 import { NavControlPanelComponent } from '../nav-control-panel/nav-control-panel.component';
 import { ThemeSwitcherComponent } from '../theme-switcher/theme-switcher.component';
+import { BreadcrumbsComponent } from '../breadcrumbs/breadcrumbs.component';
 
 @Component({
   selector: 'app-shell',
@@ -14,10 +15,12 @@ import { ThemeSwitcherComponent } from '../theme-switcher/theme-switcher.compone
     FooterComponent,
     NavControlPanelComponent,
     ThemeSwitcherComponent,
+    BreadcrumbsComponent,
   ],
   template: `
     <app-header />
     <main id="main-content">
+      <app-breadcrumbs />
       <router-outlet />
     </main>
     <app-footer />

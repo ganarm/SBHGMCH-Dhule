@@ -1,9 +1,6 @@
 @if (isAdmissionCriteria() && admission()) {
   <div class="page-hero">
     <div class="container">
-      <nav class="breadcrumb" aria-label="Breadcrumb">
-        <span>Home</span><span>/</span><span>Academics</span><span>/</span><span>Admission Criteria</span>
-      </nav>
       <h1>{{ admission()!.title }}</h1>
       <p>{{ admission()!.admissionAuthority }}</p>
     </div>
@@ -25,9 +22,6 @@
 } @else if (program()) {
   <div class="page-hero">
     <div class="container">
-      <nav class="breadcrumb" aria-label="Breadcrumb">
-        <span>Home</span><span>/</span><span>Academics</span><span>/</span><span>{{ program()!.name }}</span>
-      </nav>
       <h1>{{ program()!.name }}</h1>
       <p>{{ program()!.duration }} · Intake {{ program()!.intake }} seats</p>
     </div>

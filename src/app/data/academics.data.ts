@@ -1,103 +1,232 @@
 import { AcademicProgram, AdmissionCriteria } from './data.models';
+import { InformationPage } from './information-pages.model';
+
+export const ACADEMIC_SUPPORT_PAGES: Record<string, InformationPage> = {
+  holidays: {
+    title: 'List of Holidays',
+    description: 'The approved academic-year holiday list will be published here.',
+  },
+  calendar: {
+    title: 'Academic Calendar',
+    description: 'The academic calendar will be published here.',
+  },
+  syllabus: {
+    title: 'Syllabus',
+    description: 'Programme syllabi and related academic documents will be published here.',
+  },
+};
+
+export const BSC_NURSING_INTAKE = 100;
+export const GNM_DURATION = '3 Years';
+export const BSC_ADMISSION_BROCHURE_PDF =
+  '/PDFs/Admissions/GCON-Dhule-Admission-Brochure-2026-27.pdf';
+export const BSC_ADMISSION_ROUTE =
+  'Admission is strictly based on merit in the MH-Nursing CET 2026.';
+export const GNM_ADMISSION_NOTE =
+  'NOTE: The admission process for the GNM course has been put on hold due to the upgradation of the GNM programme to the B.Sc. Nursing programme for the Academic Year 2026–27.';
 
 export interface CourseDetails {
+  slug: string;
   title: string;
+  cardTitle?: string;
+  status: 'open' | 'closed' | 'upcoming' | 'on-hold';
+  duration: string;
+  intake: number;
+  affiliation: string;
+  level: string;
+  detailPath: string;
+  actionLabel: string;
+  icon: string;
   subtitle: string;
   overview: string;
   highlights: string[];
-  eligibility?: string;
+  admissionRoute?: string;
+  note?: string;
   brochureLink?: string;
   feesLink?: string;
-  // New fields for the sidebar
-  duration?: string;
-  intake?: string;
-  level?: string;
 }
 
 export const COURSE_DETAILS_DATA: Record<string, CourseDetails> = {
   'bsc-nursing': {
+    slug: 'bsc-nursing',
     title: 'B.Sc. Nursing',
-    subtitle: '4 years (annual pattern) · Intake 50 seats',
+    status: 'open',
+    duration: '4 Years',
+    intake: BSC_NURSING_INTAKE,
+    affiliation: 'INC & MNC',
+    level: 'Undergraduate',
+    detailPath: '/academics/bsc',
+    actionLabel: 'View Details & Admission',
+    icon: 'fa-stethoscope',
+    subtitle: `4 Years · Intake ${BSC_NURSING_INTAKE} seats`,
     overview:
       'Undergraduate degree programme preparing professional nurses for hospital, community, and specialty care settings in line with Indian Nursing Council competencies.',
-    eligibility: 'Admission is strictly based on merit in the <strong>MH-Nursing CET 2026</strong> (State & All India Quota).',
+    admissionRoute: BSC_ADMISSION_ROUTE,
     highlights: [
       'Integrated theory, simulation, and bedside clinical practice from early semesters.',
       'Rotations through Shree Bhausaheb Hire Government Medical College Hospital departments.',
       'Strict adherence to INC and MNC guidelines for nursing education.',
       'Comprehensive clinical postings and community health outreach programs.'
     ],
-    brochureLink: '/PDFs/GCON-Dhule-Admission-Brochure-2026-27.pdf',
+    brochureLink: BSC_ADMISSION_BROCHURE_PDF,
     feesLink: '/admissions#fees',
-    duration: '4 Years',
-    intake: '50 Seats',
-    level: 'Undergraduate'
   },
   'gnm': {
+    slug: 'gnm',
     title: 'GNM (General Nursing & Midwifery)',
-    subtitle: '3 years + 6 months internship · Intake 40 seats',
+    cardTitle: 'GNM',
+    status: 'on-hold',
+    duration: GNM_DURATION,
+    intake: 40,
+    affiliation: 'INC & MNC',
+    level: 'Diploma',
+    detailPath: '/academics/gnm',
+    actionLabel: 'View Details',
+    icon: 'fa-hospital',
+    subtitle: `${GNM_DURATION} · Intake 40 seats`,
     overview: 'The General Nursing and Midwifery (GNM) programme is a diploma course designed to prepare competent nurses and midwives. It equips students with the knowledge and skills required to provide holistic healthcare in hospital and community settings.',
-    eligibility: 'Admission is based on MH-Nursing CET. (Detailed eligibility criteria for 2026-27 will be updated soon).',
     highlights: [
       'Comprehensive training in midwifery, maternal, and child health nursing.',
       'Extensive clinical postings in affiliated government medical college hospitals.',
       'Strong focus on primary healthcare, community outreach, and rural health services.',
-      '3-year structured academic curriculum followed by a mandatory 6-month internship.'
+      'Structured academic curriculum focused on nursing and midwifery practice.'
     ],
-    duration: '3.5 Years',
-    intake: '40 Seats',
-    level: 'Diploma'
+    note: GNM_ADMISSION_NOTE,
   },
-  'msc-nursing': {
-    title: 'M.Sc. Nursing',
-    subtitle: '2 years · Intake 15 seats',
-    overview: 'The M.Sc. Nursing program is a postgraduate degree designed to prepare nursing leaders, educators, and advanced practitioners. The curriculum focuses on advanced clinical practice, nursing research, and management.',
-    eligibility: 'Requires B.Sc. Nursing degree and valid entrance exam score. (Detailed brochure pending client approval).',
-    highlights: [
-      'Advanced clinical specialization in Medical-Surgical, Community, or Mental Health Nursing.',
-      'Strong emphasis on evidence-based practice and nursing research.',
-      'Prepares graduates for leadership roles in nursing education and hospital administration.',
-      '2-year structured academic curriculum culminating in a dissertation.'
-    ],
-    duration: '2 Years',
-    intake: '15 Seats',
-    level: 'Postgraduate'
-  }
 };
 
 // --- (Keep the rest of your file: ADMISSIONS_PAGE_DATA, ACADEMIC_PROGRAMS, ADMISSION_CRITERIA exactly as they are) ---
 // ... 
 
+export type AdmissionDocumentTab =
+  | 'brochure'
+  | 'seat-matrix'
+  | 'provisional-short-list'
+  | 'institutional-round';
+
+export interface AdmissionPdf {
+  title: string;
+  src: string;
+  downloadHref: string;
+}
+
+export interface AdmissionFeeCategory {
+  name: string;
+  total: string;
+  items: { label: string; amount: string }[];
+}
+
 export const ADMISSIONS_PAGE_DATA = {
   title: 'Admissions 2026-2027',
   subtitle: 'Information Brochure, Fees & Criteria',
-  courses: {
-    bsc: {
-      name: 'B.Sc. Nursing',
-      available: true,
-      brochurePdf: '/PDFs/GCON-Dhule-Admission-Brochure-2026-27.pdf',
-      criteria: 'Admission is strictly based on merit in the MH-Nursing CET 2026 (State & All India Quota).',
-      feesNote: 'B.Sc. Nursing Fees (A.Y. 2026-27). DD Should be made in favour of "Principal, Government College of Nursing, Dhule". Cash/Cheque is NOT accepted.',
-      fees: [
-        { name: 'Open Category (Male & Female)', total: '₹30,400', items: [{ label: 'Tuition Fee', amount: '₹25,400' }, { label: 'Admission Fee', amount: '₹1,500' }, { label: 'Library Fee (Deposit)', amount: '₹2,000' }, { label: 'Library Fee', amount: '₹1,000' }, { label: 'Gymkhana Fee', amount: '₹500' }], ddInfo: '3 DDs Required (25400, 1500, 3500)' },
-        { name: 'EWS, EBC, SEBC (Female)', total: '₹5,000', items: [{ label: 'Admission Fee', amount: '₹1,500' }, { label: 'Library Fee (Deposit)', amount: '₹2,000' }, { label: 'Library Fee', amount: '₹1,000' }, { label: 'Gymkhana Fee', amount: '₹500' }], ddInfo: '2 DDs Required (1500, 3500)' },
-        { name: 'EWS, EBC (Male)', total: '₹17,700', items: [{ label: 'Tuition Fee', amount: '₹12,700' }, { label: 'Admission Fee', amount: '₹1,500' }, { label: 'Library Fee (Deposit)', amount: '₹2,000' }, { label: 'Library Fee', amount: '₹1,000' }, { label: 'Gymkhana Fee', amount: '₹500' }], ddInfo: '3 DDs Required (12700, 1500, 3500)' },
-        { name: 'SC, ST, OBC, VJNT, SEBC (M & F)', total: '₹5,000', items: [{ label: 'Admission Fee', amount: '₹1,500' }, { label: 'Library Fee (Deposit)', amount: '₹2,000' }, { label: 'Library Fee', amount: '₹1,000' }, { label: 'Gymkhana Fee', amount: '₹500' }], ddInfo: '2 DDs Required (1500, 3500)' }
+  bsc: {
+    documents: {
+      brochure: {
+        title: 'Admission Brochure',
+        src: BSC_ADMISSION_BROCHURE_PDF,
+        downloadHref: BSC_ADMISSION_BROCHURE_PDF,
+      },
+      'seat-matrix': {
+        title: 'Seat Matrix',
+        src: BSC_ADMISSION_BROCHURE_PDF,
+        downloadHref: BSC_ADMISSION_BROCHURE_PDF,
+      },
+      'provisional-short-list': {
+        title: 'Provisional Short List',
+        src: BSC_ADMISSION_BROCHURE_PDF,
+        downloadHref: BSC_ADMISSION_BROCHURE_PDF,
+      },
+      'institutional-round': {
+        title: 'Institutional Round',
+        src: BSC_ADMISSION_BROCHURE_PDF,
+        downloadHref: BSC_ADMISSION_BROCHURE_PDF,
+      },
+    } satisfies Record<AdmissionDocumentTab, AdmissionPdf>,
+    fees: [
+      {
+        name: 'Open Category (M & F)',
+        total: '₹30,400',
+        items: [
+          { label: 'Tuition', amount: '₹25,400' },
+          { label: 'Admission', amount: '₹1,500' },
+          { label: 'Library', amount: '₹1,000' },
+          { label: 'Gymkhana', amount: '₹2,500' },
+        ],
+      },
+      {
+        name: 'EWS, EBC, SEBC (Female)',
+        total: '₹5,000',
+        items: [
+          { label: 'Tuition', amount: '₹0' },
+          { label: 'Admission', amount: '₹1,500' },
+          { label: 'Library Deposit', amount: '₹2,000' },
+          { label: 'Library', amount: '₹1,000' },
+          { label: 'Gymkhana', amount: '₹500' },
+        ],
+      },
+      {
+        name: 'EWS, EBC (Male)',
+        total: '₹17,700',
+        items: [
+          { label: 'Tuition', amount: '₹12,700' },
+          { label: 'Admission', amount: '₹1,500' },
+          { label: 'Library Deposit', amount: '₹2,000' },
+          { label: 'Library', amount: '₹1,000' },
+          { label: 'Gymkhana', amount: '₹500' },
+        ],
+      },
+      {
+        name: 'SC, ST, OBC, VJNT, SEBC (M & F)',
+        total: '₹5,000',
+        items: [
+          { label: 'Tuition', amount: '₹0' },
+          { label: 'Admission', amount: '₹1,500' },
+          { label: 'Library Deposit', amount: '₹2,000' },
+          { label: 'Library', amount: '₹1,000' },
+          { label: 'Gymkhana', amount: '₹500' },
+        ],
+      },
+    ] satisfies AdmissionFeeCategory[],
+    documentsRequired: {
+      mandatory: [
+        'Online Application form MH-Nursing CET 2026',
+        'Admit Card',
+        'CET Result',
+        'Provisional allotment letter',
+        'Aadhaar Card',
+        'Nationality Certificate',
+        'Age & Domicile Certificate',
+        'SSC Marksheet',
+        'HSC Marksheet',
+        'Medical Fitness Certificate',
       ],
-      documents: {
-        mandatory: ['Online downloaded Application form MH-Nursing CET 2026', 'Admit Card MH-Nursing CET 2026', 'MH-Nursing CET 2026 Result', 'Provisional allotment letter / Selection list printout', 'Photo Identity Proof (Aadhaar Card)', 'Nationality Certificate / Valid Passport', 'Certificate for Age & Domicile (SSC passing Certificate)', 'SSC (10th) Marksheet & Passing Certificate', 'HSC (12th) Marksheet & Passing Certificate', 'Medical Fitness Certificate (Annexure-H)', 'School Leaving / Transfer Certificate (LC/TC)'],
-        applicable: ['Caste Certificate', 'Caste Validity Certificate', 'Non Creamy Layer Certificate (Valid up to 31/03/2027)', 'EWS Certificate (Valid for 2026-27)', 'Migration certificate (For outside Maharashtra Students)', 'Education Gap certificate (Stamp paper with affidavit)', 'Defense Certificate (For D-1, D-2, D-3)', 'Disability Certificate (For PWD)', 'Orphan Certificate', 'Minority Certificate']
-      }
+      applicable: [
+        'Caste Certificate',
+        'Caste Validity',
+        'Non Creamy Layer (valid till 31/03/2027)',
+        'EWS Certificate',
+        'Migration Certificate (for outside MH)',
+        'Education Gap Certificate',
+        'Defense Certificate',
+        'Disability Certificate',
+        'Orphan Certificate',
+        'Minority Certificate',
+      ],
     },
-    gnm: { name: 'GNM (General Nursing & Midwifery)', available: false, notice: 'The detailed information brochure, approved fees, and specific admission criteria for GNM (2026-27) will be published here shortly by the State CET Cell.' },
-    msc: { name: 'M.Sc. Nursing', available: false, notice: 'The detailed information brochure, approved fees, and specific admission criteria for M.Sc. Nursing (2026-27) will be published here shortly by the State CET Cell.' }
-  }
-};
+  },
+  gnm: {
+    note: GNM_ADMISSION_NOTE,
+  },
+} as const;
 
-export const ACADEMIC_PROGRAMS: AcademicProgram[] = [
-  { slug: 'bsc-nursing', name: 'B.Sc. Nursing', duration: '4 years (annual pattern)', intake: 50, description: 'Undergraduate degree programme...', highlights: ['Integrated theory...', 'Rotations through...', 'Focus on evidence-based practice...'] },
-  { slug: 'gnm', name: 'GNM (General Nursing & Midwifery)', duration: '3 years + internship', intake: 40, description: 'Diploma programme developing...', highlights: ['Competency-based skills...', 'Supervised clinical postings...', 'Preparation for registration...'] },
-];
+export const ACADEMIC_PROGRAMS: AcademicProgram[] = Object.values(COURSE_DETAILS_DATA).map((course) => ({
+  slug: course.slug,
+  name: course.title,
+  duration: course.duration,
+  intake: course.intake,
+  description: course.overview,
+  highlights: course.highlights,
+}));
 
 export const ADMISSION_CRITERIA: AdmissionCriteria = {
   title: 'INC Admission Criteria',
@@ -105,3 +234,8 @@ export const ADMISSION_CRITERIA: AdmissionCriteria = {
   ageRequirement: 'Minimum age 17 years on or before 31 December of the year of admission.',
   admissionAuthority: 'Admissions are conducted through the Maharashtra State Common Entrance Test (CET) Cell and government counselling as per prevailing DMER / state policy.',
 };
+
+export const ADMISSION_PROGRAMS: CourseDetails[] = [
+  COURSE_DETAILS_DATA['bsc-nursing'],
+  COURSE_DETAILS_DATA['gnm'],
+];
