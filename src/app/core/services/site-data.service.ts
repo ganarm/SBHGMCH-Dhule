@@ -13,10 +13,9 @@ import {
   FacilityItem,
   HeroSlide,
   NavItem,
-  Notice,
   SiteSettings,
 } from '../models/site.models';
-import { ADMISSIONS, HERO_SLIDES, NOTICES, SITE_SETTINGS } from '../data/site-content.data';
+import { ADMISSIONS, HERO_SLIDES, SITE_SETTINGS } from '../data/site-content.data';
 
 @Injectable({ providedIn: 'root' })
 export class SiteDataService {
@@ -32,16 +31,6 @@ export class SiteDataService {
 
   getHeroSlides(): HeroSlide[] {
     return HERO_SLIDES;
-  }
-
-  getNotices(): Notice[] {
-    return [...NOTICES].sort(
-      (a, b) => new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime(),
-    );
-  }
-
-  getPinnedNotices(): Notice[] {
-    return this.getNotices().filter((n) => n.pinned).slice(0, 3);
   }
 
   getAdmissions(): AdmissionProgram[] {

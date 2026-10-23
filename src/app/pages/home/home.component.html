@@ -46,14 +46,16 @@
       </div>
 
       <div class="ticker-viewport" aria-live="polite">
-        <div class="ticker-track">
+        <div class="ticker-track" [class.single-notice]="notices.length === 1">
           @for (notice of marqueeNotices; track notice.title + $index) {
-            <a class="ticker-item" [routerLink]="notice.link" [class.urgent]="notice.isUrgent">
-              @if (notice.isUrgent) {
-                <span class="urgent-badge">Urgent</span>
+            <a class="ticker-item" [routerLink]="notice.link">
+              @if (notice.tag) {
+                <span class="notice-tag">{{ notice.tag }}</span>
               }
               <span class="ticker-title">{{ notice.title }}</span>
-              <time>{{ notice.date }}</time>
+              @if (notice.date) {
+                <time>{{ notice.date }}</time>
+              }
             </a>
           }
         </div>

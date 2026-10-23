@@ -1,29 +1,14 @@
-import { Component, inject } from '@angular/core';
-import { NoticeType } from '../../core/models/site.models';
-import { SiteDataService } from '../../core/services/site-data.service';
-
-import { AppIconComponent } from '../../shared/app-icon/app-icon.component';
+import { Component } from '@angular/core';
+import { RouterLink } from '@angular/router';
+import { NOTICES_DATA } from '../../data/notices.data';
 
 @Component({
   selector: 'app-notices',
   standalone: true,
-  imports: [AppIconComponent],
+  imports: [RouterLink],
   templateUrl: './notices.component.html',
   styleUrl: './notices.component.scss',
 })
 export class NoticesComponent {
-  private readonly data = inject(SiteDataService);
-  readonly notices = this.data.getNotices();
-
-  chipClass(type: NoticeType): string {
-    return `chip chip-${type}`;
-  }
-
-  formatDate(iso: string): string {
-    return new Date(iso).toLocaleDateString('en-IN', {
-      day: 'numeric',
-      month: 'long',
-      year: 'numeric',
-    });
-  }
+  readonly notices = NOTICES_DATA;
 }

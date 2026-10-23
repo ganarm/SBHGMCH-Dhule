@@ -1,5 +1,3 @@
-export type NoticeType = 'important' | 'admission' | 'general';
-
 export interface NavItem {
   label: string;
   /** Compact label for the desktop menu bar; dropdowns/mobile use `label` */
@@ -27,15 +25,6 @@ export interface HeroSlide {
   alt: string;
   title?: string;
   subtitle?: string;
-}
-
-export interface Notice {
-  id: string;
-  title: string;
-  summary: string;
-  type: NoticeType;
-  publishedAt: string;
-  pinned?: boolean;
 }
 
 export interface AdmissionProgram {

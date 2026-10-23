@@ -1,4 +1,4 @@
-import { AdmissionProgram, HeroSlide, Notice, SiteSettings } from '../models/site.models';
+import { AdmissionProgram, HeroSlide, SiteSettings } from '../models/site.models';
 
 export const SITE_SETTINGS: SiteSettings = {
   societyName: 'SHRI. BHAUSAHEB HIRE GOVERNMENT MEDICAL COLLEGE & SARVOPACHAR RUGNALAYA',
@@ -63,46 +63,6 @@ export const HERO_SLIDES: HeroSlide[] = [
     title: 'Safe & Secure Hostel Facilities',
     subtitle:
       'Separate, well-equipped hostels for boys and girls (B-1 & B-2) providing a disciplined and comfortable environment.',
-  },
-];
-
-export const NOTICES: Notice[] = [
-  {
-    id: '1',
-    title: 'Academic session 2026–27 — orientation schedule',
-    summary: 'Orientation programme for newly admitted B.Sc. Nursing and GNM batches.',
-    type: 'important',
-    publishedAt: '2026-03-15',
-    pinned: true,
-  },
-  {
-    id: '2',
-    title: 'Internal assessment timetable — March 2026',
-    summary: 'Tentative schedule for unit tests and practical examinations shared with students.',
-    type: 'general',
-    publishedAt: '2026-03-10',
-  },
-  {
-    id: '3',
-    title: 'GNM counselling — document verification',
-    summary: 'Shortlisted candidates must report with original certificates on 22 March 2026, 10:00 AM.',
-    type: 'admission',
-    publishedAt: '2026-03-08',
-    pinned: true,
-  },
-  {
-    id: '4',
-    title: 'Anti-ragging awareness week',
-    summary: 'Orientation sessions for all incoming batches; helpline numbers displayed on campus.',
-    type: 'important',
-    publishedAt: '2026-03-01',
-  },
-  {
-    id: '5',
-    title: 'Library extended hours during exams',
-    summary: 'Library open until 9:00 PM from 1–20 April for B.Sc. Nursing students.',
-    type: 'general',
-    publishedAt: '2026-02-28',
   },
 ];
 

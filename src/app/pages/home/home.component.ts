@@ -1,7 +1,6 @@
 import { Component, inject, signal } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { SiteDataService } from '../../core/services/site-data.service';
-import { NoticeType } from '../../core/models/site.models';
 import { LEADERSHIP_MESSAGES } from '../../data/about.data';
 import { NOTICES_DATA } from '../../data/notices.data';
 import { AppIconComponent } from '../../shared/app-icon/app-icon.component';
@@ -20,7 +19,7 @@ export class HomeComponent {
   readonly about = this.data.getAboutContent();
   readonly slides = this.data.getHeroSlides();
   readonly notices = NOTICES_DATA;
-  readonly marqueeNotices = [...NOTICES_DATA, ...NOTICES_DATA];
+  readonly marqueeNotices = NOTICES_DATA.length > 1 ? [...NOTICES_DATA, ...NOTICES_DATA] : NOTICES_DATA;
   readonly admissions = this.data.getAdmissions();
   readonly leadership = LEADERSHIP_MESSAGES;
   readonly criteria = this.data.getAdmissionCriteria();
@@ -92,10 +91,6 @@ export class HomeComponent {
 
   nextSlide(): void {
     this.activeSlide.set((this.activeSlide() + 1) % this.slides.length);
-  }
-
-  chipClass(type: NoticeType): string {
-    return `chip chip-${type}`;
   }
 
   formatDate(iso: string): string {
