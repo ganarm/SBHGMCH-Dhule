@@ -5,7 +5,7 @@ const PRINCIPAL: FacultyMember = {
   initials: 'MD',
   designation: 'Principal',
   qualification: 'M.Sc. Nursing (Child Health Nursing)',
-  image: '/images/faculty/teaching/Mahesh.jpeg',
+  image: 'images/faculty/teaching/Mahesh.jpeg',
   category: 'teaching',
 };
 
@@ -16,7 +16,7 @@ export const FACULTY_DATA: FacultyMember[] = [
     initials: 'SS',
     designation: 'Vice Principal',
     qualification: 'M.Sc. Nursing (Medical Surgical Nursing)',
-    image: '/images/faculty/teaching/Shashikant.jpeg',
+    image: 'images/faculty/teaching/Shashikant.jpeg',
     category: 'teaching',
   },
   {
@@ -24,7 +24,7 @@ export const FACULTY_DATA: FacultyMember[] = [
     initials: 'AP',
     designation: 'Associate Professor',
     qualification: 'M.Sc. Nursing (Medical Surgical Nursing)',
-    image: '/images/faculty/teaching/Amol.jpeg',
+    image: 'images/faculty/teaching/Amol.jpeg',
     category: 'teaching',
   },
   {
@@ -32,7 +32,7 @@ export const FACULTY_DATA: FacultyMember[] = [
     initials: 'GS',
     designation: 'Assistant Professor',
     qualification: 'M.Sc. Nursing (Medical Surgical Nursing)',
-    image: '/images/faculty/teaching/Ganesh.jpeg',
+    image: 'images/faculty/teaching/Ganesh.jpeg',
     category: 'teaching',
   },
   {
@@ -40,7 +40,7 @@ export const FACULTY_DATA: FacultyMember[] = [
     initials: 'AR',
     designation: 'Assistant Professor',
     qualification: 'M.Sc. Nursing (Obstetrical & Gynecological Nursing)',
-    image: '/images/faculty/teaching/Ashwini.jpeg',
+    image: 'images/faculty/teaching/Ashwini.jpeg',
     category: 'teaching',
   },
   {
@@ -48,7 +48,7 @@ export const FACULTY_DATA: FacultyMember[] = [
     initials: 'AS',
     designation: 'Tutor',
     qualification: 'M.Sc. Nursing (Mental Health Nursing)',
-    image: '/images/faculty/teaching/Anita.jpeg',
+    image: 'images/faculty/teaching/Anita.jpeg',
     category: 'teaching',
   },
   {
@@ -56,7 +56,7 @@ export const FACULTY_DATA: FacultyMember[] = [
     initials: 'SK',
     designation: 'Tutor',
     qualification: 'M.Sc. Nursing (Obstetrical & Gynecological Nursing)',
-    image: '/images/faculty/teaching/Shital.jpeg',
+    image: 'images/faculty/teaching/Shital.jpeg',
     category: 'teaching',
   },
   {
@@ -64,7 +64,7 @@ export const FACULTY_DATA: FacultyMember[] = [
     initials: 'AW',
     designation: 'Tutor',
     qualification: 'M.Sc. Nursing (Community Health Nursing)',
-    image: '/images/faculty/teaching/Ashish.jpeg',
+    image: 'images/faculty/teaching/Ashish.jpeg',
     category: 'teaching',
   },
   {
@@ -72,7 +72,7 @@ export const FACULTY_DATA: FacultyMember[] = [
     initials: 'PT',
     designation: 'Tutor',
     qualification: 'M.Sc. Nursing (Medical Surgical Nursing)',
-    image: '/images/faculty/teaching/Pritam.jpeg',
+    image: 'images/faculty/teaching/Pritam.jpeg',
     category: 'teaching',
   },
   {
@@ -88,7 +88,7 @@ export const FACULTY_DATA: FacultyMember[] = [
     initials: 'DS',
     designation: 'Administrative Staff',
     qualification: 'Administration',
-    image: '/images/faculty/non-teaching/Devyani.jpeg',
+    image: 'images/faculty/non-teaching/Devyani.jpeg',
     category: 'non-teaching',
   },
 ];

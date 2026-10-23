@@ -3,7 +3,7 @@ import { FacilityDetail } from './data.models';
 function numberedImages(directory: string, prefix: string, count: number): string[] {
   return Array.from(
     { length: count },
-    (_, index) => `/images/${directory}/${prefix}${index + 1}.jpg`,
+    (_, index) => `images/${directory}/${prefix}${index + 1}.jpg`,
   );
 }
 
@@ -17,7 +17,7 @@ const PRE_CLINICAL_IMAGES = numberedImages(
 );
 const NUTRITION_IMAGES = Array.from(
   { length: 8 },
-  (_, index) => `/images/Laboratories/NutritionLab/NutritionLab${index + 1}.jpeg`,
+  (_, index) => `images/Laboratories/NutritionLab/NutritionLab${index + 1}.jpeg`,
 );
 const COMMUNITY_HEALTH_IMAGES = numberedImages(
   'Laboratories/CommunityHealthLab',

@@ -19,7 +19,7 @@ export const ACADEMIC_SUPPORT_PAGES: Record<string, InformationPage> = {
 export const BSC_NURSING_INTAKE = 100;
 export const GNM_DURATION = '3 Years';
 export const BSC_ADMISSION_BROCHURE_PDF =
-  '/PDFs/Admissions/GCON-Dhule-Admission-Brochure-2026-27.pdf';
+  'PDFs/Admissions/GCON-Dhule-Admission-Brochure-2026-27.pdf';
 export const BSC_ADMISSION_ROUTE =
   'Admission is strictly based on merit in the MH-Nursing CET 2026.';
 export const GNM_ADMISSION_NOTE =
