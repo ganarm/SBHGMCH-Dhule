@@ -63,17 +63,17 @@
     align-items: center;
     gap: 0.5rem;
   }
-
-  .course-note {
-    background: color-mix(in srgb, var(--color-warning) 12%, var(--color-surface));
-    border-left-color: var(--color-warning);
-  }
   
   p {
     color: var(--color-text);
     font-weight: 500;
     margin: 0;
   }
+}
+
+.course-note {
+  background: color-mix(in srgb, var(--color-warning) 12%, var(--color-surface));
+  border-left-color: var(--color-warning);
 }
 
 .section-block {
@@ -144,6 +144,44 @@
   }
 }
 
+.admissions-cta {
+  p {
+    color: var(--color-text-muted);
+    line-height: 1.6;
+  }
+
+  .btn {
+    width: 100%;
+  }
+}
+
+.status-box {
+  padding: 1rem;
+  border-left: 4px solid var(--color-warning);
+  border-radius: 0 var(--radius-md) var(--radius-md) 0;
+  background: color-mix(in srgb, var(--color-warning) 12%, var(--color-surface));
+}
+
+.status-badge {
+  display: inline-flex;
+  padding: 0.35rem 0.7rem;
+  border: 1px solid var(--color-warning);
+  border-radius: 999px;
+  background: var(--color-surface);
+  color: var(--color-warning);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.status-text {
+  margin: 0.85rem 0 0;
+  color: var(--color-text);
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+
 .fact-row {
   display: flex;
   justify-content: space-between;
@@ -207,9 +245,9 @@
 }
 
 .pending-notice {
-  background: #fffbeb;
-  border: 1px dashed #f59e0b;
-  color: #b45309;
+  background: color-mix(in srgb, var(--color-warning) 12%, var(--color-surface));
+  border: 1px dashed var(--color-warning);
+  color: var(--color-warning);
   padding: 1.25rem;
   border-radius: var(--radius-md);
   font-size: 0.9rem;

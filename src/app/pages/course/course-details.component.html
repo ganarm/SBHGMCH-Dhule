@@ -44,33 +44,48 @@
 
       <!-- Right Column: Sticky Sidebar -->
       <aside class="sidebar">
-        
-        <!-- Quick Actions -->
-        <div class="sidebar-card">
-          <h3>Quick Actions</h3>
-          
-          @if (courseDetails.brochureLink && courseDetails.feesLink) {
-            <div class="btn-group">
-              <a [href]="courseDetails.brochureLink" download class="btn btn-primary">
-                <i class="fa-solid fa-file-pdf"></i> Download Brochure
-              </a>
-              <a [routerLink]="courseDetails.feesLink" class="btn btn-outline">
-                <i class="fa-solid fa-indian-rupee-sign"></i> View Approved Fees
-              </a>
+        @if (courseDetails.slug === 'bsc-nursing') {
+          <div class="sidebar-card admissions-cta">
+            <h3>Admissions Open for 2026-27</h3>
+            <p>Find the official brochure, approved fees, seat matrix, and document checklist.</p>
+            <a routerLink="/academics/admission" class="btn btn-primary">
+              View Admission Process <span aria-hidden="true">→</span>
+            </a>
+          </div>
+        } @else if (courseDetails.slug === 'gnm') {
+          <div class="sidebar-card">
+            <h3>Course Status</h3>
+            <div class="status-box" role="status">
+              <span class="status-badge">On Hold</span>
+              <p class="status-text">{{ courseDetails.note }}</p>
             </div>
-          } @else {
-            <div class="pending-notice">
-              <i class="fa-solid fa-hourglass-half"></i><br>
-              <strong>Brochure & Fees Pending</strong><br>
-              Information for 2026-27 will be published shortly.
-            </div>
-          }
-        </div>
+          </div>
+        } @else {
+          <div class="sidebar-card">
+            <h3>Quick Actions</h3>
+            @if (courseDetails.brochureLink && courseDetails.feesLink) {
+              <div class="btn-group">
+                <a [href]="courseDetails.brochureLink" download class="btn btn-primary">
+                  <i class="fa-solid fa-file-pdf"></i> Download Brochure
+                </a>
+                <a [routerLink]="courseDetails.feesLink" class="btn btn-outline">
+                  <i class="fa-solid fa-indian-rupee-sign"></i> View Approved Fees
+                </a>
+              </div>
+            } @else {
+              <div class="pending-notice">
+                <i class="fa-solid fa-hourglass-half"></i><br>
+                <strong>Brochure & Fees Pending</strong><br>
+                Information for 2026-27 will be published shortly.
+              </div>
+            }
+          </div>
+        }
 
         <!-- Quick Facts -->
         @if (courseDetails.duration || courseDetails.intake) {
           <div class="sidebar-card">
-            <h3>Quick Facts</h3>
+            <h3>{{ courseDetails.slug === 'bsc-nursing' ? 'Programme Details' : 'Quick Facts' }}</h3>
             @if (courseDetails.duration) {
               <div class="fact-row"><span>Duration</span><strong>{{ courseDetails.duration }}</strong></div>
             }
@@ -82,7 +97,7 @@
 
         <!-- Help Card -->
         <div class="sidebar-card">
-          <h3>Need Help?</h3>
+          <h3>{{ courseDetails.slug === 'bsc-nursing' ? 'Admission Support' : 'Need Help?' }}</h3>
           <p class="help-text">Contact the admission office for any queries regarding this course.</p>
           <div class="fact-row" style="border: none; padding: 0;">
             <i class="fa-solid fa-phone" style="color: var(--color-primary); margin-right: 8px;"></i> 
