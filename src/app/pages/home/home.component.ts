@@ -1,4 +1,4 @@
-import { Component, inject, signal } from '@angular/core';
+import { Component, OnDestroy, inject, signal } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { SiteDataService } from '../../core/services/site-data.service';
 import { NOTICES_DATA, HOME_STATS, HOME_KEY_PERSONS } from '../../data/home.data';
@@ -12,8 +12,9 @@ import { AppIconComponent } from '../../shared/app-icon/app-icon.component';
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss',
 })
-export class HomeComponent {
+export class HomeComponent implements OnDestroy {
   private readonly data = inject(SiteDataService);
+  private readonly slideTimer: ReturnType<typeof setInterval>;
 
   readonly settings = this.data.getSettings();
   readonly about = this.data.getAboutContent();
@@ -28,14 +29,32 @@ export class HomeComponent {
   readonly keyPersons = HOME_KEY_PERSONS;
 
   activeSlide = signal(0);
+  slideAnimationCycle = signal(false);
+
+  constructor() {
+    this.slideTimer = setInterval(() => this.nextSlide(), 3000);
+  }
+
+  ngOnDestroy(): void {
+    clearInterval(this.slideTimer);
+  }
 
   prevSlide(): void {
     const next = (this.activeSlide() - 1 + this.slides.length) % this.slides.length;
-    this.activeSlide.set(next);
+    this.setSlide(next);
   }
 
   nextSlide(): void {
-    this.activeSlide.set((this.activeSlide() + 1) % this.slides.length);
+    this.setSlide((this.activeSlide() + 1) % this.slides.length);
+  }
+
+  setSlide(index: number): void {
+    if (index === this.activeSlide()) {
+      return;
+    }
+
+    this.activeSlide.set(index);
+    this.slideAnimationCycle.update((cycle) => !cycle);
   }
 
   statusLabel(status: string): string {

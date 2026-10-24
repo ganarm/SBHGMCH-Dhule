@@ -1,5 +1,9 @@
 <section class="hero" aria-label="Featured highlights">
-  <div class="hero-slide">
+  <div
+    class="hero-slide"
+    [class.hero-slide-enter-a]="!slideAnimationCycle()"
+    [class.hero-slide-enter-b]="slideAnimationCycle()"
+  >
     <img [src]="slides[activeSlide()].imageUrl" [alt]="slides[activeSlide()].alt" />
     <div class="hero-overlay">
       <div class="container hero-content">
@@ -31,7 +35,7 @@
         role="tab"
         [attr.aria-selected]="activeSlide() === i"
         [class.active]="activeSlide() === i"
-        (click)="activeSlide.set(i)"
+        (click)="setSlide(i)"
         [attr.aria-label]="'Slide ' + (i + 1)"
       ></button>
     }

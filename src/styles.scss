@@ -28,3 +28,28 @@
     overflow-wrap: anywhere;
   }
 }
+
+.hero-slide-enter-a {
+  animation: hero-slide-enter-a 550ms ease-out both;
+}
+
+.hero-slide-enter-b {
+  animation: hero-slide-enter-b 550ms ease-out both;
+}
+
+@keyframes hero-slide-enter-a {
+  from { transform: translateX(100%); }
+  to { transform: translateX(0); }
+}
+
+@keyframes hero-slide-enter-b {
+  from { transform: translateX(100%); }
+  to { transform: translateX(0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-slide-enter-a,
+  .hero-slide-enter-b {
+    animation: none;
+  }
+}

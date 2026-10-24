@@ -3,18 +3,18 @@ import { Notice } from './data.models';
 
 export const HERO_SLIDES: HeroSlide[] = [
   {
-    imageUrl: 'images/College/CollegeImage.jpeg',
-    alt: 'Government College of Nursing, Dhule building and campus',
-    title: 'Government College of Nursing, Dhule',
-    subtitle:
-      'Shri. Bhausaheb Hire Government Medical College & Sarvopachar Rugnalaya. Dedicated to excellence in nursing education and community service.',
-  },
-  {
     imageUrl: 'images/Hospital/Hospital-Picture1.jpg',
     alt: 'Teaching hospital clinical exposure',
     title: 'Extensive Clinical Exposure',
     subtitle:
       'Practical training at our 250-bedded teaching hospital, including OPD, ICU, Casualty, and specialized wards.',
+  },
+  {
+    imageUrl: 'images/College/CollegeImage.jpeg',
+    alt: 'Government College of Nursing, Dhule building and campus',
+    title: 'Government College of Nursing, Dhule',
+    subtitle:
+      'Shri. Bhausaheb Hire Government Medical College & Sarvopachar Rugnalaya. Dedicated to excellence in nursing education and community service.',
   },
   {
     imageUrl: 'images/Laboratories/PreClinicalLab/Pre-ClinicalLab-Picture1.jpg',
