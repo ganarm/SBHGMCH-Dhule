@@ -19,7 +19,7 @@ export class HomeComponent {
   readonly about = this.data.getAboutContent();
   readonly slides = this.data.getHeroSlides();
   readonly notices = NOTICES_DATA;
-  readonly marqueeNotices = this.notices.length > 1 ? [...this.notices, ...this.notices] : this.notices;
+  readonly marqueeNotices = this.notices.length ? [...this.notices, ...this.notices] : [];
   readonly admissions = this.data.getAdmissions();
   readonly leadership = LEADERSHIP_MESSAGES;
   readonly criteria = this.data.getAdmissionCriteria();

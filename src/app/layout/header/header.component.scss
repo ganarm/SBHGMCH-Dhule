@@ -66,24 +66,27 @@
 
 /* —— Brand / Header —— */
 .site-header {
-  background: #ffffff;
-  border-bottom: 1px solid rgba(0, 51, 102, 0.12);
+  background: var(--color-surface);
+  border-bottom: 1px solid var(--color-border);
 }
 
-.brand-block {
+.header-inner {
   display: flex;
+  flex-wrap: nowrap;
   align-items: center;
   justify-content: space-between;
-  gap: 1.5rem;
+  gap: 1rem;
   min-height: 10rem;
-  padding: 1rem 0;
-  background: #ffffff;
+  padding: 0.85rem 0;
+  background: var(--color-surface);
 }
 
 .header-mark {
   display: flex;
+  flex: 0 0 150px;
   align-items: center;
   justify-content: center;
+  align-self: center;
   height: 6.5rem;
   flex-shrink: 0;
 
@@ -101,28 +104,28 @@
 
 .brand-text {
   display: flex;
-  flex: 1;
+  flex: 1 1 0;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   text-align: center;
   min-width: 0;
-  gap: 0.2rem;
+  gap: 0.1rem;
 }
 
 .society {
-  font-size: 0.7rem;
+  font-size: 0.68rem;
   font-weight: 700;
   letter-spacing: 0.05em;
   text-transform: uppercase;
-  color: #6b7280;
-  line-height: 1.4;
+  color: var(--color-text-muted);
+  line-height: 1.2;
 }
 
 .institute {
-  font-family: 'Times New Roman', Georgia, serif;
+  font-family: var(--font-display);
   font-size: clamp(1.6rem, 2.8vw, 2.4rem);
-  line-height: 1.15;
+  line-height: 1.1;
   color: var(--color-nav);
   font-weight: 700;
   letter-spacing: 0.01em;
@@ -132,30 +135,36 @@
   font-size: 0.95rem;
   color: var(--color-primary);
   font-weight: 600;
-  margin: 0.1rem 0;
+  margin: 0;
+  white-space: nowrap;
 }
 
 .approvals {
   font-size: 0.75rem;
-  line-height: 1.4;
-  color: #5a6472;
-  white-space: nowrap; 
+  line-height: 1.25;
+  color: var(--color-text-muted);
+  text-wrap: balance;
+}
+
+.approvals-mobile,
+.code-label-mobile {
+  display: none;
 }
 
 /* --- PREMIUM CODES DESIGN --- */
 .codes-inline-block {
   display: flex;
   justify-content: center;
-  gap: 15px;
-  margin-top: 10px;
+  gap: 0.75rem;
+  margin-top: 0.3rem;
   flex-wrap: wrap;
 }
 
 .code-badge {
   display: flex;
   align-items: center;
-  background: #f8fafc;
-  border: 1px solid #cbd5e1;
+  background: var(--color-bg);
+  border: 1px solid var(--color-border);
   border-radius: 6px;
   padding: 6px 12px;
   box-shadow: 0 1px 2px rgba(0,0,0,0.05);
@@ -165,13 +174,13 @@
 .code-label {
   font-size: 0.7rem;
   font-weight: 700;
-  color: #64748b;
+  color: var(--color-text-muted);
   text-transform: uppercase;
   letter-spacing: 0.5px;
 }
 
 .code-separator {
-  color: #cbd5e1;
+  color: var(--color-border);
   font-size: 1.2rem;
   line-height: 1;
 }
@@ -179,7 +188,7 @@
 .code-value {
   font-size: 0.9rem;
   font-weight: 800;
-  color: var(--color-primary, #003366);
+  color: var(--color-primary);
   letter-spacing: 1px;
 }
 
@@ -501,8 +510,8 @@
 .mobile-backdrop {
   position: fixed;
   inset: 0;
-  background: rgba(0, 0, 0, 0.5);
-  z-index: 150;
+  background: rgba(0, 0, 0, 0.55);
+  z-index: 9998;
 }
 
 .mobile-nav {
@@ -510,12 +519,14 @@
   top: 0;
   right: 0;
   width: min(100%, 20rem);
-  height: 100%;
+  height: 100vh;
+  height: 100dvh;
   background: var(--color-surface);
-  z-index: 160;
+  z-index: 9999;
   display: flex;
   flex-direction: column;
   box-shadow: var(--shadow-lg);
+  overflow: hidden;
 }
 
 .mobile-nav-head {
@@ -605,61 +616,131 @@
   }
 }
 
-@media (max-width: 767px) {
-  /* 1. Hide the Utility Bar on mobile as requested */
+@media (max-width: 900px) {
   .utility-bar {
     display: none;
   }
 
-  /* 2. Adjust the Brand Block */
-  .brand-block {
+  .header-inner {
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: center;
     min-height: auto;
-    padding: 0.75rem 0;
-    gap: 0.5rem;
+    gap: 0.4rem;
+    padding: 0.5rem 0;
   }
 
-  /* 3. Show Logos on Mobile */
   .header-mark {
-    display: flex;
-    height: 3.5rem; 
+    position: static;
+    flex: 0 0 35px;
+    height: 35px;
   }
-  
+
   .header-mark img {
-    max-width: 5rem;
+    width: auto;
+    height: 35px;
+    max-width: 35px;
+  }
+
+  .header-mark-left {
+    order: 1;
+  }
+
+  .header-mark-right {
+    order: 3;
   }
 
   .brand-text {
+    order: 2;
+    flex: 1 1 0;
     width: auto;
-    flex: 1;
-    gap: 0.15rem;
+    gap: 0.12rem;
   }
 
   .society {
-    font-size: 0.5rem;
-    letter-spacing: 0.02em;
+    display: block;
+    width: 100%;
+    font-size: clamp(5px, 1.15vw, 8px);
+    letter-spacing: 0.01em;
     line-height: 1.2;
+    white-space: normal;
+    overflow-wrap: anywhere;
+  }
+
+  .highlight-text,
+  .approvals-desktop {
+    display: none;
+  }
+
+  .approvals-mobile {
+    display: block;
+    width: 100%;
+    font-size: clamp(7px, 1.8vw, 10px);
+    line-height: 1.2;
+    white-space: normal;
+    overflow-wrap: anywhere;
   }
 
   .institute {
-    font-size: 1.1rem;
-    line-height: 1.1;
+    width: 100%;
+    font-size: clamp(12px, 3.4vw, 18px);
+    line-height: 1.15;
+    text-align: center;
+    white-space: normal;
+    overflow-wrap: anywhere;
   }
 
-  .highlight-text {
-    font-size: 0.65rem;
-    line-height: 1.2;
-  }
-
-  .approvals {
-    font-size: 0.55rem;
-    line-height: 1.2;
-    white-space: normal; /* Allow wrapping on mobile */
-  }
-
-  /* 4. Codes Mobile Layout */
   .codes-inline-block {
-    flex-direction: column;
-    gap: 8px;
+    flex-direction: row;
+    gap: 0.25rem;
     align-items: center;
+    flex-wrap: nowrap;
+    margin-top: 0.1rem;
+  }
+
+  .code-badge {
+    gap: 0.15rem;
+    padding: 0.1rem 0.3rem;
+    white-space: nowrap;
+  }
+
+  .code-label {
+    font-size: 0.55rem;
+  }
+
+  .code-label-desktop {
+    display: none;
+  }
+
+  .code-label-mobile {
+    display: inline;
+  }
+
+  .code-separator {
+    font-size: 0.8rem;
+  }
+
+  .code-value {
+    font-size: 0.62rem;
+    letter-spacing: 0;
+  }
+
+  .nav-bar {
+    top: 0;
+  }
+
+  .mobile-nav {
+    left: 0;
+    right: auto;
+    width: 100vw;
+    height: 100vh;
+    height: 100dvh;
+    background: #fff;
+    border-radius: 0;
+  }
+
+  .mobile-list {
+    overscroll-behavior: contain;
   }
 }

@@ -27,29 +27,28 @@
 </div>
 
 <header class="site-header">
-  <div class="container brand-block">
-    
+  <div class="container header-inner">
     <div class="header-mark header-mark-left">
       <img src="images/College/GMCDhuleLogo.png" alt="GMC Dhule Logo" />
     </div>
 
-    <!-- Center Text -->
     <div class="brand-text" [attr.aria-label]="settings.instituteName">
       <span class="society">{{ settings.societyName }}</span>
       <span class="institute">{{ settings.instituteName }}</span>
       <span class="highlight-text">{{ settings.headerTagline }}</span>
-      <span class="approvals">{{ settings.approvalsLine }}</span>
-      
-      <!-- PREMIUM CODES DESIGN -->
+      <span class="approvals approvals-desktop">{{ settings.approvalsLine }}</span>
+      <span class="approvals approvals-mobile">Approved by MUHS, Nashik, MNC Mumbai &amp; INC New Delhi</span>
       <div class="codes-inline-block">
         <div class="code-badge">
-          <span class="code-label">CET Cell Code</span>
-          <span class="code-separator">|</span>
+          <span class="code-label code-label-desktop">CET Cell Code</span>
+          <span class="code-label code-label-mobile">CET</span>
+          <span class="code-separator">:</span>
           <span class="code-value">9486</span>
         </div>
         <div class="code-badge">
-          <span class="code-label">MUHS Code</span>
-          <span class="code-separator">|</span>
+          <span class="code-label code-label-desktop">MUHS Code</span>
+          <span class="code-label code-label-mobile">MUHS</span>
+          <span class="code-separator">:</span>
           <span class="code-value">155194</span>
         </div>
       </div>
@@ -58,7 +57,6 @@
     <div class="header-mark header-mark-right">
       <img src="images/College/CollegeLogo.jpeg" alt="College Logo" />
     </div>
-    
   </div>
 </header>
 

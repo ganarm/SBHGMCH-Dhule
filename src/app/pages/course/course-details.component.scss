@@ -17,14 +17,12 @@
   display: grid;
   grid-template-columns: 1fr 340px;
   gap: 3rem;
-  margin-top: -4rem; /* Overlap effect */
   padding-bottom: 5rem;
   position: relative;
   z-index: 10;
 
   @media (max-width: 991px) {
     grid-template-columns: 1fr;
-    margin-top: -2rem;
   }
 }
 
@@ -37,7 +35,8 @@
   padding: 3rem;
 
   @media (max-width: 768px) {
-    padding: 2rem;
+    min-width: 0;
+    padding: 1.5rem;
   }
 }
 
@@ -128,6 +127,7 @@
 }
 
 .sidebar-card {
+  min-width: 0;
   background: var(--color-surface);
   border-radius: var(--radius-lg);
   border: 1px solid var(--color-border);
@@ -185,6 +185,7 @@
 .fact-row {
   display: flex;
   justify-content: space-between;
+  gap: 1rem;
   padding: 0.6rem 0;
   border-bottom: 1px dashed var(--color-border);
   font-size: 0.95rem;
@@ -199,6 +200,7 @@
 
   strong {
     color: var(--color-text);
+    text-align: right;
   }
 }
 

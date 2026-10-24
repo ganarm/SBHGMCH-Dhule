@@ -48,7 +48,7 @@ export const HERO_SLIDES: HeroSlide[] = [
 
 export const NOTICES_DATA: Notice[] = [
   {
-    title: 'B.Sc Nursing Admissions 2026-27',
+    title: 'B.Sc. Nursing Admissions 2026-27 are now open...',
     link: '/academics/bsc',
     tag: 'Admissions',
   },

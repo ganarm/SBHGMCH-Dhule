@@ -46,7 +46,7 @@
       </div>
 
       <div class="ticker-viewport" aria-live="polite">
-        <div class="ticker-track" [class.single-notice]="notices.length === 1">
+        <div class="ticker-track">
           @for (notice of marqueeNotices; track notice.title + $index) {
             <a class="ticker-item" [routerLink]="notice.link">
               @if (notice.tag) {

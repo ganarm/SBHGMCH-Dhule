@@ -1,3 +1,30 @@
 @use 'styles/themes';
 @use 'styles/tokens';
 @use 'styles/base';
+
+@media (max-width: 767px) {
+  html,
+  body {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: clip;
+  }
+
+  app-root {
+    display: block;
+    min-width: 0;
+  }
+
+  .container {
+    width: min(100% - 1.5rem, var(--container-max));
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  p,
+  li {
+    overflow-wrap: anywhere;
+  }
+}
