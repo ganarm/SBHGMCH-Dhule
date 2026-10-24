@@ -17,6 +17,7 @@
   display: grid;
   grid-template-columns: 1fr 340px;
   gap: 3rem;
+  padding-block-start: clamp(1.25rem, 4vw, 2.5rem);
   padding-bottom: 5rem;
   position: relative;
   z-index: 10;

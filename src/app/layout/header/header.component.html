@@ -28,9 +28,9 @@
 
 <header class="site-header">
   <div class="container header-inner">
-    <div class="header-mark header-mark-left">
+    <a class="header-mark header-mark-left" routerLink="/" aria-label="Go to home">
       <img src="images/College/GMCDhuleLogo.png" alt="GMC Dhule Logo" />
-    </div>
+    </a>
 
     <div class="brand-text" [attr.aria-label]="settings.instituteName">
       <span class="society">{{ settings.societyName }}</span>
@@ -54,9 +54,9 @@
       </div>
     </div>
 
-    <div class="header-mark header-mark-right">
+    <a class="header-mark header-mark-right" routerLink="/contact" aria-label="Go to contact page">
       <img src="images/College/CollegeLogo.jpeg" alt="College Logo" />
-    </div>
+    </a>
   </div>
 </header>
 

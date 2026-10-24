@@ -16,6 +16,10 @@
 
 .page-body {
   padding: clamp(1.25rem, 4vw, 2.5rem) 0 var(--section-space);
+
+  > :first-child {
+    margin-block-start: 0;
+  }
 }
 
 .breadcrumb {
