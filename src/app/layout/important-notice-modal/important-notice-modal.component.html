@@ -1,0 +1,69 @@
+@if (visible() && notice) {
+  <div class="notice-backdrop" (click)="close()" role="presentation">
+    <section
+      class="notice-modal"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="important-notice-heading"
+      aria-describedby="important-notice-description"
+      (click)="$event.stopPropagation()">
+      <button
+        class="notice-close"
+        type="button"
+        aria-label="Close important notice"
+        (click)="close()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+
+      <div class="notice-heading">
+        <span class="notice-bookmark" aria-hidden="true">
+          <img src="images/College/CollegeLogo-removebg.png" alt="" />
+        </span>
+        <div class="notice-heading-copy">
+          <span class="notice-eyebrow">Admissions</span>
+          <h2 id="important-notice-heading">Important Notice</h2>
+        </div>
+      </div>
+      <h3>{{ notice.title }}</h3>
+      <p id="important-notice-description">{{ notice.description }}</p>
+
+      <section class="programme-details" aria-labelledby="programme-details-title">
+        <h4 id="programme-details-title">Programme Details</h4>
+        <dl class="programme-facts">
+          <div>
+            <dt>Intake</dt>
+            <dd>{{ programme.intake }} Seats</dd>
+          </div>
+          <div>
+            <dt>Duration</dt>
+            <dd>{{ programme.duration }}</dd>
+          </div>
+          <div>
+            <dt>Eligibility</dt>
+            <dd>10+2 PCB (45% Gen / 40% Res) + MH-Nursing CET 2026</dd>
+          </div>
+          <div>
+            <dt>Affiliation</dt>
+            <dd>{{ programme.affiliation }}</dd>
+          </div>
+        </dl>
+      </section>
+
+      <section class="available-documents" aria-labelledby="available-documents-title">
+        <h4 id="available-documents-title">What You Will Find</h4>
+        <ul class="document-badges">
+          @for (item of availableItems; track item) {
+            <li>{{ item }}</li>
+          }
+        </ul>
+      </section>
+
+      @if (notice.actionLink) {
+        <a class="notice-action" [routerLink]="notice.actionLink" (click)="close()">
+          View Admission Process
+          <span aria-hidden="true">&rarr;</span>
+        </a>
+      }
+    </section>
+  </div>
+}

@@ -10,6 +10,9 @@ export interface Notice {
   link: string;
   date?: string;
   tag?: string;
+  urgent?: boolean;
+  description?: string;
+  actionLink?: string;
 }
 
 export interface LeadershipMessage {
