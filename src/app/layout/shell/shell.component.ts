@@ -4,6 +4,7 @@ import { FooterComponent } from '../footer/footer.component';
 import { HeaderComponent } from '../header/header.component';
 import { ThemeSwitcherComponent } from '../theme-switcher/theme-switcher.component';
 import { BreadcrumbsComponent } from '../breadcrumbs/breadcrumbs.component';
+import { ImportantNoticeModalComponent } from '../important-notice-modal/important-notice-modal.component';
 
 @Component({
   selector: 'app-shell',
@@ -14,6 +15,7 @@ import { BreadcrumbsComponent } from '../breadcrumbs/breadcrumbs.component';
     FooterComponent,
     ThemeSwitcherComponent,
     BreadcrumbsComponent,
+    ImportantNoticeModalComponent,
   ],
   template: `
     <app-header />
@@ -23,6 +25,7 @@ import { BreadcrumbsComponent } from '../breadcrumbs/breadcrumbs.component';
     </main>
     <app-footer />
     <app-theme-switcher />
+    <app-important-notice-modal />
   `,
   styles: `
     main {

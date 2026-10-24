@@ -48,9 +48,13 @@ export const HERO_SLIDES: HeroSlide[] = [
 
 export const NOTICES_DATA: Notice[] = [
   {
-    title: 'B.Sc. Nursing Admissions 2026-27 are now open...',
+    title: 'B.Sc. Nursing Admissions 2026-27',
     link: '/academics/bsc',
     tag: 'Admissions',
+    urgent: true,
+    description:
+      'View the official brochure, approved fees, seat matrix, and document checklist for the 2026-27 admission process.',
+    actionLink: '/academics/admission',
   },
 ];
 
